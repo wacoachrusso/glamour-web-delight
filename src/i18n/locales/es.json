@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "about": "Nosotros",
+    "gallery": "Galería",
+    "contact": "Contacto",
+    "bookNow": "Reservar"
+  },
+  "hero": {
+    "welcome": "BIENVENIDO AL LUJO",
+    "title": "Eleva Tu Belleza",
+    "description": "Experimenta servicios de belleza de lujo en un entorno elegante. Tu viaje hacia la radiancia comienza aquí.",
+    "bookNow": "Reservar Ahora",
+    "ourServices": "Nuestros Servicios"
+  },
+  "services": {
+    "title": "Servicios de Lujo",
+    "subtitle": "Disfruta de nuestros tratamientos de belleza premium, diseñados para realzar tu belleza natural",
+    "duration": "min",
+    "viewAll": "Ver Todos los Servicios",
+    "loading": "Cargando nuestros servicios de lujo..."
+  },
+  "products": {
+    "title": "Productos Destacados",
+    "subtitle": "Descubre nuestra colección seleccionada de productos profesionales para el cabello",
+    "addToCart": "Agregar al Carrito",
+    "viewAll": "Ver Todos los Productos",
+    "loading": "Cargando productos...",
+    "added": "Agregado al Carrito",
+    "addedDescription": "{{name}} ha sido agregado a tu carrito."
+  }
+}

@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Button } from "./ui/button";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,40 +40,44 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/services">Services</NavLink>
-            <NavLink to="/about">About</NavLink>
-            <NavLink to="/gallery">Gallery</NavLink>
-            <NavLink to="/contact">Contact</NavLink>
+            <NavLink to="/">{t('nav.home')}</NavLink>
+            <NavLink to="/services">{t('nav.services')}</NavLink>
+            <NavLink to="/about">{t('nav.about')}</NavLink>
+            <NavLink to="/gallery">{t('nav.gallery')}</NavLink>
+            <NavLink to="/contact">{t('nav.contact')}</NavLink>
+            <LanguageSwitcher />
             <Button 
               className="bg-secondary hover:bg-secondary-light text-secondary-foreground px-6 py-2 rounded-none border border-secondary transition-all duration-300"
             >
-              Book Now
+              {t('nav.bookNow')}
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <Menu className="h-6 w-6 text-primary-foreground" />
-          </button>
+          <div className="md:hidden flex items-center gap-4">
+            <LanguageSwitcher />
+            <button
+              className="p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <Menu className="h-6 w-6 text-primary-foreground" />
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-md shadow-lg py-4">
             <div className="flex flex-col space-y-4 px-4">
-              <NavLink to="/">Home</NavLink>
-              <NavLink to="/services">Services</NavLink>
-              <NavLink to="/about">About</NavLink>
-              <NavLink to="/gallery">Gallery</NavLink>
-              <NavLink to="/contact">Contact</NavLink>
+              <NavLink to="/">{t('nav.home')}</NavLink>
+              <NavLink to="/services">{t('nav.services')}</NavLink>
+              <NavLink to="/about">{t('nav.about')}</NavLink>
+              <NavLink to="/gallery">{t('nav.gallery')}</NavLink>
+              <NavLink to="/contact">{t('nav.contact')}</NavLink>
               <Button 
                 className="bg-secondary hover:bg-secondary-light text-secondary-foreground w-full rounded-none border border-secondary transition-all duration-300"
               >
-                Book Now
+                {t('nav.bookNow')}
               </Button>
             </div>
           </div>

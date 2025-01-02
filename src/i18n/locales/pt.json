@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "home": "Início",
+    "services": "Serviços",
+    "about": "Sobre",
+    "gallery": "Galeria",
+    "contact": "Contato",
+    "bookNow": "Agendar"
+  },
+  "hero": {
+    "welcome": "BEM-VINDO AO LUXO",
+    "title": "Eleve Sua Beleza",
+    "description": "Experimente serviços de beleza luxuosos em um ambiente elegante. Sua jornada para o brilho começa aqui.",
+    "bookNow": "Agendar Agora",
+    "ourServices": "Nossos Serviços"
+  },
+  "services": {
+    "title": "Serviços de Luxo",
+    "subtitle": "Desfrute de nossos tratamentos de beleza premium, criados para realçar sua beleza natural",
+    "duration": "min",
+    "viewAll": "Ver Todos os Serviços",
+    "loading": "Carregando nossos serviços luxuosos..."
+  },
+  "products": {
+    "title": "Produtos em Destaque",
+    "subtitle": "Descubra nossa coleção selecionada de produtos profissionais para cabelo",
+    "addToCart": "Adicionar ao Carrinho",
+    "viewAll": "Ver Todos os Produtos",
+    "loading": "Carregando produtos...",
+    "added": "Adicionado ao Carrinho",
+    "addedDescription": "{{name}} foi adicionado ao seu carrinho."
+  }
+}

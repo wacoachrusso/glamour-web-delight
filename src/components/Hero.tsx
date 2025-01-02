@@ -1,10 +1,12 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "./ui/button";
 import { ChevronRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const { t } = useTranslation();
   
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -60,7 +62,7 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-lg text-secondary-light font-montserrat tracking-wide"
             >
-              WELCOME TO LUXURY
+              {t('hero.welcome')}
             </motion.p>
             
             {/* Main Heading */}
@@ -70,7 +72,7 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-6xl md:text-7xl lg:text-8xl font-playfair font-bold text-white leading-tight"
             >
-              Elevate Your Beauty
+              {t('hero.title')}
             </motion.h1>
             
             {/* Description */}
@@ -80,8 +82,7 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="text-xl md:text-2xl font-montserrat text-white/90 max-w-2xl mx-auto leading-relaxed"
             >
-              Experience luxury beauty services in an elegant setting. 
-              Your journey to radiance begins here.
+              {t('hero.description')}
             </motion.p>
 
             {/* Decorative Line */}
@@ -102,13 +103,13 @@ const Hero = () => {
               <Button 
                 className="bg-secondary hover:bg-secondary-light text-secondary-foreground text-lg px-8 py-6 rounded-none border-2 border-secondary hover:border-secondary-light transition-all duration-300 min-w-[200px] hover:scale-105"
               >
-                Book Now <ChevronRight className="ml-2 h-5 w-5" />
+                {t('hero.bookNow')} <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
               <Button 
                 variant="outline"
                 className="bg-transparent border-2 border-secondary hover:bg-secondary/10 text-white text-lg px-8 py-6 rounded-none transition-all duration-300 min-w-[200px] hover:scale-105"
               >
-                Our Services <ChevronRight className="ml-2 h-5 w-5" />
+                {t('hero.ourServices')} <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
             </motion.div>
           </motion.div>

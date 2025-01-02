@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "bookNow": "Book Now"
+  },
+  "hero": {
+    "welcome": "WELCOME TO LUXURY",
+    "title": "Elevate Your Beauty",
+    "description": "Experience luxury beauty services in an elegant setting. Your journey to radiance begins here.",
+    "bookNow": "Book Now",
+    "ourServices": "Our Services"
+  },
+  "services": {
+    "title": "Luxury Services",
+    "subtitle": "Indulge in our premium beauty treatments, crafted to enhance your natural radiance",
+    "duration": "min",
+    "viewAll": "View All Services",
+    "loading": "Loading our luxurious services..."
+  },
+  "products": {
+    "title": "Featured Products",
+    "subtitle": "Discover our curated collection of professional hair care products",
+    "addToCart": "Add to Cart",
+    "viewAll": "View All Products",
+    "loading": "Loading products...",
+    "added": "Added to Cart",
+    "addedDescription": "{{name}} has been added to your cart."
+  }
+}
