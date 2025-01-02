@@ -5,15 +5,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { Database } from "@/integrations/supabase/types";
 
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  category: string;
-  price: number;
-  image_url: string | null;
-}
+type Product = Database['public']['Tables']['products']['Row'];
 
 const FeaturedProducts = () => {
   const { toast } = useToast();
@@ -22,17 +16,17 @@ const FeaturedProducts = () => {
     queryFn: async () => {
       console.log("Fetching featured products...");
       const { data, error } = await supabase
-        .from("products")
-        .select("*")
-        .eq("featured", true)
-        .order("created_at", { ascending: false });
+        .from('products')
+        .select('*')
+        .eq('featured', true)
+        .order('created_at', { ascending: false });
       
       if (error) {
         console.error("Error fetching featured products:", error);
         throw error;
       }
       console.log("Fetched featured products:", data);
-      return data as Product[];
+      return data;
     },
   });
 

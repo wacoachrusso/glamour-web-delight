@@ -4,16 +4,9 @@ import { Scissors, Sparkles, Clock, ImageOff } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { Database } from "@/integrations/supabase/types";
 
-interface Service {
-  id: string;
-  name: string;
-  description: string;
-  category: string;
-  price: number;
-  duration: number;
-  image_url: string | null;
-}
+type Service = Database['public']['Tables']['services']['Row'];
 
 const Services = () => {
   const { data: services, isLoading } = useQuery({
@@ -21,8 +14,8 @@ const Services = () => {
     queryFn: async () => {
       console.log("Fetching services...");
       const { data, error } = await supabase
-        .from("services")
-        .select("*")
+        .from('services')
+        .select('*')
         .order('category')
         .limit(6);
       
@@ -31,7 +24,7 @@ const Services = () => {
         throw error;
       }
       console.log("Fetched services:", data);
-      return data as Service[];
+      return data;
     },
   });
 
