@@ -31,7 +31,9 @@
   }
 
   body {
-    @apply bg-background text-foreground font-montserrat;
+    @apply bg-background text-foreground font-montserrat min-h-screen;
+    background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {
