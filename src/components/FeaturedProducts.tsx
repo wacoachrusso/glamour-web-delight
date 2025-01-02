@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { ShoppingBag, Star, Plus } from "lucide-react";
+import { ShoppingBag, Star, Plus, ImageOff } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { useToast } from "./ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 interface Product {
   id: string;
@@ -20,14 +20,19 @@ const FeaturedProducts = () => {
   const { data: products, isLoading } = useQuery({
     queryKey: ["featuredProducts"],
     queryFn: async () => {
+      console.log("Fetching featured products...");
       const { data, error } = await supabase
         .from("products")
         .select("*")
         .eq("featured", true)
         .order("created_at", { ascending: false })
-        .limit(6);
+        .limit(3);
       
-      if (error) throw error;
+      if (error) {
+        console.error("Error fetching featured products:", error);
+        throw error;
+      }
+      console.log("Fetched featured products:", data);
       return data as Product[];
     },
   });
@@ -46,6 +51,10 @@ const FeaturedProducts = () => {
         <div className="animate-pulse text-primary-foreground/60">Loading products...</div>
       </div>
     );
+  }
+
+  if (!products?.length) {
+    return null; // Don't show the section if there are no featured products
   }
 
   return (
@@ -76,15 +85,24 @@ const FeaturedProducts = () => {
             >
               <Card className="bg-white border-secondary/20 hover:border-secondary transition-all duration-300 overflow-hidden h-full">
                 <div className="relative">
-                  {product.image_url && (
-                    <div className="relative h-72 overflow-hidden bg-secondary/5">
+                  <div className="relative h-72 overflow-hidden bg-secondary/5">
+                    {product.image_url ? (
                       <img
                         src={product.image_url}
                         alt={product.name}
                         className="w-full h-full object-contain p-4 transform group-hover:scale-110 transition-transform duration-300"
+                        onError={(e) => {
+                          console.log("Image failed to load:", product.image_url);
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          target.nextElementSibling?.classList.remove('hidden');
+                        }}
                       />
+                    ) : null}
+                    <div className={`absolute inset-0 flex items-center justify-center ${product.image_url ? 'hidden' : ''}`}>
+                      <ImageOff className="w-16 h-16 text-secondary/30" />
                     </div>
-                  )}
+                  </div>
                   <div className="absolute top-4 right-4">
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary/10 text-secondary">
                       {product.category}
