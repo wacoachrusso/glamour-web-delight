@@ -1,15 +1,40 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "./ui/button";
 import { ChevronRight } from "lucide-react";
 
 const Hero = () => {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div 
+      {/* Parallax Background */}
+      <motion.div 
+        style={{ y }}
         className="absolute inset-0 bg-[url('/lovable-uploads/2721060a-90fa-4a64-97e9-d7747f1a40a8.png')] bg-cover bg-center"
-        style={{ opacity: 0.15 }}
       />
+      
+      {/* Overlay with gradient */}
+      <div 
+        className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-muted"
+        style={{ opacity: 0.85 }}
+      />
+      
+      {/* Decorative Elements */}
+      <div className="absolute inset-0">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.1 }}
+          transition={{ duration: 1.5 }}
+          className="absolute top-20 left-10 w-32 h-32 rounded-full bg-secondary blur-3xl"
+        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.1 }}
+          transition={{ duration: 1.5, delay: 0.5 }}
+          className="absolute bottom-20 right-10 w-40 h-40 rounded-full bg-primary blur-3xl"
+        />
+      </div>
       
       {/* Content */}
       <div className="container mx-auto px-4 z-10">
@@ -20,32 +45,68 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            {/* Main Heading */}
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-playfair font-bold text-primary-foreground leading-tight">
-              Elevate Your Beauty
-            </h1>
+            {/* Decorative Line */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="w-24 h-0.5 bg-secondary mx-auto"
+            />
             
-            {/* Subheading */}
-            <p className="text-xl md:text-2xl font-montserrat text-primary-foreground/80 max-w-2xl mx-auto leading-relaxed">
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-lg text-secondary-light font-montserrat tracking-wide"
+            >
+              WELCOME TO LUXURY
+            </motion.p>
+            
+            {/* Main Heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-6xl md:text-7xl lg:text-8xl font-playfair font-bold text-white leading-tight"
+            >
+              Elevate Your Beauty
+            </motion.h1>
+            
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="text-xl md:text-2xl font-montserrat text-white/90 max-w-2xl mx-auto leading-relaxed"
+            >
               Experience luxury beauty services in an elegant setting. 
               Your journey to radiance begins here.
-            </p>
+            </motion.p>
+
+            {/* Decorative Line */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 1, delay: 1 }}
+              className="w-24 h-0.5 bg-secondary mx-auto"
+            />
 
             {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
               className="flex flex-col sm:flex-row gap-6 justify-center pt-8"
             >
               <Button 
-                className="bg-secondary hover:bg-secondary-light text-secondary-foreground text-lg px-8 py-6 rounded-none border-2 border-secondary hover:border-secondary-light transition-all duration-300 min-w-[200px]"
+                className="bg-secondary hover:bg-secondary-light text-secondary-foreground text-lg px-8 py-6 rounded-none border-2 border-secondary hover:border-secondary-light transition-all duration-300 min-w-[200px] hover:scale-105"
               >
                 Book Now <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
               <Button 
                 variant="outline"
-                className="bg-transparent border-2 border-secondary hover:bg-secondary/10 text-primary-foreground text-lg px-8 py-6 rounded-none transition-all duration-300 min-w-[200px]"
+                className="bg-transparent border-2 border-secondary hover:bg-secondary/10 text-white text-lg px-8 py-6 rounded-none transition-all duration-300 min-w-[200px] hover:scale-105"
               >
                 Our Services <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
@@ -54,7 +115,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Decorative Elements */}
+      {/* Bottom Gradient */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-muted to-transparent" />
     </div>
   );
