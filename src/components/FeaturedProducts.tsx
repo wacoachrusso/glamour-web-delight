@@ -36,6 +36,19 @@ const FeaturedProducts = () => {
     },
   });
 
+  const getImageUrl = (imageUrl: string | null) => {
+    if (!imageUrl) return null;
+    // If the URL is already a full URL (e.g., starts with http or https), return it as is
+    if (imageUrl.startsWith('http')) return imageUrl;
+    
+    // Otherwise, construct the Supabase storage URL
+    const { data } = supabase.storage
+      .from('salon_images')
+      .getPublicUrl(imageUrl.replace('/lovable-uploads/', ''));
+    
+    return data.publicUrl;
+  };
+
   const handleAddToCart = (product: Product) => {
     toast({
       title: "Added to Cart",
@@ -87,7 +100,7 @@ const FeaturedProducts = () => {
                   <div className="relative h-72 overflow-hidden bg-secondary/5">
                     {product.image_url ? (
                       <img
-                        src={product.image_url}
+                        src={getImageUrl(product.image_url)}
                         alt={product.name}
                         className="w-full h-full object-cover p-4 transform group-hover:scale-110 transition-transform duration-300"
                         onError={(e) => {
