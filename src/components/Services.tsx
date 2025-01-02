@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { Scissors, Sparkles, Clock } from "lucide-react";
+import { Scissors, Sparkles, Clock, ImageOff } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
@@ -19,12 +19,18 @@ const Services = () => {
   const { data: services, isLoading } = useQuery({
     queryKey: ["featuredServices"],
     queryFn: async () => {
+      console.log("Fetching services...");
       const { data, error } = await supabase
         .from("services")
         .select("*")
-        .limit(3);
+        .order('category')
+        .limit(6);
       
-      if (error) throw error;
+      if (error) {
+        console.error("Error fetching services:", error);
+        throw error;
+      }
+      console.log("Fetched services:", data);
       return data as Service[];
     },
   });
@@ -54,15 +60,33 @@ const Services = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services?.map((service) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services?.map((service, index) => (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="bg-white/50 backdrop-blur-sm border-secondary/20 hover:border-secondary transition-colors duration-300">
+              <Card className="bg-white/50 backdrop-blur-sm border-secondary/20 hover:border-secondary transition-colors duration-300 h-full">
+                <div className="relative h-48 overflow-hidden">
+                  {service.image_url ? (
+                    <img
+                      src={service.image_url}
+                      alt={service.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        console.error("Service image failed to load:", service.image_url);
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        target.nextElementSibling?.classList.remove('hidden');
+                      }}
+                    />
+                  ) : null}
+                  <div className={`absolute inset-0 flex items-center justify-center bg-secondary/5 ${service.image_url ? 'hidden' : ''}`}>
+                    <ImageOff className="w-16 h-16 text-secondary/30" />
+                  </div>
+                </div>
                 <CardHeader>
                   <CardTitle className="text-2xl font-playfair">{service.name}</CardTitle>
                   <CardDescription>{service.category}</CardDescription>
@@ -74,7 +98,7 @@ const Services = () => {
                       <Clock className="w-4 h-4 mr-1" />
                       {service.duration} min
                     </span>
-                    <span className="font-semibold text-secondary">
+                    <span className="font-semibold text-secondary text-lg">
                       ${service.price}
                     </span>
                   </div>

@@ -25,8 +25,7 @@ const FeaturedProducts = () => {
         .from("products")
         .select("*")
         .eq("featured", true)
-        .order("created_at", { ascending: false })
-        .limit(3);
+        .order("created_at", { ascending: false });
       
       if (error) {
         console.error("Error fetching featured products:", error);
@@ -54,7 +53,7 @@ const FeaturedProducts = () => {
   }
 
   if (!products?.length) {
-    return null; // Don't show the section if there are no featured products
+    return null;
   }
 
   return (
@@ -90,9 +89,9 @@ const FeaturedProducts = () => {
                       <img
                         src={product.image_url}
                         alt={product.name}
-                        className="w-full h-full object-contain p-4 transform group-hover:scale-110 transition-transform duration-300"
+                        className="w-full h-full object-cover p-4 transform group-hover:scale-110 transition-transform duration-300"
                         onError={(e) => {
-                          console.log("Image failed to load:", product.image_url);
+                          console.error("Image failed to load:", product.image_url);
                           const target = e.target as HTMLImageElement;
                           target.style.display = 'none';
                           target.nextElementSibling?.classList.remove('hidden');
