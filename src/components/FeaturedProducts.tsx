@@ -41,10 +41,14 @@ const FeaturedProducts = () => {
     // If the URL is already a full URL (e.g., starts with http or https), return it as is
     if (imageUrl.startsWith('http')) return imageUrl;
     
-    // Otherwise, construct the Supabase storage URL
+    // Extract just the filename from the path
+    const filename = imageUrl.split('/').pop();
+    if (!filename) return null;
+    
+    // Get the public URL from Supabase storage
     const { data } = supabase.storage
       .from('salon_images')
-      .getPublicUrl(imageUrl.replace('/lovable-uploads/', ''));
+      .getPublicUrl(filename);
     
     return data.publicUrl;
   };
