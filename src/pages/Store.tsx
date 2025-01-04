@@ -6,6 +6,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { ImageOff } from "lucide-react";
 
 type Product = {
   id: string;
@@ -33,6 +34,20 @@ export default function Store() {
       return data as Product[];
     },
   });
+
+  const getImageUrl = (imageUrl: string | null) => {
+    if (!imageUrl) return null;
+    if (imageUrl.startsWith('http')) return imageUrl;
+    
+    const filename = imageUrl.split('/').pop();
+    if (!filename) return null;
+    
+    const { data } = supabase.storage
+      .from('salon_images')
+      .getPublicUrl(filename);
+    
+    return data.publicUrl;
+  };
 
   const addToCart = (product: Product) => {
     if (product.stock_quantity <= 0) {
@@ -102,13 +117,24 @@ export default function Store() {
                     <CardTitle className="text-xl">{product.name}</CardTitle>
                   </CardHeader>
                   <CardContent className="flex-1">
-                    {product.image_url && (
-                      <img
-                        src={product.image_url}
-                        alt={product.name}
-                        className="w-full h-48 object-cover rounded-md mb-4"
-                      />
-                    )}
+                    <div className="relative h-72 overflow-hidden bg-secondary/5 mb-4">
+                      {product.image_url ? (
+                        <img
+                          src={getImageUrl(product.image_url)}
+                          alt={product.name}
+                          className="w-full h-full object-contain p-4"
+                          onError={(e) => {
+                            console.error("Image failed to load:", product.image_url);
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            target.nextElementSibling?.classList.remove('hidden');
+                          }}
+                        />
+                      ) : null}
+                      <div className={`absolute inset-0 flex items-center justify-center ${product.image_url ? 'hidden' : ''}`}>
+                        <ImageOff className="w-16 h-16 text-secondary/30" />
+                      </div>
+                    </div>
                     <p className="text-muted-foreground mb-2">{product.description}</p>
                     <p className="font-semibold">${product.price.toFixed(2)}</p>
                     <p className={`text-sm ${
