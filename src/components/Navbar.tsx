@@ -11,7 +11,7 @@ export const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 w-full" role="banner">
       {/* Top Info Bar */}
-      <div className="w-full bg-gradient-to-r from-secondary/5 via-secondary/10 to-secondary/5 text-primary-foreground py-3">
+      <div className="w-full bg-gradient-to-r from-secondary/5 via-secondary/10 to-secondary/5 text-primary-foreground py-1.5">
         <div className="container flex justify-between items-center text-xs uppercase tracking-wider">
           <div className="flex items-center gap-3">
             <Clock className="h-3.5 w-3.5 text-secondary" aria-hidden="true" />
