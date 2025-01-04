@@ -12,7 +12,7 @@ export const Navbar = () => {
     <header className="sticky top-0 z-50 w-full" role="banner">
       {/* Top Info Bar */}
       <div className="w-full bg-[#4A2B4C] text-white py-0">
-        <div className="container mx-auto px-4 flex justify-between items-center text-[9px] uppercase tracking-wider">
+        <div className="container mx-auto px-4 flex justify-between items-start text-[9px] uppercase tracking-wider pt-1">
           <div className="flex items-center gap-2">
             <Clock className="h-2.5 w-2.5 text-white/80" aria-hidden="true" />
             <span className="text-white/90 font-medium">Open everyday 10am - 7pm</span>
