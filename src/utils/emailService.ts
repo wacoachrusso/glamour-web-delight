@@ -17,6 +17,24 @@ interface InquiryEmailData {
   message: string;
 }
 
+export const sendTestEmail = async (to: string) => {
+  try {
+    const { data, error } = await supabase.functions.invoke("send-email", {
+      body: {
+        type: "test",
+        to,
+      },
+    });
+
+    if (error) throw error;
+    console.log("Test email sent:", data);
+    return data;
+  } catch (error) {
+    console.error("Error sending test email:", error);
+    throw error;
+  }
+};
+
 export const sendOrderConfirmationEmail = async (
   orderData: OrderEmailData,
   language: string = "en"

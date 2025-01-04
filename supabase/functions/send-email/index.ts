@@ -17,7 +17,7 @@ const corsHeaders = {
 };
 
 interface EmailRequest {
-  type: "order_confirmation" | "inquiry_response";
+  type: "order_confirmation" | "inquiry_response" | "test";
   language: Language;
   data: {
     orderDetails?: OrderDetails;
@@ -46,6 +46,16 @@ const handler = async (req: Request): Promise<Response> => {
       emailContent = generateInquiryResponseEmail(data.inquiryDetails, language);
       subject = translations[language].inquiryResponse.subject;
       to = [data.inquiryDetails.customerEmail];
+    } else if (type === "test") {
+      emailContent = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #FAF9F6;">
+          <h1 style="color: #1A1A1A; text-align: center;">Test Email from Glamour's Beauty Salon</h1>
+          <p style="color: #1A1A1A; line-height: 1.6;">This is a test email to verify that our email system is working correctly.</p>
+          <p style="text-align: center; color: #666; margin-top: 30px;">Thank you for choosing Glamour's Beauty Salon</p>
+        </div>
+      `;
+      subject = "Test Email - Glamour's Beauty Salon";
+      to = [data.orderDetails.customerEmail]; // Assuming the email is passed in the orderDetails for test
     } else {
       throw new Error("Invalid email type or missing data");
     }
