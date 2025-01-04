@@ -10,25 +10,11 @@ const Hero = () => {
   
   return (
     <div className="relative min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden">
-      {/* Parallax Background - Optimized with WebP */}
+      {/* Parallax Background - Optimized for mobile */}
       <motion.div 
         style={{ y }}
-        className="absolute inset-0"
-      >
-        <picture>
-          <source
-            srcSet="/lovable-uploads/2721060a-90fa-4a64-97e9-d7747f1a40a8.webp"
-            type="image/webp"
-          />
-          <img
-            src="/lovable-uploads/2721060a-90fa-4a64-97e9-d7747f1a40a8.png"
-            alt="Glamour's Beauty Salon luxurious interior"
-            className="w-full h-full object-cover"
-            loading="eager" // Hero image should load immediately
-            fetchPriority="high"
-          />
-        </picture>
-      </motion.div>
+        className="absolute inset-0 bg-[url('/lovable-uploads/2721060a-90fa-4a64-97e9-d7747f1a40a8.png')] bg-cover bg-center bg-no-repeat"
+      />
       
       {/* Overlay with gradient - Improved mobile contrast */}
       <div 
