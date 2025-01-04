@@ -134,10 +134,7 @@ const Services = () => {
                       ))}
                     </div>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-semibold text-secondary">
-                      ${service.price}
-                    </span>
+                  <div className="flex items-center justify-center">
                     <Button 
                       className="bg-secondary hover:bg-secondary-light text-secondary-foreground group relative overflow-hidden"
                     >
