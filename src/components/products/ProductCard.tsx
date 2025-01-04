@@ -33,26 +33,19 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
   };
 
   const handleAddToCart = (product: Product) => {
-    toast({
-      title: t('products.addedToCart'),
-      description: t('products.addedToCartDescription', { name: product.name }),
-      duration: 3000,
-    });
-  };
-
-  // Generate schema markup for the product
-  const productSchema = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": product.name,
-    "description": product.description,
-    "image": getImageUrl(product.image_url),
-    "offers": {
-      "@type": "Offer",
-      "price": product.price,
-      "priceCurrency": "USD",
-      "availability": product.stock_quantity > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+    if (product.stock_quantity <= 0) {
+      toast({
+        title: t('products.addedToCart'),
+        description: t('products.addedToCartDescription', { name: product.name }),
+        duration: 3000,
+      });
+      return;
     }
+
+    toast({
+      title: "Added to Cart",
+      description: `${product.name} has been added to your cart.`,
+    });
   };
 
   return (
@@ -62,16 +55,13 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group"
     >
-      <Card className="bg-white border-secondary/20 hover:border-secondary transition-all duration-300 overflow-hidden h-full">
-        <script type="application/ld+json">
-          {JSON.stringify(productSchema)}
-        </script>
+      <Card className="bg-white border-secondary/20 hover:border-secondary transition-all duration-300 overflow-hidden h-full" role="article">
         <div className="relative">
           <div className="relative h-72 overflow-hidden bg-secondary/5">
             {product.image_url ? (
               <img
                 src={getImageUrl(product.image_url)}
-                alt={`${product.name} - ${product.description || t(`products.categories.${product.category.toLowerCase()}`)} at Glamour's Beauty Salon`}
+                alt={`${product.name} - ${product.description || t(`products.categories.${product.category.toLowerCase()}`)}`}
                 className="w-full h-full object-cover p-4 transform group-hover:scale-110 transition-transform duration-300"
                 onError={(e) => {
                   console.error("Image failed to load:", product.image_url);
@@ -81,12 +71,16 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
                 }}
               />
             ) : null}
-            <div className={`absolute inset-0 flex items-center justify-center ${product.image_url ? 'hidden' : ''}`}>
-              <ImageOff className="w-16 h-16 text-secondary/30" />
+            <div 
+              className={`absolute inset-0 flex items-center justify-center ${product.image_url ? 'hidden' : ''}`}
+              role="img" 
+              aria-label="Product image not available"
+            >
+              <ImageOff className="w-16 h-16 text-secondary/30" aria-hidden="true" />
             </div>
           </div>
           <div className="absolute top-4 right-4">
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary/10 text-secondary">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary/10 text-secondary" role="text">
               {t(`products.categories.${product.category.toLowerCase()}`)}
             </span>
           </div>
@@ -99,23 +93,32 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center justify-between">
-            <span className="text-2xl font-semibold text-secondary">
+            <span className="text-2xl font-semibold text-secondary" aria-label={`Price: ${t('products.price', { price: product.price })}`}>
               {t('products.price', { price: product.price })}
             </span>
-            <div className="flex items-center text-secondary">
+            <div className="flex items-center text-secondary" role="group" aria-label="Product rating: 5 out of 5 stars">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-current" />
+                <Star key={i} className="w-4 h-4 fill-current" aria-hidden="true" />
               ))}
             </div>
           </div>
           <Button 
             onClick={() => handleAddToCart(product)}
-            className="w-full bg-secondary hover:bg-secondary-light text-secondary-foreground group relative overflow-hidden"
+            disabled={product.stock_quantity <= 0}
+            className="w-full bg-secondary hover:bg-secondary-light text-secondary-foreground group relative overflow-hidden focus:ring-2 focus:ring-secondary/20 focus:outline-none"
+            aria-label={`Add ${product.name} to cart${product.stock_quantity <= 0 ? ' - Out of stock' : ''}`}
           >
             <span className="absolute inset-0 w-0 bg-white transition-all duration-300 ease-out group-hover:w-full opacity-10"></span>
             {t('products.addToCart')}
-            <Plus className="ml-2 h-4 w-4" />
+            <Plus className="ml-2 h-4 w-4" aria-hidden="true" />
           </Button>
+          <div className="text-sm" role="status">
+            <span className={`${product.stock_quantity > 0 ? "text-green-600" : "text-red-600"}`}>
+              {product.stock_quantity > 0 
+                ? `In Stock (${product.stock_quantity} available)` 
+                : "Out of Stock"}
+            </span>
+          </div>
         </CardContent>
       </Card>
     </motion.div>
