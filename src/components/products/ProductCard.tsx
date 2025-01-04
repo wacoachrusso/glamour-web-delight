@@ -40,6 +40,21 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
     });
   };
 
+  // Generate schema markup for the product
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.name,
+    "description": product.description,
+    "image": getImageUrl(product.image_url),
+    "offers": {
+      "@type": "Offer",
+      "price": product.price,
+      "priceCurrency": "USD",
+      "availability": product.stock_quantity > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -48,12 +63,15 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
       className="group"
     >
       <Card className="bg-white border-secondary/20 hover:border-secondary transition-all duration-300 overflow-hidden h-full">
+        <script type="application/ld+json">
+          {JSON.stringify(productSchema)}
+        </script>
         <div className="relative">
           <div className="relative h-72 overflow-hidden bg-secondary/5">
             {product.image_url ? (
               <img
                 src={getImageUrl(product.image_url)}
-                alt={product.name}
+                alt={`${product.name} - ${product.description || t(`products.categories.${product.category.toLowerCase()}`)} at Glamour's Beauty Salon`}
                 className="w-full h-full object-cover p-4 transform group-hover:scale-110 transition-transform duration-300"
                 onError={(e) => {
                   console.error("Image failed to load:", product.image_url);

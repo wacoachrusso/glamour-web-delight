@@ -15,6 +15,23 @@ interface ServiceCardProps {
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const { t } = useTranslation();
 
+  // Generate schema markup for the service
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": service.name,
+    "description": service.description,
+    "provider": {
+      "@type": "BeautySalon",
+      "name": "Glamour's Beauty Salon"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": service.price,
+      "priceCurrency": "USD"
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -24,11 +41,14 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
       className="group"
     >
       <Card className="bg-white/80 backdrop-blur-sm border-secondary/20 hover:border-secondary transition-all duration-300 overflow-hidden h-full shadow-lg hover:shadow-xl">
+        <script type="application/ld+json">
+          {JSON.stringify(serviceSchema)}
+        </script>
         <div className="relative h-48 overflow-hidden bg-secondary/5">
           {service.image_url ? (
             <img
               src={service.image_url}
-              alt={service.name}
+              alt={`${service.name} - ${service.description || t(`services.categories.${service.category.toLowerCase()}`)} at Glamour's Beauty Salon`}
               className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
