@@ -13,7 +13,8 @@
     "products": "Products",
     "team": "Our Team",
     "hours": "Open everyday 10am - 7pm",
-    "address": "275 Adams St, Newark NJ 07105"
+    "address": "275 Adams St, Newark NJ 07105",
+    "phone": "(973) 344-5199"
   },
   "hero": {
     "welcome": "WELCOME TO LUXURY",
@@ -23,44 +24,39 @@
     "ourServices": "Our Services"
   },
   "services": {
-    "title": "Luxury Services",
-    "subtitle": "Indulge in our premium beauty treatments, crafted to enhance your natural radiance",
-    "duration": "min",
+    "title": "Our Services",
+    "subtitle": "Indulge in our premium beauty treatments",
     "viewAll": "View All Services",
-    "loading": "Loading our luxurious services...",
     "categories": {
       "hairColor": "Hair Color",
-      "beautyServices": "Beauty Services"
-    }
+      "hairCare": "Hair Care",
+      "nailCare": "Nail Care",
+      "beautyServices": "Beauty Services",
+      "waxing": "Waxing Services",
+      "facials": "Facial Treatments"
+    },
+    "duration": "{{duration}} minutes",
+    "price": "Starting at ${{price}}"
   },
   "products": {
     "title": "Featured Products",
-    "subtitle": "Discover our curated collection of professional hair care products",
-    "addToCart": "Add to Cart",
+    "subtitle": "Shop our curated collection",
     "viewAll": "View All Products",
-    "loading": "Loading products...",
-    "added": "Added to Cart",
-    "addedDescription": "{{name}} has been added to your cart.",
+    "addToCart": "Add to Cart",
     "outOfStock": "Out of Stock",
-    "inStock": "In Stock",
-    "available": "{{count}} available",
-    "categories": {
-      "hairCare": "Hair Care",
-      "skinCare": "Skin Care",
-      "nailCare": "Nail Care"
-    }
+    "price": "${{price}}"
   },
-  "cart": {
-    "title": "Shopping Cart",
-    "empty": "Your cart is empty",
-    "quantity": "Qty: {{count}}",
-    "subtotal": "Subtotal",
-    "checkout": "Proceed to Checkout",
-    "maxQuantity": "Maximum quantity reached",
-    "maxQuantityMessage": "You've reached the maximum available quantity for this product."
-  },
-  "store": {
-    "title": "Our Products",
-    "description": "Shop our curated collection of professional beauty products"
+  "footer": {
+    "contact": "Contact Us",
+    "hours": "Opening Hours",
+    "follow": "Follow Us",
+    "address": "Visit Us",
+    "rights": "All rights reserved",
+    "weekdays": "Monday - Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "weekdayHours": "9:00 AM - 8:00 PM",
+    "saturdayHours": "9:00 AM - 6:00 PM",
+    "sundayHours": "10:00 AM - 4:00 PM"
   }
 }

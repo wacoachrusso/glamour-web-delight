@@ -12,8 +12,9 @@
     "bookNow": "Reservar",
     "products": "Productos",
     "team": "Nuestro Equipo",
-    "hours": "Abierto todos los días de 10am a 7pm",
-    "address": "275 Adams St, Newark NJ 07105"
+    "hours": "Abierto todos los días 10am - 7pm",
+    "address": "275 Adams St, Newark NJ 07105",
+    "phone": "(973) 344-5199"
   },
   "hero": {
     "welcome": "BIENVENIDO AL LUJO",
@@ -23,44 +24,39 @@
     "ourServices": "Nuestros Servicios"
   },
   "services": {
-    "title": "Servicios de Lujo",
-    "subtitle": "Disfruta de nuestros tratamientos de belleza premium, diseñados para realzar tu belleza natural",
-    "duration": "min",
+    "title": "Nuestros Servicios",
+    "subtitle": "Disfruta de nuestros tratamientos de belleza premium",
     "viewAll": "Ver Todos los Servicios",
-    "loading": "Cargando nuestros servicios de lujo...",
     "categories": {
-      "hairColor": "Color de Cabello",
-      "beautyServices": "Servicios de Belleza"
-    }
+      "hairColor": "Coloración",
+      "hairCare": "Cuidado del Cabello",
+      "nailCare": "Cuidado de Uñas",
+      "beautyServices": "Servicios de Belleza",
+      "waxing": "Servicios de Depilación",
+      "facials": "Tratamientos Faciales"
+    },
+    "duration": "{{duration}} minutos",
+    "price": "Desde ${{price}}"
   },
   "products": {
     "title": "Productos Destacados",
-    "subtitle": "Descubre nuestra colección seleccionada de productos profesionales para el cabello",
-    "addToCart": "Agregar al Carrito",
+    "subtitle": "Explora nuestra colección selecta",
     "viewAll": "Ver Todos los Productos",
-    "loading": "Cargando productos...",
-    "added": "Agregado al Carrito",
-    "addedDescription": "{{name}} ha sido agregado a tu carrito.",
+    "addToCart": "Añadir al Carrito",
     "outOfStock": "Agotado",
-    "inStock": "En Stock",
-    "available": "{{count}} disponibles",
-    "categories": {
-      "hairCare": "Cuidado del Cabello",
-      "skinCare": "Cuidado de la Piel",
-      "nailCare": "Cuidado de Uñas"
-    }
+    "price": "${{price}}"
   },
-  "cart": {
-    "title": "Carrito de Compras",
-    "empty": "Tu carrito está vacío",
-    "quantity": "Cant: {{count}}",
-    "subtotal": "Subtotal",
-    "checkout": "Proceder al Pago",
-    "maxQuantity": "Cantidad máxima alcanzada",
-    "maxQuantityMessage": "Has alcanzado la cantidad máxima disponible para este producto."
-  },
-  "store": {
-    "title": "Nuestros Productos",
-    "description": "Compra nuestra colección seleccionada de productos de belleza profesionales"
+  "footer": {
+    "contact": "Contáctanos",
+    "hours": "Horario de Apertura",
+    "follow": "Síguenos",
+    "address": "Visítanos",
+    "rights": "Todos los derechos reservados",
+    "weekdays": "Lunes - Viernes",
+    "saturday": "Sábado",
+    "sunday": "Domingo",
+    "weekdayHours": "9:00 AM - 8:00 PM",
+    "saturdayHours": "9:00 AM - 6:00 PM",
+    "sundayHours": "10:00 AM - 4:00 PM"
   }
 }
