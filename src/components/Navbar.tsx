@@ -11,31 +11,31 @@ export const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 w-full" role="banner">
       {/* Top Info Bar */}
-      <div className="w-full bg-[#4A2B4C] text-white py-0">
-        <div className="container mx-auto px-4 flex justify-between items-start text-[9px] uppercase tracking-wider pt-1">
-          <div className="flex items-center gap-2">
-            <Clock className="h-2.5 w-2.5 text-white/80" aria-hidden="true" />
-            <span className="text-white/90 font-medium">Open everyday 10am - 7pm</span>
+      <div className="w-full bg-gradient-to-r from-secondary/5 via-secondary/10 to-secondary/5 text-primary-foreground py-3">
+        <div className="container flex justify-between items-center text-xs uppercase tracking-wider">
+          <div className="flex items-center gap-3">
+            <Clock className="h-3.5 w-3.5 text-secondary" aria-hidden="true" />
+            <span className="text-gray-700 font-medium">{t('nav.hours')}</span>
           </div>
-          <div className="hidden md:flex items-center gap-2">
-            <MapPin className="h-2.5 w-2.5 text-white/80" aria-hidden="true" />
-            <span className="text-white/90 font-medium">275 Adams St, Newark NJ 07105</span>
+          <div className="hidden md:flex items-center gap-3">
+            <MapPin className="h-3.5 w-3.5 text-secondary" aria-hidden="true" />
+            <span className="text-gray-700 font-medium">{t('nav.address')}</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Phone className="h-2.5 w-2.5 text-white/80" aria-hidden="true" />
+          <div className="flex items-center gap-3">
+            <Phone className="h-3.5 w-3.5 text-secondary" aria-hidden="true" />
             <a 
               href="tel:+19733445199" 
-              className="text-white/90 font-medium hover:text-white transition-colors"
+              className="text-gray-700 font-medium hover:text-secondary transition-colors"
               aria-label="Call us at (973) 344-5199"
             >
-              (973) 344-5199
+              {t('nav.phone')}
             </a>
           </div>
         </div>
       </div>
 
       {/* Main Navigation */}
-      <nav className="border-b border-secondary/10 bg-white shadow-sm" role="navigation">
+      <nav className="border-b border-secondary/10 bg-gradient-to-b from-white/95 via-white/90 to-transparent backdrop-blur-sm" role="navigation">
         <div className="container flex h-20 items-center justify-between">
           {/* Logo */}
           <Link to="/" aria-label="Glamour's Beauty Salon - Home">
