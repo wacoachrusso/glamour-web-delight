@@ -31,7 +31,6 @@ export default {
         },
         secondary: {
           DEFAULT: "#D4AF37", // Gold
-          dark: "#B8960F", // Darker Gold
           light: "#F5E1A4", // Light Gold
           foreground: "#FAF9F6",
         },
