@@ -6,7 +6,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ImageOff } from "lucide-react";
+import ProductCard from "@/components/products/ProductCard";
 
 type Product = {
   id: string;
@@ -34,20 +34,6 @@ export default function Store() {
       return data as Product[];
     },
   });
-
-  const getImageUrl = (imageUrl: string | null) => {
-    if (!imageUrl) return null;
-    if (imageUrl.startsWith('http')) return imageUrl;
-    
-    const filename = imageUrl.split('/').pop();
-    if (!filename) return null;
-    
-    const { data } = supabase.storage
-      .from('salon_images')
-      .getPublicUrl(filename);
-    
-    return data.publicUrl;
-  };
 
   const addToCart = (product: Product) => {
     if (product.stock_quantity <= 0) {
@@ -112,49 +98,11 @@ export default function Store() {
             <h1 className="text-4xl font-playfair mb-8">Our Products</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {products?.map((product) => (
-                <Card key={product.id} className="flex flex-col">
-                  <CardHeader>
-                    <CardTitle className="text-xl">{product.name}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex-1">
-                    <div className="relative h-72 overflow-hidden bg-secondary/5 mb-4">
-                      {product.image_url ? (
-                        <img
-                          src={getImageUrl(product.image_url)}
-                          alt={product.name}
-                          className="w-full h-full object-contain p-4"
-                          onError={(e) => {
-                            console.error("Image failed to load:", product.image_url);
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = 'none';
-                            target.nextElementSibling?.classList.remove('hidden');
-                          }}
-                        />
-                      ) : null}
-                      <div className={`absolute inset-0 flex items-center justify-center ${product.image_url ? 'hidden' : ''}`}>
-                        <ImageOff className="w-16 h-16 text-secondary/30" />
-                      </div>
-                    </div>
-                    <p className="text-muted-foreground mb-2">{product.description}</p>
-                    <p className="font-semibold">${product.price.toFixed(2)}</p>
-                    <p className={`text-sm ${
-                      product.stock_quantity > 0 ? "text-green-600" : "text-red-600"
-                    }`}>
-                      {product.stock_quantity > 0 
-                        ? `In Stock (${product.stock_quantity} available)` 
-                        : "Out of Stock"}
-                    </p>
-                  </CardContent>
-                  <CardFooter>
-                    <Button 
-                      onClick={() => addToCart(product)}
-                      disabled={product.stock_quantity <= 0}
-                      className="w-full"
-                    >
-                      Add to Cart
-                    </Button>
-                  </CardFooter>
-                </Card>
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onAddToCart={addToCart}
+                />
               ))}
             </div>
           </div>
