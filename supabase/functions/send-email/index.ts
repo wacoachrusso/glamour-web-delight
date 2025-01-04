@@ -97,7 +97,7 @@ const handler = async (req: Request): Promise<Response> => {
               <!-- Footer -->
               <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #D4AF37;">
                 <p style="color: #666; font-size: 14px;">
-                  Visit our website: <a href="https://glamoursalon.com" style="color: #D4AF37; text-decoration: none;">glamoursalon.com</a>
+                  Visit our website: <a href="https://www.glamours-beautysalon.com" style="color: #D4AF37; text-decoration: none;">www.glamours-beautysalon.com</a>
                 </p>
                 <p style="color: #666; font-size: 12px; margin-top: 20px;">
                   © ${new Date().getFullYear()} Glamour's Beauty Salon. All rights reserved.
