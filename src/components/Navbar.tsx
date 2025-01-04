@@ -11,18 +11,18 @@ export const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 w-full" role="banner">
       {/* Top Info Bar */}
-      <div className="w-full bg-gradient-to-r from-secondary/5 via-secondary/10 to-secondary/5 text-primary-foreground py-1.5">
-        <div className="container flex justify-between items-center text-xs uppercase tracking-wider">
+      <div className="w-full bg-gradient-to-r from-secondary/5 via-secondary/10 to-secondary/5 text-primary-foreground py-0.5">
+        <div className="container flex justify-between items-center text-[10px] uppercase tracking-wider">
           <div className="flex items-center gap-3">
-            <Clock className="h-3.5 w-3.5 text-secondary" aria-hidden="true" />
+            <Clock className="h-3 w-3 text-secondary" aria-hidden="true" />
             <span className="text-gray-700 font-medium">{t('nav.hours')}</span>
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <MapPin className="h-3.5 w-3.5 text-secondary" aria-hidden="true" />
+            <MapPin className="h-3 w-3 text-secondary" aria-hidden="true" />
             <span className="text-gray-700 font-medium">{t('nav.address')}</span>
           </div>
           <div className="flex items-center gap-3">
-            <Phone className="h-3.5 w-3.5 text-secondary" aria-hidden="true" />
+            <Phone className="h-3 w-3 text-secondary" aria-hidden="true" />
             <a 
               href="tel:+19733445199" 
               className="text-gray-700 font-medium hover:text-secondary transition-colors"
