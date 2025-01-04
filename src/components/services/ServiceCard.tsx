@@ -15,7 +15,6 @@ interface ServiceCardProps {
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const { t } = useTranslation();
 
-  // Generate schema markup for the service
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -46,16 +45,23 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         </script>
         <div className="relative h-48 overflow-hidden bg-secondary/5">
           {service.image_url ? (
-            <img
-              src={service.image_url}
-              alt={`${service.name} - ${service.description || t(`services.categories.${service.category.toLowerCase()}`)} at Glamour's Beauty Salon`}
-              className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-                target.nextElementSibling?.classList.remove('hidden');
-              }}
-            />
+            <picture>
+              <source
+                srcSet={`${service.image_url.replace(/\.[^/.]+$/, '')}.webp`}
+                type="image/webp"
+              />
+              <img
+                src={service.image_url}
+                alt={`${service.name} - ${service.description || t(`services.categories.${service.category.toLowerCase()}`)} at Glamour's Beauty Salon`}
+                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  target.nextElementSibling?.classList.remove('hidden');
+                }}
+              />
+            </picture>
           ) : null}
           <div className={`absolute inset-0 flex items-center justify-center ${service.image_url ? 'hidden' : ''}`}>
             <ImageOff className="w-16 h-16 text-secondary/30" />
