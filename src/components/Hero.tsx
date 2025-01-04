@@ -107,7 +107,7 @@ const Hero = () => {
               </Button>
               <Button 
                 variant="outline"
-                className="bg-transparent border-2 border-secondary hover:bg-secondary/10 text-white text-lg px-8 py-6 rounded-none transition-all duration-300 min-w-[200px] hover:scale-105"
+                className="bg-secondary/20 backdrop-blur-sm border-2 border-secondary hover:bg-secondary/30 text-white text-lg px-8 py-6 rounded-none transition-all duration-300 min-w-[200px] hover:scale-105"
               >
                 {t('hero.ourServices')} <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
