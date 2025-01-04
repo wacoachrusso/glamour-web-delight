@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import MeetTheOwner from "./pages/MeetTheOwner";
 import Store from "./pages/Store";
+import Team from "./pages/Team";
 import "./i18n/config";
 
 const queryClient = new QueryClient();
@@ -20,6 +21,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/meet-the-owner" element={<MeetTheOwner />} />
           <Route path="/store" element={<Store />} />
+          <Route path="/team" element={<Team />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
