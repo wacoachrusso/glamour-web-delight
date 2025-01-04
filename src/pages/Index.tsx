@@ -5,7 +5,7 @@ import FeaturedProducts from "../components/FeaturedProducts";
 import Footer from "../components/Footer";
 import { useEffect } from "react";
 import { sendTestEmail } from "../utils/emailService";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const { toast } = useToast();
@@ -13,7 +13,7 @@ const Index = () => {
   useEffect(() => {
     const sendEmail = async () => {
       try {
-        await sendTestEmail("wacoachrusso@gmail.com");
+        await sendTestEmail("mikescordcutters@gmail.com");
         toast({
           title: "Test email sent",
           description: "Please check your inbox",
