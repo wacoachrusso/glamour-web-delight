@@ -30,11 +30,11 @@ const generateEmailLayout = (content: string) => `
       <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
         <!-- Header with Logo -->
         <div style="text-align: center; margin-bottom: 30px; padding: 20px;">
-          <img src="https://gwwjldekqleocsbsoybx.supabase.co/storage/v1/object/public/salon_images/513dcf5a-b256-4137-a428-3656375e1aa4.png?t=${Date.now()}" alt="Glamour's Beauty Salon" style="max-width: 200px; height: auto;">
+          <img src="https://gwwjldekqleocsbsoybx.supabase.co/storage/v1/object/public/salon_images/513dcf5a-b256-4137-a428-3656375e1aa4.png" alt="Glamour's Beauty Salon" style="max-width: 200px; height: auto;">
         </div>
         
         <!-- Content -->
-        ${content}
+        \${content}
         
         <!-- Contact Information -->
         <div style="background-color: #FAF9F6; padding: 30px; border-radius: 8px; margin-top: 20px;">
@@ -57,10 +57,10 @@ const generateEmailLayout = (content: string) => `
         <!-- Footer -->
         <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #D4AF37;">
           <p style="color: #666; font-size: 14px;">
-            Visit our website: <a href="https://www.glamours-beautysalon.com" style="color: #D4AF37; text-decoration: none;">www.glamours-beautysalon.com</a>
+            Visit our website: <a href="https://www.glamours-beautysalon.com" style="color: #D4AF37; text-decoration: none;">glamours-beautysalon.com</a>
           </p>
           <p style="color: #666; font-size: 12px; margin-top: 20px;">
-            © ${new Date().getFullYear()} Glamour's Beauty Salon. All rights reserved.
+            © \${new Date().getFullYear()} Glamour's Beauty Salon. All rights reserved.
           </p>
         </div>
       </div>
