@@ -1,6 +1,7 @@
 import { Navbar } from "../components/Navbar";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
+import ImageShowcase from "../components/ImageShowcase";
 import FeaturedProducts from "../components/FeaturedProducts";
 import Footer from "../components/Footer";
 import { Button } from "@/components/ui/button";
@@ -38,6 +39,7 @@ const Index = () => {
       </div>
       <Hero />
       <Services />
+      <ImageShowcase />
       <FeaturedProducts />
       <Footer />
     </div>
