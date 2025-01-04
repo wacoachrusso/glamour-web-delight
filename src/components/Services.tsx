@@ -136,7 +136,7 @@ const Services = () => {
                   </div>
                   <div className="flex justify-end">
                     <Button 
-                      className="w-full md:w-auto bg-secondary hover:bg-secondary-light text-secondary-foreground group relative overflow-hidden"
+                      className="w-full md:w-auto bg-secondary hover:bg-secondary-light text-secondary-foreground text-lg px-8 py-4 rounded-none border-2 border-secondary transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl text-shadow font-semibold group relative overflow-hidden"
                     >
                       <span className="absolute inset-0 w-0 bg-white transition-all duration-300 ease-out group-hover:w-full opacity-10"></span>
                       Book Now
