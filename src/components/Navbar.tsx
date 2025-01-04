@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
-import { LanguageSwitcher } from "./LanguageSwitcher";
-import { useMobile } from "@/hooks/use-mobile";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
