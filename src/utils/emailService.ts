@@ -19,14 +19,17 @@ interface InquiryEmailData {
 
 export const sendTestEmail = async (to: string) => {
   try {
+    console.log("Attempting to send test email...");
     const { data, error } = await supabase.functions.invoke("send-email", {
       body: {
         type: "test",
-        to,
       },
     });
 
-    if (error) throw error;
+    if (error) {
+      console.error("Error sending test email:", error);
+      throw error;
+    }
     console.log("Test email sent:", data);
     return data;
   } catch (error) {

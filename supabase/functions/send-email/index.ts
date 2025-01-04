@@ -12,7 +12,8 @@ const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Headers":
+    "authorization, x-client-info, apikey, content-type",
 };
 
 interface EmailRequest {
@@ -39,6 +40,9 @@ const handler = async (req: Request): Promise<Response> => {
     let subject: string;
     let recipients: string[];
 
+    // For testing purposes, always send to the verified email
+    const VERIFIED_EMAIL = "mikescordcutters@gmail.com";
+
     if (type === "order_confirmation" && data?.orderDetails) {
       emailContent = generateOrderConfirmationEmail(data.orderDetails, language);
       subject = translations[language].orderConfirmation.subject;
@@ -47,7 +51,7 @@ const handler = async (req: Request): Promise<Response> => {
       emailContent = generateInquiryResponseEmail(data.inquiryDetails, language);
       subject = translations[language].inquiryResponse.subject;
       recipients = [data.inquiryDetails.customerEmail];
-    } else if (type === "test" && to) {
+    } else if (type === "test") {
       emailContent = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #FAF9F6;">
           <h1 style="color: #1A1A1A; text-align: center;">Test Email from Glamour's Beauty Salon</h1>
@@ -56,7 +60,9 @@ const handler = async (req: Request): Promise<Response> => {
         </div>
       `;
       subject = "Test Email - Glamour's Beauty Salon";
-      recipients = [to];
+      // Use the verified email for testing
+      recipients = [VERIFIED_EMAIL];
+      console.log("Using verified email for testing:", VERIFIED_EMAIL);
     } else {
       throw new Error("Invalid email type or missing required data");
     }
