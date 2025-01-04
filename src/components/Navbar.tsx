@@ -11,31 +11,31 @@ export const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 w-full" role="banner">
       {/* Top Info Bar */}
-      <div className="w-full bg-gradient-to-r from-secondary/5 via-secondary/10 to-secondary/5 text-primary-foreground py-0.5">
+      <div className="w-full bg-[#4A2B4C] text-white py-1">
         <div className="container flex justify-between items-center text-[10px] uppercase tracking-wider">
           <div className="flex items-center gap-3">
-            <Clock className="h-3 w-3 text-secondary" aria-hidden="true" />
-            <span className="text-gray-700 font-medium">{t('nav.hours')}</span>
+            <Clock className="h-3 w-3 text-white/80" aria-hidden="true" />
+            <span className="text-white/90 font-medium">Open everyday 10am - 7pm</span>
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <MapPin className="h-3 w-3 text-secondary" aria-hidden="true" />
-            <span className="text-gray-700 font-medium">{t('nav.address')}</span>
+            <MapPin className="h-3 w-3 text-white/80" aria-hidden="true" />
+            <span className="text-white/90 font-medium">275 Adams St, Newark NJ 07105</span>
           </div>
           <div className="flex items-center gap-3">
-            <Phone className="h-3 w-3 text-secondary" aria-hidden="true" />
+            <Phone className="h-3 w-3 text-white/80" aria-hidden="true" />
             <a 
               href="tel:+19733445199" 
-              className="text-gray-700 font-medium hover:text-secondary transition-colors"
+              className="text-white/90 font-medium hover:text-white transition-colors"
               aria-label="Call us at (973) 344-5199"
             >
-              {t('nav.phone')}
+              (973) 344-5199
             </a>
           </div>
         </div>
       </div>
 
       {/* Main Navigation */}
-      <nav className="border-b border-secondary/10 bg-gradient-to-b from-white/95 via-white/90 to-transparent backdrop-blur-sm" role="navigation">
+      <nav className="border-b border-secondary/10 bg-white shadow-sm" role="navigation">
         <div className="container flex h-20 items-center justify-between">
           {/* Logo */}
           <Link to="/" aria-label="Glamour's Beauty Salon - Home">
