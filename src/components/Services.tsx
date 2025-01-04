@@ -45,7 +45,7 @@ const Services = () => {
   }
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-24 relative overflow-hidden bg-gradient-to-b from-muted to-white/50">
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-muted to-white/50" />
       <motion.div
@@ -68,7 +68,6 @@ const Services = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          {/* Decorative Line */}
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
@@ -94,7 +93,7 @@ const Services = () => {
               whileHover={{ scale: 1.02 }}
               className="group"
             >
-              <Card className="bg-white/80 backdrop-blur-sm border-secondary/20 hover:border-secondary transition-all duration-300 overflow-hidden h-full shadow-lg hover:shadow-xl">
+              <Card className="bg-white/90 backdrop-blur-sm border-secondary/20 hover:border-secondary transition-all duration-300 overflow-hidden h-full shadow-lg hover:shadow-xl">
                 <div className="relative h-48 overflow-hidden bg-secondary/5">
                   {service.image_url ? (
                     <img
@@ -136,7 +135,7 @@ const Services = () => {
                   </div>
                   <div className="flex justify-end">
                     <Button 
-                      className="w-full md:w-auto bg-secondary hover:bg-secondary-light text-secondary-foreground text-lg px-8 py-4 rounded-none border-2 border-secondary transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl text-shadow font-semibold group relative overflow-hidden"
+                      className="w-full md:w-auto bg-secondary hover:bg-secondary-dark text-secondary-foreground text-lg px-8 py-4 rounded-sm border border-secondary/20 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-2xl text-shadow font-semibold tracking-wide backdrop-blur-sm group relative overflow-hidden"
                     >
                       <span className="absolute inset-0 w-0 bg-white transition-all duration-300 ease-out group-hover:w-full opacity-10"></span>
                       Book Now
@@ -157,7 +156,7 @@ const Services = () => {
         >
           <Button 
             variant="outline"
-            className="border-2 border-secondary hover:bg-secondary/10 text-primary-foreground group relative overflow-hidden"
+            className="bg-white/10 backdrop-blur-md border border-secondary/30 hover:bg-secondary/90 text-primary-foreground font-semibold text-lg px-8 py-4 rounded-sm transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-2xl tracking-wide group relative overflow-hidden"
           >
             <span className="absolute inset-0 w-0 bg-secondary transition-all duration-300 ease-out group-hover:w-full opacity-10"></span>
             View All Services

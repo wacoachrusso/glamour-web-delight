@@ -30,8 +30,9 @@ export default {
           foreground: "#1A1A1A",
         },
         secondary: {
-          DEFAULT: "#D4AF37", // Gold
-          light: "#F5E1A4", // Light Gold
+          DEFAULT: "#D4AF37", // Rich Gold
+          light: "#E5C76B", // Light Gold
+          dark: "#B69121", // Dark Gold
           foreground: "#FAF9F6",
         },
         accent: {
