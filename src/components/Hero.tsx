@@ -101,13 +101,13 @@ const Hero = () => {
               className="flex flex-col sm:flex-row gap-6 justify-center pt-8"
             >
               <Button 
-                className="bg-secondary hover:bg-secondary-dark text-secondary-foreground text-lg px-8 py-6 rounded-sm border border-secondary/20 transition-all duration-300 min-w-[200px] hover:scale-105 shadow-lg hover:shadow-2xl text-shadow font-semibold tracking-wide backdrop-blur-sm"
+                className="bg-secondary hover:bg-secondary-light text-secondary-foreground text-lg px-8 py-6 rounded-none border-2 border-secondary hover:border-secondary-light transition-all duration-300 min-w-[200px] hover:scale-105"
               >
                 {t('hero.bookNow')} <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
               <Button 
                 variant="outline"
-                className="bg-white/10 backdrop-blur-md border border-secondary/30 hover:bg-secondary/90 text-white font-semibold text-lg px-8 py-6 rounded-sm transition-all duration-300 min-w-[200px] hover:scale-105 shadow-lg hover:shadow-2xl text-shadow tracking-wide"
+                className="bg-transparent border-2 border-secondary hover:bg-secondary/10 text-white text-lg px-8 py-6 rounded-none transition-all duration-300 min-w-[200px] hover:scale-105"
               >
                 {t('hero.ourServices')} <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
