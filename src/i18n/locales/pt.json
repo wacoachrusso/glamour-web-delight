@@ -24,27 +24,40 @@
     "ourServices": "Nossos Serviços"
   },
   "services": {
-    "title": "Nossos Serviços",
-    "subtitle": "Desfrute de nossos tratamentos de beleza premium",
+    "title": "Serviços",
+    "highlight": "de Luxo",
+    "subtitle": "Desfrute de nossos tratamentos de beleza premium, criados para realçar sua beleza natural",
+    "loading": "Carregando nossos serviços de luxo...",
     "viewAll": "Ver Todos os Serviços",
+    "bookNow": "Agendar Agora",
+    "duration": "{{duration}} minutos",
     "categories": {
-      "hairColor": "Coloração",
-      "hairCare": "Cuidados com Cabelo",
-      "nailCare": "Cuidados com Unhas",
-      "beautyServices": "Serviços de Beleza",
+      "haircolor": "Coloração",
+      "haircare": "Cuidados com Cabelo",
+      "nailcare": "Cuidados com Unhas",
+      "beautyservices": "Serviços de Beleza",
       "waxing": "Serviços de Depilação",
       "facials": "Tratamentos Faciais"
-    },
-    "duration": "{{duration}} minutos",
-    "price": "A partir de ${{price}}"
+    }
   },
   "products": {
-    "title": "Produtos em Destaque",
-    "subtitle": "Explore nossa coleção selecionada",
+    "title": "Produtos",
+    "highlight": "em Destaque",
+    "subtitle": "Descubra nossa coleção selecionada de produtos profissionais para cabelo",
+    "loading": "Carregando produtos...",
     "viewAll": "Ver Todos os Produtos",
     "addToCart": "Adicionar ao Carrinho",
-    "outOfStock": "Fora de Estoque",
-    "price": "${{price}}"
+    "price": "${price}",
+    "addedToCart": "Adicionado ao Carrinho",
+    "addedToCartDescription": "{{name}} foi adicionado ao seu carrinho.",
+    "categories": {
+      "shampoo": "Shampoo",
+      "conditioner": "Condicionador",
+      "styling": "Finalização",
+      "treatment": "Tratamento",
+      "color": "Coloração",
+      "tools": "Ferramentas"
+    }
   },
   "footer": {
     "contact": "Contate-nos",

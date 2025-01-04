@@ -6,11 +6,14 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Database } from "@/integrations/supabase/types";
+import { useTranslation } from "react-i18next";
 
 type Product = Database['public']['Tables']['products']['Row'];
 
 const FeaturedProducts = () => {
   const { toast } = useToast();
+  const { t } = useTranslation();
+  
   const { data: products, isLoading } = useQuery({
     queryKey: ["featuredProducts"],
     queryFn: async () => {
@@ -32,14 +35,11 @@ const FeaturedProducts = () => {
 
   const getImageUrl = (imageUrl: string | null) => {
     if (!imageUrl) return null;
-    // If the URL is already a full URL (e.g., starts with http or https), return it as is
     if (imageUrl.startsWith('http')) return imageUrl;
     
-    // Extract just the filename from the path
     const filename = imageUrl.split('/').pop();
     if (!filename) return null;
     
-    // Get the public URL from Supabase storage
     const { data } = supabase.storage
       .from('salon_images')
       .getPublicUrl(filename);
@@ -49,8 +49,8 @@ const FeaturedProducts = () => {
 
   const handleAddToCart = (product: Product) => {
     toast({
-      title: "Added to Cart",
-      description: `${product.name} has been added to your cart.`,
+      title: t('products.addedToCart'),
+      description: t('products.addedToCartDescription', { name: product.name }),
       duration: 3000,
     });
   };
@@ -58,7 +58,7 @@ const FeaturedProducts = () => {
   if (isLoading) {
     return (
       <div className="w-full h-96 flex items-center justify-center">
-        <div className="animate-pulse text-primary-foreground/60">Loading products...</div>
+        <div className="animate-pulse text-primary-foreground/60">{t('products.loading')}</div>
       </div>
     );
   }
@@ -77,10 +77,10 @@ const FeaturedProducts = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6">
-            Featured <span className="gradient-text">Products</span>
+            {t('products.title')} <span className="gradient-text">{t('products.highlight')}</span>
           </h2>
           <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto">
-            Discover our curated collection of professional hair care products
+            {t('products.subtitle')}
           </p>
         </motion.div>
 
@@ -115,7 +115,7 @@ const FeaturedProducts = () => {
                   </div>
                   <div className="absolute top-4 right-4">
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary/10 text-secondary">
-                      {product.category}
+                      {t(`products.categories.${product.category.toLowerCase()}`)}
                     </span>
                   </div>
                 </div>
@@ -128,7 +128,7 @@ const FeaturedProducts = () => {
                 <CardContent className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-2xl font-semibold text-secondary">
-                      ${product.price}
+                      {t('products.price', { price: product.price })}
                     </span>
                     <div className="flex items-center text-secondary">
                       {[...Array(5)].map((_, i) => (
@@ -141,7 +141,7 @@ const FeaturedProducts = () => {
                     className="w-full bg-secondary hover:bg-secondary-light text-secondary-foreground group relative overflow-hidden"
                   >
                     <span className="absolute inset-0 w-0 bg-white transition-all duration-300 ease-out group-hover:w-full opacity-10"></span>
-                    Add to Cart
+                    {t('products.addToCart')}
                     <Plus className="ml-2 h-4 w-4" />
                   </Button>
                 </CardContent>
@@ -160,7 +160,7 @@ const FeaturedProducts = () => {
             variant="outline"
             className="border-2 border-secondary hover:bg-secondary/10 text-primary-foreground"
           >
-            View All Products
+            {t('products.viewAll')}
             <ShoppingBag className="ml-2 h-4 w-4" />
           </Button>
         </motion.div>

@@ -5,10 +5,12 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Database } from "@/integrations/supabase/types";
+import { useTranslation } from "react-i18next";
 
 type Service = Database['public']['Tables']['services']['Row'];
 
 const Services = () => {
+  const { t } = useTranslation();
   const { data: services, isLoading } = useQuery({
     queryKey: ["featuredServices"],
     queryFn: async () => {
@@ -38,7 +40,7 @@ const Services = () => {
           className="flex flex-col items-center gap-4"
         >
           <Scissors className="w-12 h-12 text-secondary animate-spin" />
-          <p className="text-lg text-primary-foreground/60">Loading our luxurious services...</p>
+          <p className="text-lg text-primary-foreground/60">{t('services.loading')}</p>
         </motion.div>
       </div>
     );
@@ -77,10 +79,10 @@ const Services = () => {
           />
           
           <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6">
-            Luxury <span className="gradient-text">Services</span>
+            {t('services.title')} <span className="gradient-text">{t('services.highlight')}</span>
           </h2>
           <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto">
-            Indulge in our premium beauty treatments, crafted to enhance your natural radiance
+            {t('services.subtitle')}
           </p>
         </motion.div>
 
@@ -116,7 +118,7 @@ const Services = () => {
                 
                 <CardHeader className="relative">
                   <div className="absolute -top-4 right-4 bg-secondary text-secondary-foreground px-4 py-1 rounded-full text-sm font-medium shadow-lg">
-                    {service.category}
+                    {t(`services.categories.${service.category.toLowerCase()}`)}
                   </div>
                   <CardTitle className="text-2xl font-playfair mt-2">{service.name}</CardTitle>
                   <CardDescription className="text-base">{service.description}</CardDescription>
@@ -126,7 +128,7 @@ const Services = () => {
                   <div className="flex items-center justify-between text-sm">
                     <span className="flex items-center text-primary-foreground/60">
                       <Clock className="w-4 h-4 mr-1" />
-                      {service.duration} min
+                      {t('services.duration', { duration: service.duration })}
                     </span>
                     <div className="flex items-center">
                       {[...Array(5)].map((_, i) => (
@@ -139,7 +141,7 @@ const Services = () => {
                       className="bg-secondary hover:bg-secondary-light text-secondary-foreground group relative overflow-hidden"
                     >
                       <span className="absolute inset-0 w-0 bg-white transition-all duration-300 ease-out group-hover:w-full opacity-10"></span>
-                      Book Now
+                      {t('services.bookNow')}
                       <Sparkles className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
@@ -160,7 +162,7 @@ const Services = () => {
             className="border-2 border-secondary hover:bg-secondary/10 text-primary-foreground group relative overflow-hidden"
           >
             <span className="absolute inset-0 w-0 bg-secondary transition-all duration-300 ease-out group-hover:w-full opacity-10"></span>
-            View All Services
+            {t('services.viewAll')}
             <Scissors className="ml-2 h-4 w-4" />
           </Button>
         </motion.div>

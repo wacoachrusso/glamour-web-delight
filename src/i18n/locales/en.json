@@ -24,27 +24,40 @@
     "ourServices": "Our Services"
   },
   "services": {
-    "title": "Our Services",
-    "subtitle": "Indulge in our premium beauty treatments",
+    "title": "Luxury",
+    "highlight": "Services",
+    "subtitle": "Indulge in our premium beauty treatments, crafted to enhance your natural radiance",
+    "loading": "Loading our luxurious services...",
     "viewAll": "View All Services",
+    "bookNow": "Book Now",
+    "duration": "{{duration}} minutes",
     "categories": {
-      "hairColor": "Hair Color",
-      "hairCare": "Hair Care",
-      "nailCare": "Nail Care",
-      "beautyServices": "Beauty Services",
+      "haircolor": "Hair Color",
+      "haircare": "Hair Care",
+      "nailcare": "Nail Care",
+      "beautyservices": "Beauty Services",
       "waxing": "Waxing Services",
       "facials": "Facial Treatments"
-    },
-    "duration": "{{duration}} minutes",
-    "price": "Starting at ${{price}}"
+    }
   },
   "products": {
-    "title": "Featured Products",
-    "subtitle": "Shop our curated collection",
+    "title": "Featured",
+    "highlight": "Products",
+    "subtitle": "Discover our curated collection of professional hair care products",
+    "loading": "Loading products...",
     "viewAll": "View All Products",
     "addToCart": "Add to Cart",
-    "outOfStock": "Out of Stock",
-    "price": "${{price}}"
+    "price": "${price}",
+    "addedToCart": "Added to Cart",
+    "addedToCartDescription": "{{name}} has been added to your cart.",
+    "categories": {
+      "shampoo": "Shampoo",
+      "conditioner": "Conditioner",
+      "styling": "Styling",
+      "treatment": "Treatment",
+      "color": "Hair Color",
+      "tools": "Tools"
+    }
   },
   "footer": {
     "contact": "Contact Us",
