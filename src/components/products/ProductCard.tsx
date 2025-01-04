@@ -16,7 +16,7 @@ type Product = {
 interface ProductCardProps {
   product: Product;
   onAddToCart?: (product: Product) => void;
-  index?: number; // Added index as an optional prop
+  index?: number;
 }
 
 const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
