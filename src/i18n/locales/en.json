@@ -1,41 +1,76 @@
 {
+  "meta": {
+    "title": "Glamour's Beauty Salon - Luxury Hair, Nails & Wax Services",
+    "description": "Experience luxury beauty services at Glamour's Beauty Salon. Professional hair styling, nail care, and waxing services in an elegant setting.",
+    "keywords": "beauty salon, hair salon, nail salon, waxing services, beauty services, Newark NJ, professional hair styling, nail care"
+  },
   "nav": {
     "home": "Home",
     "services": "Services",
     "about": "About Us",
+    "gallery": "Gallery",
     "contact": "Contact",
-    "blog": "Blog"
-  },
-  "showcase": {
-    "title": "Experience",
-    "highlight": "Luxury",
-    "description": "Step into our world of beauty and elegance. Browse through our gallery to see our elegant salon space, professional services, and happy clients.",
-    "imageAlt": "Salon showcase image {index}"
+    "bookNow": "Book Now",
+    "products": "Products",
+    "team": "Our Team",
+    "hours": "Open everyday 10am - 7pm",
+    "address": "275 Adams St, Newark NJ 07105",
+    "phone": "(973) 344-5199"
   },
   "hero": {
-    "welcome": "Welcome to Glamour's Beauty Salon",
-    "title": "Where Beauty Meets Elegance",
-    "description": "Indulge in our luxurious services tailored just for you.",
+    "welcome": "WELCOME TO LUXURY",
+    "title": "Elevate Your Beauty",
+    "description": "Experience luxury beauty services in an elegant setting. Your journey to radiance begins here.",
     "bookNow": "Book Now",
     "ourServices": "Our Services"
   },
   "services": {
-    "loading": "Loading services...",
-    "title": "Our Services",
-    "highlight": "Featured",
-    "subtitle": "Explore our range of beauty services designed to pamper you.",
+    "title": "Luxury",
+    "highlight": "Services",
+    "subtitle": "Indulge in our premium beauty treatments, crafted to enhance your natural radiance",
+    "loading": "Loading our luxurious services...",
     "viewAll": "View All Services",
-    "duration": "Duration: {duration} minutes",
     "bookNow": "Book Now",
+    "duration": "{{duration}} minutes",
     "categories": {
-      "hair": "Hair Services",
-      "nails": "Nail Services",
-      "waxing": "Waxing Services"
+      "haircolor": "Hair Color",
+      "haircare": "Hair Care",
+      "nailcare": "Nail Care",
+      "beautyservices": "Beauty Services",
+      "waxing": "Waxing Services",
+      "facials": "Facial Treatments"
+    }
+  },
+  "products": {
+    "title": "Featured",
+    "highlight": "Products",
+    "subtitle": "Discover our curated collection of professional hair care products",
+    "loading": "Loading products...",
+    "viewAll": "View All Products",
+    "addToCart": "Add to Cart",
+    "price": "${price}",
+    "addedToCart": "Added to Cart",
+    "addedToCartDescription": "{{name}} has been added to your cart.",
+    "categories": {
+      "shampoo": "Shampoo",
+      "conditioner": "Conditioner",
+      "styling": "Styling",
+      "treatment": "Treatment",
+      "color": "Hair Color",
+      "tools": "Tools"
     }
   },
   "footer": {
     "contact": "Contact Us",
-    "followUs": "Follow Us",
-    "newsletter": "Subscribe to our newsletter"
+    "hours": "Opening Hours",
+    "follow": "Follow Us",
+    "address": "Visit Us",
+    "rights": "All rights reserved",
+    "weekdays": "Monday - Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "weekdayHours": "9:00 AM - 8:00 PM",
+    "saturdayHours": "9:00 AM - 6:00 PM",
+    "sundayHours": "10:00 AM - 4:00 PM"
   }
 }
