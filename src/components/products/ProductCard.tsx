@@ -40,6 +40,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
     });
   };
 
+  // Generate schema markup for the product
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -68,24 +69,17 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
         <div className="relative">
           <div className="relative h-72 overflow-hidden bg-secondary/5">
             {product.image_url ? (
-              <picture>
-                <source
-                  srcSet={`${getImageUrl(product.image_url)?.replace(/\.[^/.]+$/, '')}.webp`}
-                  type="image/webp"
-                />
-                <img
-                  src={getImageUrl(product.image_url)}
-                  alt={`${product.name} - ${product.description || t(`products.categories.${product.category.toLowerCase()}`)} at Glamour's Beauty Salon`}
-                  className="w-full h-full object-cover p-4 transform group-hover:scale-110 transition-transform duration-300"
-                  loading="lazy"
-                  onError={(e) => {
-                    console.error("Image failed to load:", product.image_url);
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                    target.nextElementSibling?.classList.remove('hidden');
-                  }}
-                />
-              </picture>
+              <img
+                src={getImageUrl(product.image_url)}
+                alt={`${product.name} - ${product.description || t(`products.categories.${product.category.toLowerCase()}`)} at Glamour's Beauty Salon`}
+                className="w-full h-full object-cover p-4 transform group-hover:scale-110 transition-transform duration-300"
+                onError={(e) => {
+                  console.error("Image failed to load:", product.image_url);
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  target.nextElementSibling?.classList.remove('hidden');
+                }}
+              />
             ) : null}
             <div className={`absolute inset-0 flex items-center justify-center ${product.image_url ? 'hidden' : ''}`}>
               <ImageOff className="w-16 h-16 text-secondary/30" />
