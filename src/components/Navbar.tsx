@@ -1,49 +1,57 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Menu } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { Button } from "./ui/button";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { MobileMenu } from "./MobileMenu";
 
 export const Navbar = () => {
   const { t } = useTranslation();
-  const isMobile = useIsMobile();
 
   return (
-    <nav className="bg-white shadow-sm">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center space-x-8">
-            <Link to="/" className="text-2xl font-playfair text-primary-foreground">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 items-center">
+        <div className="flex flex-1 items-center justify-between">
+          {/* Logo and main navigation */}
+          <div className="flex items-center gap-8">
+            <Link 
+              to="/" 
+              className="text-2xl font-playfair text-primary-foreground hover:text-accent transition-colors"
+            >
               {t("brand")}
             </Link>
-            {!isMobile && (
-              <div className="flex items-center space-x-4">
-                <Link
-                  to="/meet-the-owner"
-                  className="text-primary-foreground hover:text-accent transition-colors"
-                >
-                  {t("meetTheOwner")}
-                </Link>
-                <Link
-                  to="/store"
-                  className="text-primary-foreground hover:text-accent transition-colors"
-                >
-                  Store
-                </Link>
-              </div>
-            )}
+            <nav className="hidden md:flex items-center gap-6">
+              <Link
+                to="/meet-the-owner"
+                className="text-sm font-medium hover:text-accent transition-colors"
+              >
+                {t("meetTheOwner")}
+              </Link>
+              <Link
+                to="/store"
+                className="text-sm font-medium hover:text-accent transition-colors"
+              >
+                Store
+              </Link>
+            </nav>
           </div>
-          <div className="flex items-center space-x-4">
+
+          {/* Right side items */}
+          <div className="flex items-center gap-4">
             <LanguageSwitcher />
-            {isMobile && (
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
+            <Link to="/store">
+              <Button variant="ghost" size="icon" className="relative">
+                <ShoppingCart className="h-5 w-5" />
+                <span className="sr-only">Shopping cart</span>
+                <div className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-primary flex items-center justify-center text-xs font-medium">
+                  0
+                </div>
               </Button>
-            )}
+            </Link>
+            <MobileMenu />
           </div>
         </div>
       </div>
-    </nav>
+    </header>
   );
 };
