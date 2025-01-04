@@ -11,8 +11,8 @@ export const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 w-full" role="banner">
       {/* Top Info Bar */}
-      <div className="w-full bg-[#4A2B4C] text-white py-1">
-        <div className="container flex justify-between items-center text-[10px] uppercase tracking-wider">
+      <div className="w-full bg-[#4A2B4C] text-white py-0.5">
+        <div className="container flex justify-between items-center text-[9px] uppercase tracking-wider">
           <div className="flex items-center gap-3">
             <Clock className="h-3 w-3 text-white/80" aria-hidden="true" />
             <span className="text-white/90 font-medium">Open everyday 10am - 7pm</span>
