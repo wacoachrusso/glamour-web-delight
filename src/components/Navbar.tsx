@@ -11,18 +11,18 @@ export const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 w-full" role="banner">
       {/* Top Info Bar */}
-      <div className="w-full bg-[#4A2B4C] text-white py-0.5">
+      <div className="w-full bg-[#4A2B4C] text-white py-0">
         <div className="container flex justify-between items-center text-[9px] uppercase tracking-wider">
           <div className="flex items-center gap-3">
-            <Clock className="h-3 w-3 text-white/80" aria-hidden="true" />
+            <Clock className="h-2.5 w-2.5 text-white/80" aria-hidden="true" />
             <span className="text-white/90 font-medium">Open everyday 10am - 7pm</span>
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <MapPin className="h-3 w-3 text-white/80" aria-hidden="true" />
+            <MapPin className="h-2.5 w-2.5 text-white/80" aria-hidden="true" />
             <span className="text-white/90 font-medium">275 Adams St, Newark NJ 07105</span>
           </div>
           <div className="flex items-center gap-3">
-            <Phone className="h-3 w-3 text-white/80" aria-hidden="true" />
+            <Phone className="h-2.5 w-2.5 text-white/80" aria-hidden="true" />
             <a 
               href="tel:+19733445199" 
               className="text-white/90 font-medium hover:text-white transition-colors"
