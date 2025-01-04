@@ -2,8 +2,6 @@ import { Navbar } from "../components/Navbar";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
 import FeaturedProducts from "../components/FeaturedProducts";
-import Testimonials from "../components/Testimonials";
-import Promotions from "../components/Promotions";
 import Footer from "../components/Footer";
 import { Button } from "@/components/ui/button";
 import { sendTestEmail } from "../utils/emailService";
@@ -40,9 +38,7 @@ const Index = () => {
       </div>
       <Hero />
       <Services />
-      <Promotions />
       <FeaturedProducts />
-      <Testimonials />
       <Footer />
     </div>
   );

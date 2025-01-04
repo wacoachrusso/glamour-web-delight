@@ -72,10 +72,5 @@
     "weekdayHours": "9:00 AM - 8:00 PM",
     "saturdayHours": "9:00 AM - 6:00 PM",
     "sundayHours": "10:00 AM - 4:00 PM"
-  },
-  "testimonials": {
-    "title": "Client",
-    "highlight": "Testimonials",
-    "subtitle": "Hear what our valued clients have to say about their experience with us"
   }
 }

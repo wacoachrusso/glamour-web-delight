@@ -43,8 +43,8 @@
   },
   "products": {
     "title": "Produtos",
-    "highlight": "Destacados",
-    "subtitle": "Descubra nossa coleção selecionada de produtos profissionais para o cabelo",
+    "highlight": "em Destaque",
+    "subtitle": "Descubra nossa coleção selecionada de produtos profissionais para cabelo",
     "loading": "Carregando produtos...",
     "viewAll": "Ver Todos os Produtos",
     "addToCart": "Adicionar ao Carrinho",
@@ -72,10 +72,5 @@
     "weekdayHours": "9:00 - 20:00",
     "saturdayHours": "9:00 - 18:00",
     "sundayHours": "10:00 - 16:00"
-  },
-  "testimonials": {
-    "title": "Depoimentos",
-    "highlight": "de Clientes",
-    "subtitle": "Ouça o que nossos valiosos clientes têm a dizer sobre sua experiência conosco"
   }
 }
