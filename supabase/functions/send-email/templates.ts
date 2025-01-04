@@ -1,4 +1,4 @@
-import { translations } from "./translations";
+import { translations } from "./translations.ts";
 
 export interface OrderDetails {
   orderId: string;
@@ -95,8 +95,8 @@ export const generateInquiryResponseEmail = (
       <h1 style="color: #1A1A1A; text-align: center;">${t.greeting} ${inquiryDetails.customerName}!</h1>
       
       <div style="background-color: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
-        <p style="color: #1A1A1A; line-height: 1.6;">${t.thanks}!</p>
-        <p style="color: #1A1A1A; line-height: 1.6;">${t.response}.</p>
+        <p style="color: #1A1A1A; line-height: 1.6;">${t.thanks}</p>
+        <p style="color: #1A1A1A; line-height: 1.6;">${t.response}</p>
         <p style="color: #666; font-style: italic;">"${inquiryDetails.message}"</p>
       </div>
       
