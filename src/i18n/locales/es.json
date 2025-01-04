@@ -1,11 +1,19 @@
 {
+  "meta": {
+    "title": "Salón de Belleza Glamour - Servicios de Lujo para Cabello, Uñas y Depilación",
+    "description": "Experimente servicios de belleza de lujo en el Salón de Belleza Glamour. Servicios profesionales de peluquería, cuidado de uñas y depilación en un entorno elegante."
+  },
   "nav": {
     "home": "Inicio",
     "services": "Servicios",
     "about": "Nosotros",
     "gallery": "Galería",
     "contact": "Contacto",
-    "bookNow": "Reservar"
+    "bookNow": "Reservar",
+    "products": "Productos",
+    "team": "Nuestro Equipo",
+    "hours": "Abierto todos los días de 10am a 7pm",
+    "address": "275 Adams St, Newark NJ 07105"
   },
   "hero": {
     "welcome": "BIENVENIDO AL LUJO",
@@ -19,7 +27,11 @@
     "subtitle": "Disfruta de nuestros tratamientos de belleza premium, diseñados para realzar tu belleza natural",
     "duration": "min",
     "viewAll": "Ver Todos los Servicios",
-    "loading": "Cargando nuestros servicios de lujo..."
+    "loading": "Cargando nuestros servicios de lujo...",
+    "categories": {
+      "hairColor": "Color de Cabello",
+      "beautyServices": "Servicios de Belleza"
+    }
   },
   "products": {
     "title": "Productos Destacados",
@@ -28,6 +40,27 @@
     "viewAll": "Ver Todos los Productos",
     "loading": "Cargando productos...",
     "added": "Agregado al Carrito",
-    "addedDescription": "{{name}} ha sido agregado a tu carrito."
+    "addedDescription": "{{name}} ha sido agregado a tu carrito.",
+    "outOfStock": "Agotado",
+    "inStock": "En Stock",
+    "available": "{{count}} disponibles",
+    "categories": {
+      "hairCare": "Cuidado del Cabello",
+      "skinCare": "Cuidado de la Piel",
+      "nailCare": "Cuidado de Uñas"
+    }
+  },
+  "cart": {
+    "title": "Carrito de Compras",
+    "empty": "Tu carrito está vacío",
+    "quantity": "Cant: {{count}}",
+    "subtotal": "Subtotal",
+    "checkout": "Proceder al Pago",
+    "maxQuantity": "Cantidad máxima alcanzada",
+    "maxQuantityMessage": "Has alcanzado la cantidad máxima disponible para este producto."
+  },
+  "store": {
+    "title": "Nuestros Productos",
+    "description": "Compra nuestra colección seleccionada de productos de belleza profesionales"
   }
 }
