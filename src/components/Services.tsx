@@ -134,12 +134,9 @@ const Services = () => {
                       ))}
                     </div>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-semibold text-secondary">
-                      ${service.price}
-                    </span>
+                  <div className="flex justify-end">
                     <Button 
-                      className="bg-secondary hover:bg-secondary-light text-secondary-foreground group relative overflow-hidden"
+                      className="w-full md:w-auto bg-secondary hover:bg-secondary-light text-secondary-foreground group relative overflow-hidden"
                     >
                       <span className="absolute inset-0 w-0 bg-white transition-all duration-300 ease-out group-hover:w-full opacity-10"></span>
                       Book Now
