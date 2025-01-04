@@ -15,7 +15,8 @@ type Product = {
 
 interface ProductCardProps {
   product: Product;
-  onAddToCart: (product: Product) => void;
+  onAddToCart?: (product: Product) => void;
+  index?: number; // Added index as an optional prop
 }
 
 const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
@@ -69,7 +70,7 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
       </CardContent>
       <CardFooter>
         <Button 
-          onClick={() => onAddToCart(product)}
+          onClick={() => onAddToCart?.(product)}
           disabled={product.stock_quantity <= 0}
           className="w-full"
         >
