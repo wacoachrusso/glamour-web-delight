@@ -29,7 +29,7 @@ export const Navbar = () => {
       </div>
 
       {/* Main Navigation */}
-      <div className="border-b border-secondary/10 bg-white/95 backdrop-blur-md shadow-sm">
+      <div className="border-b border-secondary/10 bg-gradient-to-b from-white/95 via-white/90 to-transparent backdrop-blur-sm">
         <div className="container flex h-20 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
