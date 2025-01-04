@@ -2,6 +2,7 @@ import { ImageOff } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
+import { useEffect, useState } from "react";
 
 type Product = {
   id: string;
@@ -20,38 +21,44 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
-  const getImageUrl = async (imageUrl: string | null) => {
-    if (!imageUrl) {
-      console.log("No image URL provided for product:", product.name);
-      return null;
-    }
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
 
-    try {
-      // If it's already a full URL, return it
-      if (imageUrl.startsWith('http')) {
-        console.log("Using direct URL for product:", product.name, imageUrl);
-        return imageUrl;
+  useEffect(() => {
+    const loadImageUrl = async () => {
+      if (!product.image_url) {
+        console.log("No image URL provided for product:", product.name);
+        return;
       }
 
-      // Clean the filename - remove any path prefixes
-      const filename = imageUrl.split('/').pop();
-      if (!filename) {
-        console.error("Invalid image URL format:", imageUrl);
-        return null;
+      try {
+        // If it's already a full URL, use it directly
+        if (product.image_url.startsWith('http')) {
+          console.log("Using direct URL for product:", product.name, product.image_url);
+          setImageUrl(product.image_url);
+          return;
+        }
+
+        // Clean the filename - remove any path prefixes
+        const filename = product.image_url.split('/').pop();
+        if (!filename) {
+          console.error("Invalid image URL format:", product.image_url);
+          return;
+        }
+
+        console.log("Getting public URL for file:", filename);
+        const { data } = supabase.storage
+          .from('salon_images')
+          .getPublicUrl(filename);
+
+        console.log("Generated public URL:", data.publicUrl);
+        setImageUrl(data.publicUrl);
+      } catch (error) {
+        console.error("Error processing image URL:", error);
       }
+    };
 
-      console.log("Getting public URL for file:", filename);
-      const { data } = supabase.storage
-        .from('salon_images')
-        .getPublicUrl(filename);
-
-      console.log("Generated public URL:", data.publicUrl);
-      return data.publicUrl;
-    } catch (error) {
-      console.error("Error processing image URL:", error);
-      return null;
-    }
-  };
+    loadImageUrl();
+  }, [product.image_url, product.name]);
 
   return (
     <Card className="flex flex-col h-full">
@@ -60,20 +67,20 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
       </CardHeader>
       <CardContent className="flex-1">
         <div className="relative h-72 overflow-hidden bg-secondary/5 mb-4">
-          {product.image_url ? (
+          {imageUrl ? (
             <img
-              src={product.image_url}
+              src={imageUrl}
               alt={product.name}
               className="w-full h-full object-contain p-4"
               onError={(e) => {
-                console.error("Image failed to load:", product.image_url);
+                console.error("Image failed to load:", imageUrl);
                 const target = e.target as HTMLImageElement;
                 target.style.display = 'none';
                 target.nextElementSibling?.classList.remove('hidden');
               }}
             />
           ) : null}
-          <div className={`absolute inset-0 flex items-center justify-center ${product.image_url ? 'hidden' : ''}`}>
+          <div className={`absolute inset-0 flex items-center justify-center ${imageUrl ? 'hidden' : ''}`}>
             <ImageOff className="w-16 h-16 text-secondary/30" />
           </div>
         </div>
