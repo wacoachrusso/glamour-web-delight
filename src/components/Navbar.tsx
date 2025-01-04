@@ -11,7 +11,7 @@ export const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 w-full">
       {/* Top Info Bar */}
-      <div className="w-full bg-gradient-to-r from-secondary/5 via-secondary/10 to-secondary/5 text-primary-foreground py-3">
+      <div className="w-full bg-gradient-to-r from-secondary/5 via-secondary/10 to-secondary/5 backdrop-blur-sm text-primary-foreground py-2">
         <div className="container flex justify-between items-center text-xs uppercase tracking-wider">
           <div className="flex items-center gap-3">
             <Clock className="h-3.5 w-3.5 text-secondary" />
@@ -29,7 +29,7 @@ export const Navbar = () => {
       </div>
 
       {/* Main Navigation */}
-      <div className="border-b border-secondary/10 bg-white/95 backdrop-blur-md shadow-sm">
+      <div className="bg-gradient-to-b from-white/95 to-white/80 backdrop-blur-md border-b border-secondary/10 transition-all duration-300">
         <div className="container flex h-20 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
