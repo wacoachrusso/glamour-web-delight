@@ -1,99 +1,79 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
-import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "./LanguageSwitcher";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useMobile } from "@/hooks/use-mobile";
 
-const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { t } = useTranslation();
+export const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const isMobile = useMobile();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm py-2"
-          : "bg-transparent py-4"
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <img
-              src="/lovable-uploads/2721060a-90fa-4a64-97e9-d7747f1a40a8.png"
-              alt="Glamour's Beauty Salon"
-              className="h-16 w-auto"
-            />
-          </Link>
-
-          {/* Desktop Navigation */}
+    <nav className="bg-white/80 backdrop-blur-sm sticky top-0 z-50 border-b border-secondary/20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex items-center">
+            <Link to="/" className="flex-shrink-0 flex items-center">
+              <img
+                className="h-12 w-auto"
+                src="/lovable-uploads/513dcf5a-b256-4137-a428-3656375e1aa4.png"
+                alt="Glamour's Beauty Salon"
+              />
+            </Link>
+          </div>
           <div className="hidden md:flex items-center space-x-8">
-            <NavLink to="/">{t('nav.home')}</NavLink>
-            <NavLink to="/services">{t('nav.services')}</NavLink>
-            <NavLink to="/about">{t('nav.about')}</NavLink>
-            <NavLink to="/gallery">{t('nav.gallery')}</NavLink>
-            <NavLink to="/contact">{t('nav.contact')}</NavLink>
+            <Link to="/" className="text-gray-700 hover:text-secondary transition-colors">
+              Home
+            </Link>
+            <Link to="/meet-the-owner" className="text-gray-700 hover:text-secondary transition-colors">
+              Meet the Owner
+            </Link>
             <LanguageSwitcher />
-            <Button 
-              className="bg-secondary hover:bg-secondary-light text-secondary-foreground px-6 py-2 rounded-none border border-secondary transition-all duration-300"
-            >
-              {t('nav.bookNow')}
+            <Button variant="default" className="bg-secondary text-white hover:bg-secondary-light">
+              Book Now
             </Button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-4">
-            <LanguageSwitcher />
+          <div className="md:hidden flex items-center">
             <button
-              className="p-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={toggleMenu}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700"
             >
-              <Menu className="h-6 w-6 text-primary-foreground" />
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-md shadow-lg py-4">
-            <div className="flex flex-col space-y-4 px-4">
-              <NavLink to="/">{t('nav.home')}</NavLink>
-              <NavLink to="/services">{t('nav.services')}</NavLink>
-              <NavLink to="/about">{t('nav.about')}</NavLink>
-              <NavLink to="/gallery">{t('nav.gallery')}</NavLink>
-              <NavLink to="/contact">{t('nav.contact')}</NavLink>
-              <Button 
-                className="bg-secondary hover:bg-secondary-light text-secondary-foreground w-full rounded-none border border-secondary transition-all duration-300"
-              >
-                {t('nav.bookNow')}
+      </div>
+      {isOpen && isMobile && (
+        <div className="md:hidden bg-white/95 backdrop-blur-sm">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <Link
+              to="/"
+              className="block px-3 py-2 rounded-md text-gray-700 hover:text-secondary transition-colors"
+              onClick={toggleMenu}
+            >
+              Home
+            </Link>
+            <Link
+              to="/meet-the-owner"
+              className="block px-3 py-2 rounded-md text-gray-700 hover:text-secondary transition-colors"
+              onClick={toggleMenu}
+            >
+              Meet the Owner
+            </Link>
+            <div className="px-3 py-2">
+              <LanguageSwitcher />
+            </div>
+            <div className="px-3 py-2">
+              <Button variant="default" className="w-full bg-secondary text-white hover:bg-secondary-light">
+                Book Now
               </Button>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </nav>
   );
 };
-
-const NavLink = ({ to, children }: { to: string; children: React.ReactNode }) => (
-  <Link
-    to={to}
-    className="font-montserrat text-primary-foreground hover:text-secondary transition-colors duration-300 text-sm uppercase tracking-wider"
-  >
-    {children}
-  </Link>
-);
-
-export default Navbar;
