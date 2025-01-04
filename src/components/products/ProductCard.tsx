@@ -20,18 +20,37 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
-  const getImageUrl = (imageUrl: string | null) => {
-    if (!imageUrl) return null;
-    if (imageUrl.startsWith('http')) return imageUrl;
-    
-    // Remove the /lovable-uploads/ prefix if it exists
-    const filename = imageUrl.replace('/lovable-uploads/', '');
-    
-    const { data } = supabase.storage
-      .from('salon_images')
-      .getPublicUrl(filename);
-    
-    return data.publicUrl;
+  const getImageUrl = async (imageUrl: string | null) => {
+    if (!imageUrl) {
+      console.log("No image URL provided for product:", product.name);
+      return null;
+    }
+
+    try {
+      // If it's already a full URL, return it
+      if (imageUrl.startsWith('http')) {
+        console.log("Using direct URL for product:", product.name, imageUrl);
+        return imageUrl;
+      }
+
+      // Clean the filename - remove any path prefixes
+      const filename = imageUrl.split('/').pop();
+      if (!filename) {
+        console.error("Invalid image URL format:", imageUrl);
+        return null;
+      }
+
+      console.log("Getting public URL for file:", filename);
+      const { data } = supabase.storage
+        .from('salon_images')
+        .getPublicUrl(filename);
+
+      console.log("Generated public URL:", data.publicUrl);
+      return data.publicUrl;
+    } catch (error) {
+      console.error("Error processing image URL:", error);
+      return null;
+    }
   };
 
   return (
@@ -43,7 +62,7 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
         <div className="relative h-72 overflow-hidden bg-secondary/5 mb-4">
           {product.image_url ? (
             <img
-              src={getImageUrl(product.image_url)}
+              src={product.image_url}
               alt={product.name}
               className="w-full h-full object-contain p-4"
               onError={(e) => {
