@@ -30,17 +30,74 @@
     @apply border-border;
   }
 
+  html {
+    @apply antialiased scroll-smooth;
+  }
+
   body {
-    @apply bg-background text-foreground font-montserrat min-h-screen;
+    @apply bg-background text-foreground font-montserrat min-h-screen overflow-x-hidden;
     background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
     background-attachment: fixed;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-playfair;
   }
+
+  /* Responsive font sizes */
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  /* Improved touch targets for mobile */
+  button, a {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Prevent image overflow */
+  img {
+    @apply max-w-full h-auto;
+  }
 }
 
 .gradient-text {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary to-secondary-light;
+}
+
+/* Responsive container padding */
+.container {
+  @apply px-4 md:px-6 lg:px-8;
+}
+
+/* Improved focus styles for accessibility */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-secondary/50;
+}
+
+/* Loading state animations */
+.loading-skeleton {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better mobile tap targets */
+@media (max-width: 640px) {
+  button, a {
+    @apply p-2;
+  }
 }
