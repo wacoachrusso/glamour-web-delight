@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, ImageIcon } from "lucide-react";
+import { Phone, Mail, ImageIcon, Clock, DollarSign } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../ui/button";
 import {
@@ -25,6 +25,22 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const { publicUrl } = useProductImage(service.image_url);
   const [imageError, setImageError] = useState(false);
 
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(price);
+  };
+
+  const formatDuration = (minutes: number) => {
+    if (minutes >= 60) {
+      const hours = Math.floor(minutes / 60);
+      const remainingMinutes = minutes % 60;
+      return `${hours}h${remainingMinutes > 0 ? ` ${remainingMinutes}m` : ''}`;
+    }
+    return `${minutes}m`;
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -34,7 +50,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
     >
       <div className="absolute -inset-0.5 bg-gradient-to-r from-secondary to-primary rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
       
-      <Card className="relative bg-white/80 backdrop-blur-sm border-0 overflow-hidden">
+      <Card className="relative bg-white/80 backdrop-blur-sm border-0 overflow-hidden h-full flex flex-col">
         <div className="relative h-48 overflow-hidden bg-secondary/5">
           {service.image_url && !imageError ? (
             <motion.div
@@ -63,13 +79,28 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         </div>
 
         <CardHeader className="pt-6">
-          <CardTitle className="text-2xl font-cormorant">{service.name}</CardTitle>
+          <div className="flex justify-between items-start mb-2">
+            <CardTitle className="text-2xl font-cormorant">{service.name}</CardTitle>
+            <span className="text-xl font-semibold text-secondary">
+              {formatPrice(service.price)}
+            </span>
+          </div>
+          <div className="flex items-center gap-4 text-sm text-gray-600 mb-2">
+            <div className="flex items-center">
+              <Clock className="w-4 h-4 mr-1 text-secondary" />
+              {formatDuration(service.duration)}
+            </div>
+            <div className="flex items-center">
+              <DollarSign className="w-4 h-4 mr-1 text-secondary" />
+              Starting from {formatPrice(service.price)}
+            </div>
+          </div>
           <CardDescription className="text-base mt-2 text-gray-600">
             {service.description}
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="space-y-6">
+        <CardContent className="mt-auto space-y-6">
           <div className="grid grid-cols-2 gap-3">
             <Button 
               variant="default"
