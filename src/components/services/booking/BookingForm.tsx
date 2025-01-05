@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import CustomerInfoFields from "./CustomerInfoFields";
 import BookingTimeFields from "./BookingTimeFields";
 import { type BookingFormData } from "./types";
-import { type Employee } from "@/integrations/supabase/types";
+import type { Employee } from "@/integrations/supabase/types";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
