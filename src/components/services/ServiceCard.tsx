@@ -93,7 +93,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
               onClick={() => window.location.href = 'tel:+19733445199'}
             >
               <Phone className="w-4 h-4 mr-2" />
-              {t('bookings.bookNow')}
+              {t('nav.phone')}
             </Button>
             <Button 
               variant="outline"
