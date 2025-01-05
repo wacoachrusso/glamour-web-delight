@@ -1,5 +1,5 @@
-export * from './booking';
 export * from './service';
+export * from './employee';
 
 export interface Database {
   public: {
