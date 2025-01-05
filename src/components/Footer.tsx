@@ -11,41 +11,41 @@ import {
 const Footer = () => {
   const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
-  const salonLocation = { lat: 40.7241, lng: -74.1584 }; // Newark coordinates
+  const salonLocation = { lat: 40.7241, lng: -74.1584 };
 
   return (
     <footer className="bg-white/80 backdrop-blur-sm border-t border-secondary/20">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="space-y-8"
+            className="space-y-6"
           >
             <h3 className="text-3xl font-cormorant font-semibold gradient-text">
               {t('footer.contact')}
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-4">
               <Button
                 variant="ghost"
-                className="w-full justify-start hover:bg-secondary/10 space-x-4 h-auto py-4"
+                className="w-full justify-start hover:bg-secondary/10 space-x-4 h-auto py-3"
                 onClick={() => window.location.href = 'tel:+19733445199'}
               >
                 <Phone className="w-5 h-5 text-secondary flex-shrink-0" />
-                <span className="text-primary-foreground/80 text-lg">
+                <span className="text-primary-foreground/80">
                   {t('nav.phone')}
                 </span>
               </Button>
               
               <Button
                 variant="ghost"
-                className="w-full justify-start hover:bg-secondary/10 space-x-4 h-auto py-4"
+                className="w-full justify-start hover:bg-secondary/10 space-x-4 h-auto py-3 break-words"
                 onClick={() => window.location.href = 'mailto:glamoursbeautysalon1@gmail.com'}
               >
                 <Mail className="w-5 h-5 text-secondary flex-shrink-0" />
-                <span className="text-primary-foreground/80 text-lg break-all">
+                <span className="text-primary-foreground/80 text-sm sm:text-base break-all">
                   glamoursbeautysalon1@gmail.com
                 </span>
               </Button>
@@ -54,10 +54,10 @@ const Footer = () => {
                 <HoverCardTrigger asChild>
                   <Button
                     variant="ghost"
-                    className="w-full justify-start hover:bg-secondary/10 space-x-4 h-auto py-4"
+                    className="w-full justify-start hover:bg-secondary/10 space-x-4 h-auto py-3"
                   >
                     <MapPin className="w-5 h-5 text-secondary flex-shrink-0" />
-                    <span className="text-primary-foreground/80 text-lg text-left">
+                    <span className="text-primary-foreground/80 text-left">
                       {t('nav.address')}
                     </span>
                   </Button>
@@ -82,12 +82,12 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="space-y-8"
+            className="space-y-6"
           >
             <h3 className="text-3xl font-cormorant font-semibold gradient-text">
               {t('footer.hours')}
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-4">
               <div className="bg-white/50 rounded-lg p-6 backdrop-blur-sm border border-secondary/10">
                 <div className="flex items-center space-x-3 mb-4">
                   <Clock className="w-5 h-5 text-secondary" />
@@ -115,12 +115,12 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="space-y-8"
+            className="space-y-6"
           >
             <h3 className="text-3xl font-cormorant font-semibold gradient-text">
               {t('footer.follow')}
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-4">
               <div className="flex space-x-4">
                 <a
                   href="https://www.instagram.com/glamours.beauty.salon/"
