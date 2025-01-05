@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "./ui/button";
-import { ChevronRight, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const Hero = () => {
@@ -73,7 +73,7 @@ const Hero = () => {
                           after:translate-y-[100%] hover:after:translate-y-0 after:transition-transform after:duration-300"
               >
                 <Phone className="mr-2 h-5 w-5" />
-                (973) 344-5199
+                Book Your Visit
               </a>
             </motion.div>
           </motion.div>
