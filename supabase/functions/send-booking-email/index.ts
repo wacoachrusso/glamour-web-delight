@@ -38,7 +38,7 @@ serve(async (req: Request) => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Glamour's Beauty Salon <onboarding@resend.dev>",
+        from: `Glamour's Beauty Salon <${OWNER_EMAIL}>`,
         to: [bookingData.customerEmail],
         subject: "Your Booking Confirmation - Glamour's Beauty Salon",
         html: `
@@ -73,7 +73,7 @@ serve(async (req: Request) => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Glamour's Beauty Salon <onboarding@resend.dev>",
+        from: `Glamour's Beauty Salon <${OWNER_EMAIL}>`,
         to: [OWNER_EMAIL],
         subject: "New Booking Notification",
         html: `
