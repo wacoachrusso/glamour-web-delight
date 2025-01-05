@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "./ui/button";
-import { ChevronRight, Sparkles } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const Hero = () => {
@@ -21,90 +21,68 @@ const Hero = () => {
         className="absolute inset-0"
         style={{
           background: `
-            linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%),
-            linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(248,215,215,0.2) 100%)
+            linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%),
+            linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(248,215,215,0.2) 100%)
           `
         }}
       />
       
-      {/* Animated Decorative Elements */}
-      <div className="absolute inset-0">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.15 }}
-          transition={{ duration: 1.5 }}
-          className="absolute top-[20%] left-[10%] w-32 h-32 md:w-48 md:h-48 rounded-full bg-secondary blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.15 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-          className="absolute bottom-[20%] right-[10%] w-40 h-40 md:w-64 md:h-64 rounded-full bg-primary blur-3xl"
-        />
-      </div>
-      
       {/* Content */}
       <div className="container mx-auto px-4 z-10">
-        <div className="text-center max-w-5xl mx-auto">
+        <div className="text-center max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-10"
           >
-            {/* Welcome Text */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex items-center justify-center gap-2 text-secondary-light font-montserrat"
-            >
-              <Sparkles className="w-5 h-5" />
-              <span className="text-lg md:text-xl tracking-wider uppercase">
-                {t('hero.welcome')}
-              </span>
-              <Sparkles className="w-5 h-5" />
-            </motion.div>
-            
             {/* Main Heading */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-playfair font-bold text-white leading-tight"
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-6xl sm:text-7xl md:text-8xl font-cormorant font-bold text-white leading-tight tracking-tight"
             >
-              {t('hero.title')}
+              Discover Your <br />
+              <span className="text-secondary">Timeless Beauty</span>
             </motion.h1>
             
             {/* Description */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="text-xl md:text-2xl lg:text-3xl font-montserrat text-white/90 max-w-3xl mx-auto leading-relaxed"
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-xl md:text-2xl font-montserrat text-white/90 max-w-2xl mx-auto leading-relaxed tracking-wide"
             >
-              {t('hero.description')}
+              Where luxury meets transformation. Your perfect look awaits.
             </motion.p>
 
             {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
               className="flex flex-col sm:flex-row gap-6 justify-center pt-8"
             >
               <Button 
-                className="bg-secondary hover:bg-secondary-light text-secondary-foreground text-lg px-8 py-6 rounded-none border-2 border-secondary hover:border-secondary-light transition-all duration-300 min-w-[200px] group shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                className="bg-secondary hover:bg-secondary-light text-secondary-foreground text-lg px-12 py-7 
+                          transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl
+                          font-montserrat tracking-wider uppercase min-w-[240px] relative overflow-hidden
+                          after:absolute after:inset-0 after:z-[-1] after:bg-secondary-light/20
+                          after:translate-y-[100%] hover:after:translate-y-0 after:transition-transform after:duration-300"
               >
-                {t('hero.bookNow')}
-                <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                Book Your Visit
+                <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
+              
               <Button 
                 variant="outline"
-                className="bg-transparent border-2 border-white hover:bg-white/10 text-white text-lg px-8 py-6 rounded-none transition-all duration-300 min-w-[200px] group backdrop-blur-sm"
+                className="border-2 border-white hover:bg-white/10 text-white text-lg px-12 py-7
+                          transition-all duration-300 transform hover:-translate-y-1
+                          font-montserrat tracking-wider uppercase min-w-[240px] backdrop-blur-sm"
               >
-                {t('hero.ourServices')}
-                <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                Explore Services
+                <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
             </motion.div>
           </motion.div>

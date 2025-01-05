@@ -61,7 +61,7 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        playfair: ["Playfair Display", "serif"],
+        cormorant: ["Cormorant Garamond", "serif"],
         montserrat: ["Montserrat", "sans-serif"],
       },
       keyframes: {
