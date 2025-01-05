@@ -1,8 +1,14 @@
 import { motion } from "framer-motion";
-import { Clock, ImageOff, Star, Phone, Mail } from "lucide-react";
+import { Clock, Phone, Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 import { Database } from "@/integrations/supabase/types";
 
 type Service = Database['public']['Tables']['services']['Row'];
@@ -15,89 +21,55 @@ interface ServiceCardProps {
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const { t } = useTranslation();
   
-  // Format category string by removing spaces and converting to lowercase
   const formattedCategory = service.category.toLowerCase().replace(/\s+/g, '');
-
-  // Generate schema markup for the service
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": service.name,
-    "description": service.description,
-    "provider": {
-      "@type": "BeautySalon",
-      "name": "Glamour's Beauty Salon"
-    },
-    "offers": {
-      "@type": "Offer",
-      "price": service.price,
-      "priceCurrency": "USD"
-    }
-  };
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ scale: 1.02 }}
-      className="group"
+      className="group relative"
     >
-      <Card className="bg-white/80 backdrop-blur-sm border-secondary/20 hover:border-secondary transition-all duration-300 overflow-hidden h-full shadow-lg hover:shadow-xl">
-        <script type="application/ld+json">
-          {JSON.stringify(serviceSchema)}
-        </script>
-        <div className="relative h-48 overflow-hidden bg-secondary/5">
-          {service.image_url ? (
-            <img
-              src={service.image_url}
-              alt={`${service.name} - ${service.description || t(`services.categories.${formattedCategory}`)} at Glamour's Beauty Salon`}
-              className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-                target.nextElementSibling?.classList.remove('hidden');
-              }}
-            />
-          ) : null}
-          <div className={`absolute inset-0 flex items-center justify-center ${service.image_url ? 'hidden' : ''}`}>
-            <ImageOff className="w-16 h-16 text-secondary/30" />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        </div>
-        
-        <CardHeader className="relative">
-          <div className="absolute -top-4 right-4 bg-secondary text-secondary-foreground px-4 py-1 rounded-full text-sm font-medium shadow-lg">
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-secondary to-primary rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
+      
+      <Card className="relative bg-white/80 backdrop-blur-sm border-0 overflow-hidden">
+        <div className="absolute top-0 right-0 p-4">
+          <span className="inline-flex items-center rounded-full bg-secondary/10 px-3 py-1 text-sm font-medium text-secondary">
             {t(`services.categories.${formattedCategory}`)}
-          </div>
-          <CardTitle className="text-2xl font-playfair mt-2">{service.name}</CardTitle>
-          <CardDescription className="text-base">{service.description}</CardDescription>
+          </span>
+        </div>
+
+        <CardHeader className="pt-12">
+          <CardTitle className="text-2xl font-playfair">{service.name}</CardTitle>
+          <CardDescription className="text-base mt-2">
+            {service.description}
+          </CardDescription>
         </CardHeader>
-        
+
         <CardContent className="space-y-6">
-          <div className="flex items-center justify-between text-sm">
-            <span className="flex items-center text-primary-foreground/60">
-              <Clock className="w-4 h-4 mr-1" />
-              {t('services.duration', { duration: service.duration })}
-            </span>
-            <div className="flex items-center">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 text-secondary fill-current" />
-              ))}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+              <Clock className="w-4 h-4" />
+              <span>{t('services.duration', { duration: service.duration })}</span>
             </div>
+            <span className="font-semibold text-lg">
+              ${service.price}
+            </span>
           </div>
-          
-          <div className="space-y-3">
+
+          <div className="grid grid-cols-2 gap-3">
             <Button 
-              className="w-full bg-secondary hover:bg-secondary-light text-secondary-foreground group relative overflow-hidden"
+              variant="default"
+              className="w-full bg-secondary hover:bg-secondary-light text-secondary-foreground transition-colors duration-300"
               onClick={() => window.location.href = 'tel:+19733445199'}
             >
               <Phone className="w-4 h-4 mr-2" />
               {t('nav.phone')}
             </Button>
+            
             <Button 
               variant="outline"
-              className="w-full group relative overflow-hidden"
+              className="w-full border-secondary hover:bg-secondary/10 transition-colors duration-300"
               onClick={() => window.location.href = 'mailto:glamoursbeautysalon1@gmail.com'}
             >
               <Mail className="w-4 h-4 mr-2" />

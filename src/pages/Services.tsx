@@ -30,36 +30,41 @@ const ServicesPage = () => {
 
   if (isLoading) {
     return (
-      <div className="w-full min-h-screen flex items-center justify-center">
+      <div className="min-h-screen bg-muted flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center gap-4"
         >
-          <Scissors className="w-8 h-8 md:w-12 md:h-12 text-secondary animate-spin" />
-          <p className="text-base md:text-lg text-primary-foreground/60">{t('services.loading')}</p>
+          <Scissors className="w-12 h-12 text-secondary animate-spin" />
+          <p className="text-lg text-primary-foreground/60">{t('services.loading')}</p>
         </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-muted">
+    <div className="min-h-screen bg-gradient-to-b from-muted via-white/50 to-white/80">
       <Navbar />
-      <main className="py-16 md:py-24">
+      <main className="py-24 md:py-32">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <h1 className="text-4xl md:text-5xl font-playfair mb-4">{t('services.title')}</h1>
-            <p className="text-lg text-muted-foreground">{t('services.subtitle')}</p>
+            <div className="w-24 h-0.5 bg-secondary mx-auto mb-8" />
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair mb-6">
+              {t('services.title')} <span className="gradient-text">{t('services.highlight')}</span>
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              {t('services.subtitle')}
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
             {services?.map((service, index) => (
               <ServiceCard key={service.id} service={service} index={index} />
             ))}
