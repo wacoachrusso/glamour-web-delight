@@ -20,6 +20,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   useEffect(() => {
     const loadImageUrl = async () => {
+      console.log("Starting image load for product:", product.name);
+      console.log("Original image_url:", product.image_url);
+
       if (!product.image_url) {
         console.log("No image URL provided for product:", product.name);
         return;
@@ -28,27 +31,34 @@ const ProductCard = ({ product }: ProductCardProps) => {
       try {
         // If it starts with /lovable-uploads, it's a direct path
         if (product.image_url.startsWith('/lovable-uploads')) {
-          console.log("Using direct path for product:", product.name);
+          console.log("Using direct path for product:", product.name, "Path:", product.image_url);
           setImageUrl(product.image_url);
           return;
         }
 
         // If it's already a full URL, use it directly
         if (product.image_url.startsWith('http')) {
-          console.log("Using direct URL for product:", product.name);
+          console.log("Using direct URL for product:", product.name, "URL:", product.image_url);
           setImageUrl(product.image_url);
           return;
         }
 
         // Otherwise, get the URL from Supabase storage
-        console.log("Getting public URL for file:", product.image_url);
-        const { data } = supabase.storage
+        console.log("Attempting to get Supabase storage URL for:", product.image_url);
+        const { data, error } = supabase.storage
           .from('salon_images')
           .getPublicUrl(product.image_url);
+
+        if (error) {
+          console.error("Supabase storage error for product:", product.name, error);
+          return;
+        }
 
         if (data) {
           console.log("Generated public URL for", product.name, ":", data.publicUrl);
           setImageUrl(data.publicUrl);
+        } else {
+          console.log("No public URL generated for product:", product.name);
         }
       } catch (error) {
         console.error("Error loading image for product:", product.name, error);
