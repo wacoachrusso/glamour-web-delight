@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const useProductImage = (imageUrl: string | null) => {
   const [publicUrl, setPublicUrl] = useState<string | null>(null);
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const loadImageUrl = async () => {
@@ -18,15 +18,12 @@ export const useProductImage = (imageUrl: string | null) => {
       try {
         // Handle local paths starting with /lovable-uploads
         if (imageUrl.startsWith('/lovable-uploads')) {
-          console.log("Processing local path:", imageUrl);
-          const imagePath = imageUrl.replace('/lovable-uploads/', '');
           const { data } = supabase.storage
             .from('salon_images')
-            .getPublicUrl(imagePath);
+            .getPublicUrl(imageUrl.replace('/lovable-uploads/', ''));
           
-          console.log("Generated public URL:", data.publicUrl);
+          console.log("Generated public URL from local path:", data.publicUrl);
           setPublicUrl(data.publicUrl);
-          setError(false);
           return;
         }
 
@@ -34,7 +31,6 @@ export const useProductImage = (imageUrl: string | null) => {
         if (imageUrl.startsWith('http')) {
           console.log("Using direct URL:", imageUrl);
           setPublicUrl(imageUrl);
-          setError(false);
           return;
         }
 
@@ -45,9 +41,8 @@ export const useProductImage = (imageUrl: string | null) => {
 
         console.log("Generated public URL from storage:", data.publicUrl);
         setPublicUrl(data.publicUrl);
-        setError(false);
-      } catch (err) {
-        console.error("Error loading image:", err, "for URL:", imageUrl);
+      } catch (error) {
+        console.error("Error loading image:", error);
         setError(true);
       }
     };
