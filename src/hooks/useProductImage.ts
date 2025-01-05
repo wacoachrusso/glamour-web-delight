@@ -19,12 +19,12 @@ export const useProductImage = (imageUrl: string | null) => {
           const cleanPath = imageUrl.replace('/lovable-uploads/', '');
           console.log("Processing local path:", cleanPath);
           
-          const { data, error: storageError } = supabase.storage
+          const { data } = supabase.storage
             .from('salon_images')
             .getPublicUrl(cleanPath);
-          
-          if (storageError) {
-            console.error("Storage error:", storageError);
+
+          if (!data?.publicUrl) {
+            console.error("No public URL generated");
             setError(true);
             return;
           }
@@ -42,12 +42,12 @@ export const useProductImage = (imageUrl: string | null) => {
         }
 
         // Handle other cases through Supabase storage
-        const { data, error: storageError } = supabase.storage
+        const { data } = supabase.storage
           .from('salon_images')
           .getPublicUrl(imageUrl);
 
-        if (storageError) {
-          console.error("Storage error:", storageError);
+        if (!data?.publicUrl) {
+          console.error("No public URL generated from storage");
           setError(true);
           return;
         }
