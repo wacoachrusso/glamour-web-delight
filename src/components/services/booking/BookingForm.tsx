@@ -1,18 +1,20 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Calendar } from "lucide-react";
-import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import CustomerInfoFields from "./CustomerInfoFields";
 import BookingTimeFields from "./BookingTimeFields";
 import { type BookingFormData } from "./types";
+import { type Employee } from "@/integrations/supabase/types";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface BookingFormProps {
   isSubmitting: boolean;
   onSubmit: (e: React.FormEvent) => void;
   formData: BookingFormData;
-  onInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
   onClose: () => void;
+  employees: Employee[];
 }
 
 const BookingForm = ({ 
@@ -20,13 +22,40 @@ const BookingForm = ({
   onSubmit, 
   formData, 
   onInputChange, 
-  onClose 
+  onClose,
+  employees
 }: BookingFormProps) => {
   const { t } = useTranslation();
 
   return (
     <form onSubmit={onSubmit} className="space-y-4 mt-4">
       <CustomerInfoFields formData={formData} onInputChange={onInputChange} />
+      
+      <div className="space-y-2">
+        <Label htmlFor="employeeId">{t('bookings.selectEmployee')}</Label>
+        <Select
+          name="employeeId"
+          value={formData.employeeId}
+          onValueChange={(value) => 
+            onInputChange({ 
+              target: { name: 'employeeId', value } 
+            } as React.ChangeEvent<HTMLSelectElement>)
+          }
+        >
+          <SelectTrigger>
+            <SelectValue placeholder={t('bookings.anyAvailable')} />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="">{t('bookings.anyAvailable')}</SelectItem>
+            {employees.map((employee) => (
+              <SelectItem key={employee.id} value={employee.id}>
+                {employee.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
       <BookingTimeFields formData={formData} onInputChange={onInputChange} />
 
       <div className="flex justify-end space-x-4 mt-6">

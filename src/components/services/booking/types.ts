@@ -5,4 +5,5 @@ export interface BookingFormData {
   bookingDate: string;
   bookingTime: string;
   notes: string;
+  employeeId?: string;
 }

@@ -17,8 +17,10 @@ export type Database = {
           customer_email: string
           customer_name: string
           customer_phone: string | null
+          employee_id: string | null
           id: string
           notes: string | null
+          reminder_sent: boolean | null
           service_id: string
           status: string
         }
@@ -29,8 +31,10 @@ export type Database = {
           customer_email: string
           customer_name: string
           customer_phone?: string | null
+          employee_id?: string | null
           id?: string
           notes?: string | null
+          reminder_sent?: boolean | null
           service_id: string
           status?: string
         }
@@ -41,12 +45,21 @@ export type Database = {
           customer_email?: string
           customer_name?: string
           customer_phone?: string | null
+          employee_id?: string | null
           id?: string
           notes?: string | null
+          reminder_sent?: boolean | null
           service_id?: string
           status?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "bookings_employee_id_fkey"
+            columns: ["employee_id"]
+            isOneToOne: false
+            referencedRelation: "employees"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "bookings_service_id_fkey"
             columns: ["service_id"]
@@ -55,6 +68,110 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      employee_schedules: {
+        Row: {
+          created_at: string
+          day_of_week: number
+          employee_id: string
+          end_time: string
+          id: string
+          is_available: boolean | null
+          start_time: string
+        }
+        Insert: {
+          created_at?: string
+          day_of_week: number
+          employee_id: string
+          end_time: string
+          id?: string
+          is_available?: boolean | null
+          start_time: string
+        }
+        Update: {
+          created_at?: string
+          day_of_week?: number
+          employee_id?: string
+          end_time?: string
+          id?: string
+          is_available?: boolean | null
+          start_time?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "employee_schedules_employee_id_fkey"
+            columns: ["employee_id"]
+            isOneToOne: false
+            referencedRelation: "employees"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      employee_services: {
+        Row: {
+          created_at: string
+          employee_id: string
+          id: string
+          service_id: string
+        }
+        Insert: {
+          created_at?: string
+          employee_id: string
+          id?: string
+          service_id: string
+        }
+        Update: {
+          created_at?: string
+          employee_id?: string
+          id?: string
+          service_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "employee_services_employee_id_fkey"
+            columns: ["employee_id"]
+            isOneToOne: false
+            referencedRelation: "employees"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "employee_services_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      employees: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          is_placeholder: boolean | null
+          name: string
+          phone: string | null
+          specialties: string[] | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          is_placeholder?: boolean | null
+          name: string
+          phone?: string | null
+          specialties?: string[] | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          is_placeholder?: boolean | null
+          name?: string
+          phone?: string | null
+          specialties?: string[] | null
+        }
+        Relationships: []
       }
       order_items: {
         Row: {

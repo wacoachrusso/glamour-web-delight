@@ -93,7 +93,9 @@
     "error": "Booking Error",
     "tryAgain": "Please try again later",
     "confirmationSent": "Confirmation email has been sent",
-    "confirmationDelayed": "Booking confirmed but email might be delayed"
+    "confirmationDelayed": "Booking confirmed but email might be delayed",
+    "selectEmployee": "Select Stylist (Optional)",
+    "anyAvailable": "Any Available Stylist"
   },
   "common": {
     "cancel": "Cancel",

@@ -10,11 +10,10 @@ import {
 } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import type { Database } from "@/integrations/supabase/types";
+import type { Service, Employee } from "@/integrations/supabase/types";
 import BookingForm from "./booking/BookingForm";
 import type { BookingFormData } from "./booking/types";
-
-type Service = Database['public']['Tables']['services']['Row'];
+import { useQuery } from "@tanstack/react-query";
 
 interface BookingModalProps {
   service: Service;
@@ -33,6 +32,36 @@ const BookingModal = ({ service, isOpen, onClose }: BookingModalProps) => {
     bookingDate: "",
     bookingTime: "",
     notes: "",
+    employeeId: "",
+  });
+
+  // Fetch employees who can perform this service
+  const { data: employees } = useQuery({
+    queryKey: ["serviceEmployees", service.id],
+    queryFn: async () => {
+      console.log("Fetching employees for service:", service.id);
+      const { data: employeeServices, error: esError } = await supabase
+        .from('employee_services')
+        .select('employee_id')
+        .eq('service_id', service.id);
+
+      if (esError) throw esError;
+
+      if (!employeeServices.length) return [];
+
+      const employeeIds = employeeServices.map(es => es.employee_id);
+      
+      const { data: employees, error } = await supabase
+        .from('employees')
+        .select('*')
+        .in('id', employeeIds)
+        .order('name');
+
+      if (error) throw error;
+      console.log("Fetched employees:", employees);
+      return employees;
+    },
+    enabled: isOpen,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -52,6 +81,7 @@ const BookingModal = ({ service, isOpen, onClose }: BookingModalProps) => {
             booking_date: formData.bookingDate,
             booking_time: formData.bookingTime,
             notes: formData.notes,
+            employee_id: formData.employeeId || null,
           },
         ]);
 
@@ -67,6 +97,7 @@ const BookingModal = ({ service, isOpen, onClose }: BookingModalProps) => {
           bookingDate: format(new Date(formData.bookingDate), 'MMMM d, yyyy'),
           bookingTime: formData.bookingTime,
           notes: formData.notes,
+          employeeId: formData.employeeId,
         },
       });
 
@@ -98,7 +129,7 @@ const BookingModal = ({ service, isOpen, onClose }: BookingModalProps) => {
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
@@ -121,6 +152,7 @@ const BookingModal = ({ service, isOpen, onClose }: BookingModalProps) => {
           formData={formData}
           onInputChange={handleInputChange}
           onClose={onClose}
+          employees={employees || []}
         />
       </DialogContent>
     </Dialog>
