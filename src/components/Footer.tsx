@@ -12,6 +12,11 @@ const Footer = () => {
   const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
   const salonLocation = { lat: 40.7241, lng: -74.1584 };
+  
+  const openInWaze = () => {
+    const wazeUrl = `https://www.waze.com/ul?ll=${salonLocation.lat}%2C${salonLocation.lng}&navigate=yes`;
+    window.open(wazeUrl, '_blank');
+  };
 
   return (
     <footer className="bg-white/80 backdrop-blur-sm border-t border-secondary/20">
@@ -54,12 +59,18 @@ const Footer = () => {
                 <HoverCardTrigger asChild>
                   <Button
                     variant="ghost"
-                    className="w-full justify-start hover:bg-secondary/10 space-x-4 h-auto py-3"
+                    className="w-full justify-start hover:bg-secondary/10 space-x-4 h-auto py-3 group"
+                    onClick={openInWaze}
                   >
-                    <MapPin className="w-5 h-5 text-secondary flex-shrink-0" />
-                    <span className="text-primary-foreground/80 text-left">
-                      {t('nav.address')}
-                    </span>
+                    <MapPin className="w-5 h-5 text-secondary flex-shrink-0 group-hover:scale-110 transition-transform" />
+                    <div className="flex flex-col items-start">
+                      <span className="text-primary-foreground/80 text-left">
+                        {t('nav.address')}
+                      </span>
+                      <span className="text-xs text-primary-foreground/60">
+                        Click to open in Waze
+                      </span>
+                    </div>
                   </Button>
                 </HoverCardTrigger>
                 <HoverCardContent className="w-80 p-0">
@@ -77,7 +88,6 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Opening Hours */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -110,7 +120,6 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Social Media */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
