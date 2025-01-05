@@ -19,12 +19,17 @@ export default function Store() {
   const { data: products, isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
+      console.log("Fetching all products...");
       const { data, error } = await supabase
         .from("products")
         .select("*")
-        .order("name");
+        .order("category", { ascending: true });
       
-      if (error) throw error;
+      if (error) {
+        console.error("Error fetching products:", error);
+        throw error;
+      }
+      console.log("Fetched products:", data);
       return data as Product[];
     },
   });
@@ -34,7 +39,9 @@ export default function Store() {
       <div className="min-h-screen bg-background">
         <Navbar />
         <main className="container mx-auto px-4 py-8">
-          <div className="text-center">Loading products...</div>
+          <div className="animate-pulse text-primary-foreground/60 text-base md:text-lg text-center">
+            Loading products...
+          </div>
         </main>
         <Footer />
       </div>
@@ -44,13 +51,13 @@ export default function Store() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-16">
         <SectionHeader
           titleKey="store.title"
           highlightKey="store.highlight"
           subtitleKey="store.subtitle"
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
           {products?.map((product) => (
             <ProductCard
               key={product.id}

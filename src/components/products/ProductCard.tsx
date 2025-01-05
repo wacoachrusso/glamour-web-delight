@@ -28,14 +28,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
       }
 
       try {
-        // If it's already a full URL, use it directly
         if (product.image_url.startsWith('http')) {
           console.log("Using direct URL for product:", product.name, product.image_url);
           setImageUrl(product.image_url);
           return;
         }
 
-        // Clean the filename - remove any path prefixes
         const filename = product.image_url.split('/').pop();
         if (!filename) {
           console.error("Invalid image URL format:", product.image_url);
@@ -58,12 +56,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
   }, [product.image_url, product.name]);
 
   return (
-    <Card className="flex flex-col h-full">
+    <Card className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300">
       <CardHeader>
-        <CardTitle className="text-xl">{product.name}</CardTitle>
+        <CardTitle className="text-xl font-playfair">{product.name}</CardTitle>
+        <div className="text-sm text-secondary uppercase tracking-wider">
+          {product.category}
+        </div>
       </CardHeader>
       <CardContent className="flex-1">
-        <div className="relative h-72 overflow-hidden bg-secondary/5 mb-4">
+        <div className="relative h-72 overflow-hidden bg-secondary/5 mb-4 rounded-md">
           {imageUrl ? (
             <img
               src={imageUrl}
@@ -81,9 +82,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <ImageOff className="w-16 h-16 text-secondary/30" />
           </div>
         </div>
-        <p className="text-muted-foreground mb-2">{product.description}</p>
-        <p className="font-semibold">${product.price.toFixed(2)}</p>
-        <p className="text-sm text-green-600">Available in store</p>
+        <p className="text-muted-foreground mb-4">{product.description}</p>
+        <div className="flex justify-between items-center">
+          <p className="font-semibold text-lg">${product.price.toFixed(2)}</p>
+          <p className="text-sm text-green-600">Available in store</p>
+        </div>
       </CardContent>
     </Card>
   );
