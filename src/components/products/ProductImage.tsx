@@ -9,15 +9,20 @@ interface ProductImageProps {
 const getUnsplashFallbackImage = (productName: string): string => {
   // Map product names or categories to relevant Unsplash photo IDs
   const productToPhotoMap: Record<string, string> = {
-    "Laptop": "photo-1488590528505-98d2b5aba04b",
-    "Desktop Computer": "photo-1498050108023-c5249f4df085",
-    "Smart Watch": "photo-1649972904349-6e44c42644a7",
-    "Tablet": "photo-1486312338219-ce68d2c6f44d",
-    // Add more mappings as needed for other products
+    "Shampoo": "photo-1585232004423-244e0e6904e3",
+    "Conditioner": "photo-1535585209827-a15fcdbc4c2d",
+    "Hair Mask": "photo-1526947425960-945c6e72858f",
+    "Hair Oil": "photo-1597354984706-fac992d9306f",
+    "Styling Cream": "photo-1556229162-5c63ed9c4efb",
+    "Hair Spray": "photo-1559599101-f09722fb4948",
+    "Hair Serum": "photo-1585232004423-244e0e6904e3",
+    "Leave-in Conditioner": "photo-1535585209827-a15fcdbc4c2d",
+    "Hair Color": "photo-1527799820374-dcf8d9d4a388",
+    "Hair Treatment": "photo-1516975080664-ed2fc6a32937",
   };
 
   // Default fallback for products without specific mappings
-  const defaultPhoto = "photo-1721322800607-8c38375eef04";
+  const defaultPhoto = "photo-1522337360788-8b13dee7a37e";
   
   // Try to find a matching photo ID, or use default
   const photoId = productToPhotoMap[productName] || defaultPhoto;
