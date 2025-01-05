@@ -73,16 +73,10 @@ const Footer = () => {
                     </div>
                   </Button>
                 </HoverCardTrigger>
-                <HoverCardContent className="w-80 p-0">
-                  <iframe
-                    title="Salon Location"
-                    width="100%"
-                    height="200"
-                    frameBorder="0"
-                    style={{ border: 0 }}
-                    src={`https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${salonLocation.lat},${salonLocation.lng}&zoom=15`}
-                    allowFullScreen
-                  />
+                <HoverCardContent className="w-80 p-4">
+                  <p className="text-sm text-primary-foreground/80">
+                    Click to get directions using Waze
+                  </p>
                 </HoverCardContent>
               </HoverCard>
             </div>
@@ -165,16 +159,16 @@ const Footer = () => {
               </p>
             </div>
           </motion.div>
-        </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-16 pt-8 border-t border-secondary/20 text-center text-primary-foreground/60 text-sm"
-        >
-          <p>&copy; {currentYear} Glamour's Beauty Salon. {t('footer.rights')}.</p>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="mt-16 pt-8 border-t border-secondary/20 text-center text-primary-foreground/60 text-sm"
+          >
+            <p>&copy; {currentYear} Glamour's Beauty Salon. {t('footer.rights')}.</p>
+          </motion.div>
+        </div>
       </div>
     </footer>
   );
