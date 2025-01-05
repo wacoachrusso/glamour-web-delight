@@ -13,7 +13,7 @@ const Hero = () => {
       {/* Parallax Background */}
       <motion.div 
         style={{ y }}
-        className="absolute inset-0 bg-[url('/lovable-uploads/2721060a-90fa-4a64-97e9-d7747f1a40a8.png')] bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-[url('/lovable-uploads/61e5db9a-2533-4a68-a338-13395392c7ed.png')] bg-cover bg-center bg-no-repeat"
       />
       
       {/* Enhanced Overlay with multiple gradients */}
@@ -21,8 +21,8 @@ const Hero = () => {
         className="absolute inset-0"
         style={{
           background: `
-            linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%),
-            linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(248,215,215,0.3) 100%)
+            linear-gradient(to right, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 100%),
+            linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(248,215,215,0.2) 100%)
           `
         }}
       />
