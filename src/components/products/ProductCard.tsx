@@ -1,6 +1,5 @@
 import { ImageOff } from "lucide-react";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
 
@@ -16,11 +15,9 @@ type Product = {
 
 interface ProductCardProps {
   product: Product;
-  onAddToCart?: (product: Product) => void;
-  index?: number;
 }
 
-const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   useEffect(() => {
@@ -86,23 +83,8 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
         </div>
         <p className="text-muted-foreground mb-2">{product.description}</p>
         <p className="font-semibold">${product.price.toFixed(2)}</p>
-        <p className={`text-sm ${
-          product.stock_quantity > 0 ? "text-green-600" : "text-red-600"
-        }`}>
-          {product.stock_quantity > 0 
-            ? `In Stock (${product.stock_quantity} available)` 
-            : "Out of Stock"}
-        </p>
+        <p className="text-sm text-green-600">Available in store</p>
       </CardContent>
-      <CardFooter>
-        <Button 
-          onClick={() => onAddToCart?.(product)}
-          disabled={product.stock_quantity <= 0}
-          className="w-full"
-        >
-          Add to Cart
-        </Button>
-      </CardFooter>
     </Card>
   );
 };
