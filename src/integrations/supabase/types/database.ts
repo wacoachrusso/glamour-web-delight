@@ -1,3 +1,9 @@
+import { Booking } from './booking';
+import { Employee, EmployeeSchedule, EmployeeService } from './employee';
+import { Order, OrderItem } from './order';
+import { Product } from './product';
+import { Service } from './service';
+
 export type Json =
   | string
   | number
