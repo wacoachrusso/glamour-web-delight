@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Clock, Phone, Mail, ImageIcon } from "lucide-react";
+import { Phone, Mail, ImageIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../ui/button";
 import {
@@ -27,10 +27,6 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
   
   const formattedCategory = service.category.toLowerCase().replace(/\s+/g, '');
 
-  console.log('Service image URL:', service.image_url);
-  console.log('Public URL:', publicUrl);
-  console.log('Image error:', imageError || imageLoadError);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -42,9 +38,9 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
       
       <Card className="relative bg-white/80 backdrop-blur-sm border-0 overflow-hidden">
         <div className="relative h-48 overflow-hidden bg-secondary/5">
-          {publicUrl && !imageError && !imageLoadError ? (
+          {service.image_url ? (
             <motion.img
-              src={publicUrl}
+              src={service.image_url}
               alt={service.name}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               onError={() => setImageError(true)}
@@ -74,11 +70,6 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         </CardHeader>
 
         <CardContent className="space-y-6">
-          <div className="flex items-center space-x-3 text-sm text-gray-600">
-            <Clock className="w-5 h-5 text-secondary" />
-            <span>{t('services.duration', { duration: service.duration })}</span>
-          </div>
-
           <div className="grid grid-cols-2 gap-3">
             <Button 
               variant="default"
