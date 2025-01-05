@@ -11,6 +11,7 @@ import {
 } from "../ui/card";
 import { Database } from "@/integrations/supabase/types";
 import { useState } from "react";
+import { useProductImage } from "@/hooks/useProductImage";
 
 type Service = Database['public']['Tables']['services']['Row'];
 
@@ -22,8 +23,13 @@ interface ServiceCardProps {
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const { t } = useTranslation();
   const [imageError, setImageError] = useState(false);
+  const { publicUrl, error: imageLoadError } = useProductImage(service.image_url);
   
   const formattedCategory = service.category.toLowerCase().replace(/\s+/g, '');
+
+  console.log('Service image URL:', service.image_url);
+  console.log('Public URL:', publicUrl);
+  console.log('Image error:', imageError || imageLoadError);
 
   return (
     <motion.div
@@ -36,9 +42,9 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
       
       <Card className="relative bg-white/80 backdrop-blur-sm border-0 overflow-hidden">
         <div className="relative h-48 overflow-hidden bg-secondary/5">
-          {service.image_url && !imageError ? (
+          {publicUrl && !imageError && !imageLoadError ? (
             <motion.img
-              src={service.image_url}
+              src={publicUrl}
               alt={service.name}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               onError={() => setImageError(true)}
