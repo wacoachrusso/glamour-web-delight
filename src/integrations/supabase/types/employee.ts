@@ -3,8 +3,8 @@ export interface Employee {
   name: string;
   email: string;
   phone: string | null;
-  specialties: string[];
-  is_placeholder: boolean;
+  specialties: string[] | null;
+  is_placeholder: boolean | null;
   created_at: string;
 }
 
@@ -14,7 +14,7 @@ export interface EmployeeSchedule {
   day_of_week: number;
   start_time: string;
   end_time: string;
-  is_available: boolean;
+  is_available: boolean | null;
   created_at: string;
 }
 
