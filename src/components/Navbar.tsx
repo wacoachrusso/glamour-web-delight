@@ -10,7 +10,7 @@ export const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 w-full">
       {/* Top Info Bar */}
-      <div className="w-full bg-secondary-light text-primary-foreground py-3">
+      <div className="w-full bg-primary text-primary-foreground py-3">
         <div className="container flex justify-between items-center text-xs uppercase tracking-wider">
           <div className="flex items-center gap-3">
             <Clock className="h-3.5 w-3.5 text-secondary" />
