@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import MeetTheOwner from "./pages/MeetTheOwner";
 import Store from "./pages/Store";
 import Team from "./pages/Team";
+import Services from "./pages/Services";
 import "./i18n/config";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/meet-the-owner" element={<MeetTheOwner />} />
           <Route path="/store" element={<Store />} />
           <Route path="/team" element={<Team />} />
+          <Route path="/services" element={<Services />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
