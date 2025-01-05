@@ -77,5 +77,26 @@
     "weekdayHours": "9:00 AM - 8:00 PM",
     "saturdayHours": "9:00 AM - 6:00 PM",
     "sundayHours": "10:00 AM - 4:00 PM"
+  },
+  "bookings": {
+    "bookService": "Book {{service}}",
+    "duration": "Duration: {{duration}} minutes",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "date": "Booking Date",
+    "time": "Booking Time",
+    "notes": "Additional Notes",
+    "notesPlaceholder": "Any special requests or requirements?",
+    "confirm": "Confirm Booking",
+    "success": "Booking Confirmed",
+    "error": "Booking Error",
+    "tryAgain": "Please try again later",
+    "confirmationSent": "Confirmation email has been sent",
+    "confirmationDelayed": "Booking confirmed but email might be delayed"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "submitting": "Submitting..."
   }
 }

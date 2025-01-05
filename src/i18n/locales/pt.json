@@ -45,7 +45,7 @@
     "title": "Produtos",
     "highlight": "Destacados",
     "subtitle": "Descubra nossa coleção selecionada de produtos profissionais para o cabelo",
-    "loading": "Cargando produtos...",
+    "loading": "Carregando produtos...",
     "viewAll": "Ver Todos os Produtos",
     "addToCart": "Adicionar ao Carrinho",
     "price": "${price}",
@@ -77,5 +77,26 @@
     "weekdayHours": "9:00 - 20:00",
     "saturdayHours": "9:00 - 18:00",
     "sundayHours": "10:00 - 16:00"
+  },
+  "bookings": {
+    "bookService": "Agendar {{service}}",
+    "duration": "Duração: {{duration}} minutos",
+    "name": "Nome Completo",
+    "email": "Endereço de Email",
+    "phone": "Número de Telefone",
+    "date": "Data do Agendamento",
+    "time": "Hora do Agendamento",
+    "notes": "Notas Adicionais",
+    "notesPlaceholder": "Algum pedido ou requisito especial?",
+    "confirm": "Confirmar Agendamento",
+    "success": "Agendamento Confirmado",
+    "error": "Erro no Agendamento",
+    "tryAgain": "Por favor tente novamente mais tarde",
+    "confirmationSent": "Email de confirmação foi enviado",
+    "confirmationDelayed": "Agendamento confirmado mas o email pode estar atrasado"
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "submitting": "Enviando..."
   }
 }

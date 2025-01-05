@@ -77,5 +77,26 @@
     "weekdayHours": "9:00 AM - 8:00 PM",
     "saturdayHours": "9:00 AM - 6:00 PM",
     "sundayHours": "10:00 AM - 4:00 PM"
+  },
+  "bookings": {
+    "bookService": "Reservar {{service}}",
+    "duration": "Duración: {{duration}} minutos",
+    "name": "Nombre Completo",
+    "email": "Correo Electrónico",
+    "phone": "Número de Teléfono",
+    "date": "Fecha de Reserva",
+    "time": "Hora de Reserva",
+    "notes": "Notas Adicionales",
+    "notesPlaceholder": "¿Alguna solicitud o requisito especial?",
+    "confirm": "Confirmar Reserva",
+    "success": "Reserva Confirmada",
+    "error": "Error en la Reserva",
+    "tryAgain": "Por favor intente más tarde",
+    "confirmationSent": "El correo de confirmación ha sido enviado",
+    "confirmationDelayed": "Reserva confirmada pero el correo podría demorarse"
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "submitting": "Enviando..."
   }
 }
