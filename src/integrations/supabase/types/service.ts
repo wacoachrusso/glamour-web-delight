@@ -8,6 +8,3 @@ export interface Service {
   image_url: string | null;
   created_at: string;
 }
-
-// Export the type for use in other files
-export type { Service as ServiceType };
