@@ -10,8 +10,7 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Database } from "@/integrations/supabase/types";
-import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { useState } from "react";
 import { useProductImage } from "@/hooks/useProductImage";
 
 type Service = Database['public']['Tables']['services']['Row'];
@@ -23,11 +22,9 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const { t } = useTranslation();
-  const { publicUrl, error } = useProductImage(service.image_url);
+  const { publicUrl } = useProductImage(service.image_url);
   const [imageError, setImageError] = useState(false);
 
-  console.log("Service:", service.name, "Image URL:", service.image_url, "Public URL:", publicUrl);
-  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -39,25 +36,30 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
       
       <Card className="relative bg-white/80 backdrop-blur-sm border-0 overflow-hidden">
         <div className="relative h-48 overflow-hidden bg-secondary/5">
-          {publicUrl && !error && !imageError ? (
-            <motion.img
-              src={publicUrl}
-              alt={service.name}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-              onError={() => {
-                console.error("Error loading image for service:", service.name);
-                setImageError(true);
-              }}
+          {service.image_url && !imageError ? (
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
-            />
+              className="w-full h-full"
+            >
+              <img
+                src={service.image_url}
+                alt={service.name}
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onError={() => {
+                  console.error("Error loading image for service:", service.name);
+                  setImageError(true);
+                }}
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+            </motion.div>
           ) : (
-            <div className="w-full h-full flex items-center justify-center">
+            <div className="w-full h-full flex items-center justify-center bg-secondary/5">
               <ImageIcon className="w-12 h-12 text-secondary/30" />
             </div>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
         </div>
 
         <CardHeader className="pt-6">
