@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Calendar } from "lucide-react";
 import { format } from "date-fns";
-import { motion } from "framer-motion";
 import {
   Dialog,
   DialogContent,
@@ -10,12 +8,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import type { Database } from "@/integrations/supabase/types";
+import BookingForm from "./booking/BookingForm";
+import type { BookingFormData } from "./booking/types";
 
 type Service = Database['public']['Tables']['services']['Row'];
 
@@ -29,7 +26,7 @@ const BookingModal = ({ service, isOpen, onClose }: BookingModalProps) => {
   const { t } = useTranslation();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<BookingFormData>({
     customerName: "",
     customerEmail: "",
     customerPhone: "",
@@ -60,7 +57,6 @@ const BookingModal = ({ service, isOpen, onClose }: BookingModalProps) => {
 
       if (bookingError) throw bookingError;
 
-      // Send email notifications
       console.log("Sending booking email notifications");
       const emailResponse = await supabase.functions.invoke('send-booking-email', {
         body: {
@@ -76,7 +72,6 @@ const BookingModal = ({ service, isOpen, onClose }: BookingModalProps) => {
 
       if (emailResponse.error) {
         console.error("Error sending emails:", emailResponse.error);
-        // Don't throw here, as the booking was successful
         toast({
           title: t('bookings.success'),
           description: t('bookings.confirmationDelayed'),
@@ -110,7 +105,7 @@ const BookingModal = ({ service, isOpen, onClose }: BookingModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl font-playfair">
             {t('bookings.bookService', { service: service.name })}
@@ -120,96 +115,13 @@ const BookingModal = ({ service, isOpen, onClose }: BookingModalProps) => {
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-          <div className="space-y-2">
-            <Label htmlFor="customerName">{t('bookings.name')}</Label>
-            <Input
-              id="customerName"
-              name="customerName"
-              required
-              value={formData.customerName}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="customerEmail">{t('bookings.email')}</Label>
-            <Input
-              id="customerEmail"
-              name="customerEmail"
-              type="email"
-              required
-              value={formData.customerEmail}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="customerPhone">{t('bookings.phone')}</Label>
-            <Input
-              id="customerPhone"
-              name="customerPhone"
-              type="tel"
-              value={formData.customerPhone}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="bookingDate">{t('bookings.date')}</Label>
-            <Input
-              id="bookingDate"
-              name="bookingDate"
-              type="date"
-              required
-              min={format(new Date(), 'yyyy-MM-dd')}
-              value={formData.bookingDate}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="bookingTime">{t('bookings.time')}</Label>
-            <Input
-              id="bookingTime"
-              name="bookingTime"
-              type="time"
-              required
-              value={formData.bookingTime}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="notes">{t('bookings.notes')}</Label>
-            <Input
-              id="notes"
-              name="notes"
-              value={formData.notes}
-              onChange={handleInputChange}
-              placeholder={t('bookings.notesPlaceholder')}
-            />
-          </div>
-
-          <div className="flex justify-end space-x-4 mt-6">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={onClose}
-              disabled={isSubmitting}
-            >
-              {t('common.cancel')}
-            </Button>
-            <Button
-              type="submit"
-              className="bg-secondary hover:bg-secondary-light text-secondary-foreground"
-              disabled={isSubmitting}
-            >
-              <Calendar className="w-4 h-4 mr-2" />
-              {isSubmitting ? t('common.submitting') : t('bookings.confirm')}
-            </Button>
-          </div>
-        </form>
+        <BookingForm
+          isSubmitting={isSubmitting}
+          onSubmit={handleSubmit}
+          formData={formData}
+          onInputChange={handleInputChange}
+          onClose={onClose}
+        />
       </DialogContent>
     </Dialog>
   );
