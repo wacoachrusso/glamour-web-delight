@@ -8,27 +8,33 @@ export const Navbar = () => {
   const { t } = useTranslation();
 
   return (
-    <header className="sticky top-0 z-50 w-full">
+    <header className="sticky top-0 z-50 w-full backdrop-blur-sm">
       {/* Top Info Bar */}
-      <div className="w-full bg-primary text-primary-foreground py-3">
-        <div className="container flex justify-between items-center text-xs uppercase tracking-wider">
+      <div className="w-full bg-primary/80 backdrop-blur-sm border-b border-secondary/10">
+        <div className="container flex justify-between items-center text-xs uppercase tracking-wider py-2">
           <div className="flex items-center gap-3">
             <Clock className="h-3.5 w-3.5 text-secondary" />
-            <span className="text-gray-700 font-medium">{t('nav.hours')}</span>
+            <span className="text-primary-foreground/80 font-medium hover:text-primary-foreground transition-colors">
+              {t('nav.hours')}
+            </span>
           </div>
           <div className="hidden md:flex items-center gap-3">
             <MapPin className="h-3.5 w-3.5 text-secondary" />
-            <span className="text-gray-700 font-medium">{t('nav.address')}</span>
+            <span className="text-primary-foreground/80 font-medium hover:text-primary-foreground transition-colors">
+              {t('nav.address')}
+            </span>
           </div>
           <div className="flex items-center gap-3">
             <Phone className="h-3.5 w-3.5 text-secondary" />
-            <span className="text-gray-700 font-medium">{t('nav.phone')}</span>
+            <span className="text-primary-foreground/80 font-medium hover:text-primary-foreground transition-colors">
+              {t('nav.phone')}
+            </span>
           </div>
         </div>
       </div>
 
       {/* Main Navigation */}
-      <div className="border-b border-secondary/10 bg-white">
+      <div className="bg-white/80 backdrop-blur-md border-b border-secondary/10 shadow-sm">
         <div className="container flex h-20 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
@@ -43,35 +49,35 @@ export const Navbar = () => {
           <nav className="hidden md:flex items-center gap-10">
             <Link
               to="/"
-              className="text-gray-700 hover:text-secondary transition-all duration-300 font-medium tracking-widest text-sm relative group"
+              className="text-primary-foreground/80 hover:text-secondary transition-all duration-300 font-medium tracking-widest text-sm relative group"
             >
               {t('nav.home')}
               <span className="absolute inset-x-0 bottom-0 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
             </Link>
             <Link
               to="/meet-the-owner"
-              className="text-gray-700 hover:text-secondary transition-all duration-300 font-medium tracking-widest text-sm relative group"
+              className="text-primary-foreground/80 hover:text-secondary transition-all duration-300 font-medium tracking-widest text-sm relative group"
             >
               {t('nav.about')}
               <span className="absolute inset-x-0 bottom-0 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
             </Link>
             <Link
               to="/services"
-              className="text-gray-700 hover:text-secondary transition-all duration-300 font-medium tracking-widest text-sm relative group"
+              className="text-primary-foreground/80 hover:text-secondary transition-all duration-300 font-medium tracking-widest text-sm relative group"
             >
               {t('nav.services')}
               <span className="absolute inset-x-0 bottom-0 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
             </Link>
             <Link
               to="/team"
-              className="text-gray-700 hover:text-secondary transition-all duration-300 font-medium tracking-widest text-sm relative group"
+              className="text-primary-foreground/80 hover:text-secondary transition-all duration-300 font-medium tracking-widest text-sm relative group"
             >
               {t('nav.team')}
               <span className="absolute inset-x-0 bottom-0 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
             </Link>
             <Link
               to="/store"
-              className="text-gray-700 hover:text-secondary transition-all duration-300 font-medium tracking-widest text-sm relative group"
+              className="text-primary-foreground/80 hover:text-secondary transition-all duration-300 font-medium tracking-widest text-sm relative group"
             >
               {t('nav.products')}
               <span className="absolute inset-x-0 bottom-0 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
