@@ -24,3 +24,8 @@ export interface EmployeeService {
   service_id: string;
   created_at: string;
 }
+
+// Export types for use in other files
+export type { Employee as EmployeeType };
+export type { EmployeeSchedule as EmployeeScheduleType };
+export type { EmployeeService as EmployeeServiceType };
