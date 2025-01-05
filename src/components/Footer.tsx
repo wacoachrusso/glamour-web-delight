@@ -29,11 +29,11 @@ const Footer = () => {
                 {t('nav.phone')}
               </a>
               <a 
-                href="mailto:info@glamoursalon.com" 
+                href="mailto:glamoursbeautysalon1@gmail.com" 
                 className="flex items-center text-primary-foreground/80 hover:text-secondary transition-colors group"
               >
                 <Mail className="w-5 h-5 mr-3 group-hover:text-secondary transition-colors" />
-                info@glamoursalon.com
+                glamoursbeautysalon1@gmail.com
               </a>
               <div className="flex items-start text-primary-foreground/80 group">
                 <MapPin className="w-5 h-5 mr-3 mt-1 flex-shrink-0" />
