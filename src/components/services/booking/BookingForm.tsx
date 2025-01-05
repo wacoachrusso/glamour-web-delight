@@ -35,10 +35,10 @@ const BookingForm = ({
         <Label htmlFor="employeeId">{t('bookings.selectEmployee')}</Label>
         <Select
           name="employeeId"
-          value={formData.employeeId}
+          value={formData.employeeId || "any"}
           onValueChange={(value) => 
             onInputChange({ 
-              target: { name: 'employeeId', value } 
+              target: { name: 'employeeId', value: value === "any" ? "" : value } 
             } as React.ChangeEvent<HTMLSelectElement>)
           }
         >
@@ -46,7 +46,7 @@ const BookingForm = ({
             <SelectValue placeholder={t('bookings.anyAvailable')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">{t('bookings.anyAvailable')}</SelectItem>
+            <SelectItem value="any">{t('bookings.anyAvailable')}</SelectItem>
             {employees.map((employee) => (
               <SelectItem key={employee.id} value={employee.id}>
                 {employee.name}
