@@ -26,6 +26,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
       }
 
       try {
+        // If it starts with /lovable-uploads, it's a direct path
+        if (product.image_url.startsWith('/lovable-uploads')) {
+          console.log("Using direct path for product:", product.name);
+          setImageUrl(product.image_url);
+          return;
+        }
+
         // If it's already a full URL, use it directly
         if (product.image_url.startsWith('http')) {
           console.log("Using direct URL for product:", product.name);
@@ -33,17 +40,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
           return;
         }
 
-        // Extract filename from path
-        const filename = product.image_url.split('/').pop();
-        if (!filename) {
-          console.error("Invalid image URL format for product:", product.name);
-          return;
-        }
-
-        console.log("Getting public URL for file:", filename);
+        // Otherwise, get the URL from Supabase storage
+        console.log("Getting public URL for file:", product.image_url);
         const { data } = supabase.storage
           .from('salon_images')
-          .getPublicUrl(filename);
+          .getPublicUrl(product.image_url);
 
         if (data) {
           console.log("Generated public URL for", product.name, ":", data.publicUrl);
