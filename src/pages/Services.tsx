@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowUp, Filter, Loader2, Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import ServiceCard from "@/components/services/ServiceCard";
 import { Navbar } from "@/components/Navbar";
@@ -46,7 +46,7 @@ const ServicesPage = () => {
     setShowScrollTop(window.scrollY > 400);
   };
 
-  useState(() => {
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
