@@ -1,6 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Clock, MapPin, Phone } from "lucide-react";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { MobileMenu } from "./MobileMenu";
 import { cn } from "@/lib/utils";
@@ -13,41 +12,8 @@ export const Navbar = () => {
     return location.pathname === path;
   };
 
-  const openInWaze = () => {
-    const salonLocation = { lat: 40.7241, lng: -74.1584 };
-    const wazeUrl = `https://www.waze.com/ul?ll=${salonLocation.lat}%2C${salonLocation.lng}&navigate=yes`;
-    window.open(wazeUrl, '_blank');
-  };
-
   return (
     <header className="sticky top-0 z-50 w-full backdrop-blur-sm">
-      {/* Top Info Bar */}
-      <div className="w-full bg-primary/90 backdrop-blur-sm border-b border-secondary/10">
-        <div className="container flex flex-col sm:flex-row justify-between items-center text-sm tracking-wide py-3">
-          <div className="flex items-center gap-3 mb-2 sm:mb-0">
-            <Clock className="h-4 w-4 text-secondary" />
-            <span className="text-primary-foreground/90 font-medium hover:text-primary-foreground transition-colors">
-              Mon-Sun: 10:00 AM - 7:00 PM
-            </span>
-          </div>
-          <div className="flex items-center gap-3 mb-2 sm:mb-0 cursor-pointer group" onClick={openInWaze}>
-            <MapPin className="h-4 w-4 text-secondary group-hover:scale-110 transition-transform" />
-            <span className="text-primary-foreground/90 font-medium group-hover:text-primary-foreground transition-colors">
-              275 Adams St, Newark NJ 07105
-            </span>
-          </div>
-          <a 
-            href="tel:+19733445199" 
-            className="flex items-center gap-3 hover:scale-105 transition-transform"
-          >
-            <Phone className="h-4 w-4 text-secondary" />
-            <span className="text-primary-foreground/90 font-medium hover:text-primary-foreground transition-colors">
-              (973) 344-5199
-            </span>
-          </a>
-        </div>
-      </div>
-
       {/* Main Navigation */}
       <div className="bg-white/95 backdrop-blur-md border-b border-secondary/10 shadow-sm">
         <div className="container flex h-20 items-center justify-between">
