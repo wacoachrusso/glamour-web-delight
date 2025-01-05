@@ -10,19 +10,19 @@ export const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 w-full">
       {/* Top Info Bar */}
-      <div className="w-full bg-secondary text-primary-foreground py-3">
+      <div className="w-full bg-secondary-light text-primary-foreground py-3">
         <div className="container flex justify-between items-center text-xs uppercase tracking-wider">
           <div className="flex items-center gap-3">
-            <Clock className="h-3.5 w-3.5 text-secondary-foreground" />
-            <span className="text-secondary-foreground font-medium">{t('nav.hours')}</span>
+            <Clock className="h-3.5 w-3.5 text-secondary" />
+            <span className="text-gray-700 font-medium">{t('nav.hours')}</span>
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <MapPin className="h-3.5 w-3.5 text-secondary-foreground" />
-            <span className="text-secondary-foreground font-medium">{t('nav.address')}</span>
+            <MapPin className="h-3.5 w-3.5 text-secondary" />
+            <span className="text-gray-700 font-medium">{t('nav.address')}</span>
           </div>
           <div className="flex items-center gap-3">
-            <Phone className="h-3.5 w-3.5 text-secondary-foreground" />
-            <span className="text-secondary-foreground font-medium">{t('nav.phone')}</span>
+            <Phone className="h-3.5 w-3.5 text-secondary" />
+            <span className="text-gray-700 font-medium">{t('nav.phone')}</span>
           </div>
         </div>
       </div>
