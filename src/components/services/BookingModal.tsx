@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import type { Service, Employee } from "@/integrations/supabase/types";
+import { Service, Employee } from "@/integrations/supabase/types";
 import BookingForm from "./booking/BookingForm";
 import type { BookingFormData } from "./booking/types";
 import { useQuery } from "@tanstack/react-query";

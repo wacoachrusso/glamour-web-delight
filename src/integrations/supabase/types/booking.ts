@@ -1,13 +1,3 @@
-export interface BookingFormData {
-  customerName: string;
-  customerEmail: string;
-  customerPhone: string;
-  bookingDate: string;
-  bookingTime: string;
-  notes: string;
-  employeeId?: string;
-}
-
 export interface Employee {
   id: string;
   name: string;
@@ -33,4 +23,14 @@ export interface EmployeeService {
   employee_id: string;
   service_id: string;
   created_at: string;
+}
+
+export interface BookingFormData {
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  bookingDate: string;
+  bookingTime: string;
+  notes: string;
+  employeeId?: string;
 }
