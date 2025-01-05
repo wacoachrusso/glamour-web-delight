@@ -45,14 +45,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
         // Otherwise, get the URL from Supabase storage
         console.log("Attempting to get Supabase storage URL for:", product.image_url);
-        const { data, error } = supabase.storage
+        const { data } = supabase.storage
           .from('salon_images')
           .getPublicUrl(product.image_url);
-
-        if (error) {
-          console.error("Supabase storage error for product:", product.name, error);
-          return;
-        }
 
         if (data) {
           console.log("Generated public URL for", product.name, ":", data.publicUrl);
