@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Database } from "@/integrations/supabase/types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 type Service = Database['public']['Tables']['services']['Row'];
@@ -26,7 +26,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   // Fetch the public URL when the component mounts
-  useState(() => {
+  useEffect(() => {
     const loadImage = async () => {
       if (!service.image_url) {
         console.log("No image URL for service:", service.name);
