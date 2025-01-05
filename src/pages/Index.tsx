@@ -6,13 +6,11 @@ import Footer from "../components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-muted via-white/50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-muted to-white">
       <Navbar />
-      <main className="space-y-24 md:space-y-32">
-        <Hero />
-        <Services />
-        <FeaturedProducts />
-      </main>
+      <Hero />
+      <Services />
+      <FeaturedProducts />
       <Footer />
     </div>
   );
