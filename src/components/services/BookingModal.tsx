@@ -44,7 +44,7 @@ const BookingModal = ({ service, isOpen, onClose }: BookingModalProps) => {
     
     try {
       console.log("Submitting booking for service:", service.name);
-      const { error } = await supabase
+      const { error: bookingError } = await supabase
         .from('bookings')
         .insert([
           {
@@ -58,13 +58,38 @@ const BookingModal = ({ service, isOpen, onClose }: BookingModalProps) => {
           },
         ]);
 
-      if (error) throw error;
+      if (bookingError) throw bookingError;
 
-      toast({
-        title: t('bookings.success'),
-        description: t('bookings.confirmationSent'),
-        duration: 5000,
+      // Send email notifications
+      console.log("Sending booking email notifications");
+      const emailResponse = await supabase.functions.invoke('send-booking-email', {
+        body: {
+          customerName: formData.customerName,
+          customerEmail: formData.customerEmail,
+          customerPhone: formData.customerPhone,
+          serviceName: service.name,
+          bookingDate: format(new Date(formData.bookingDate), 'MMMM d, yyyy'),
+          bookingTime: formData.bookingTime,
+          notes: formData.notes,
+        },
       });
+
+      if (emailResponse.error) {
+        console.error("Error sending emails:", emailResponse.error);
+        // Don't throw here, as the booking was successful
+        toast({
+          title: t('bookings.success'),
+          description: t('bookings.confirmationDelayed'),
+          duration: 5000,
+        });
+      } else {
+        toast({
+          title: t('bookings.success'),
+          description: t('bookings.confirmationSent'),
+          duration: 5000,
+        });
+      }
+
       onClose();
     } catch (error) {
       console.error("Error creating booking:", error);
