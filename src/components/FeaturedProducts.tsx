@@ -18,6 +18,7 @@ const FeaturedProducts = () => {
         .from('products')
         .select('*')
         .eq('featured', true)
+        .limit(3)
         .order('created_at', { ascending: false });
       
       if (error) {
@@ -31,7 +32,7 @@ const FeaturedProducts = () => {
 
   if (isLoading) {
     return (
-      <div className="w-full min-h-[50vh] flex items-center justify-center">
+      <div className="w-full min-h-[40vh] flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -50,7 +51,9 @@ const FeaturedProducts = () => {
   }
 
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden bg-gradient-to-b from-white via-muted/50 to-muted">
+    <section className="relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-muted/50 to-muted" />
+      
       {/* Decorative Elements */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -72,7 +75,7 @@ const FeaturedProducts = () => {
           subtitleKey="products.subtitle"
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto">
           {products?.map((product, index) => (
             <motion.div
               key={product.id}

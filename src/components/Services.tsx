@@ -18,7 +18,7 @@ const Services = () => {
         .from('services')
         .select('*')
         .order('category')
-        .limit(6);
+        .limit(3);
       
       if (error) {
         console.error("Error fetching services:", error);
@@ -31,7 +31,7 @@ const Services = () => {
 
   if (isLoading) {
     return (
-      <div className="w-full min-h-[50vh] flex items-center justify-center">
+      <div className="w-full min-h-[40vh] flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -46,7 +46,7 @@ const Services = () => {
   }
 
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden">
+    <section className="relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-muted via-white/50 to-white/80" />
       
       {/* Decorative Elements */}
@@ -70,7 +70,7 @@ const Services = () => {
           subtitleKey="services.subtitle"
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto">
           {services?.map((service, index) => (
             <motion.div
               key={service.id}
