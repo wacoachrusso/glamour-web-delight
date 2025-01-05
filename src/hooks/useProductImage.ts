@@ -7,8 +7,6 @@ export const useProductImage = (imageUrl: string | null) => {
 
   useEffect(() => {
     const loadImageUrl = async () => {
-      console.log("Loading image with URL:", imageUrl);
-      
       if (!imageUrl) {
         console.log("No image URL provided");
         setError(true);
@@ -18,11 +16,20 @@ export const useProductImage = (imageUrl: string | null) => {
       try {
         // Handle local paths starting with /lovable-uploads
         if (imageUrl.startsWith('/lovable-uploads')) {
-          const { data } = supabase.storage
-            .from('salon_images')
-            .getPublicUrl(imageUrl.replace('/lovable-uploads/', ''));
+          const cleanPath = imageUrl.replace('/lovable-uploads/', '');
+          console.log("Processing local path:", cleanPath);
           
-          console.log("Generated public URL from local path:", data.publicUrl);
+          const { data, error: storageError } = supabase.storage
+            .from('salon_images')
+            .getPublicUrl(cleanPath);
+          
+          if (storageError) {
+            console.error("Storage error:", storageError);
+            setError(true);
+            return;
+          }
+
+          console.log("Generated public URL:", data.publicUrl);
           setPublicUrl(data.publicUrl);
           return;
         }
@@ -35,9 +42,15 @@ export const useProductImage = (imageUrl: string | null) => {
         }
 
         // Handle other cases through Supabase storage
-        const { data } = supabase.storage
+        const { data, error: storageError } = supabase.storage
           .from('salon_images')
           .getPublicUrl(imageUrl);
+
+        if (storageError) {
+          console.error("Storage error:", storageError);
+          setError(true);
+          return;
+        }
 
         console.log("Generated public URL from storage:", data.publicUrl);
         setPublicUrl(data.publicUrl);
