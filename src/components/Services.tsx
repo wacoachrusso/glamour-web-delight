@@ -2,13 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import { Scissors } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import ServiceCard from "./services/ServiceCard";
 import SectionHeader from "./shared/SectionHeader";
-import ViewAllButton from "./shared/ViewAllButton";
+import { Button } from "./ui/button";
 
 const Services = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   
   const { data: services, isLoading } = useQuery({
     queryKey: ["featuredServices"],
@@ -83,7 +85,22 @@ const Services = () => {
           ))}
         </div>
 
-        <ViewAllButton textKey="services.viewAll" Icon={Scissors} />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="text-center mt-16"
+        >
+          <Button 
+            variant="outline"
+            size="lg"
+            onClick={() => navigate('/services')}
+            className="border-2 border-secondary hover:bg-secondary/10 text-primary-foreground group relative overflow-hidden transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+          >
+            {t('services.viewAll')}
+            <Scissors className="ml-2 h-5 w-5 transition-transform group-hover:rotate-45" />
+          </Button>
+        </motion.div>
       </div>
     </section>
   );
