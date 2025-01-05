@@ -12,6 +12,7 @@ import {
 import { Database } from "@/integrations/supabase/types";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { useProductImage } from "@/hooks/useProductImage";
 
 type Service = Database['public']['Tables']['services']['Row'];
 
@@ -22,43 +23,10 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const { t } = useTranslation();
+  const { publicUrl, error } = useProductImage(service.image_url);
   const [imageError, setImageError] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
 
-  // Fetch the public URL when the component mounts
-  useEffect(() => {
-    const loadImage = async () => {
-      if (!service.image_url) {
-        console.log("No image URL for service:", service.name);
-        return;
-      }
-
-      try {
-        // Handle local paths starting with /lovable-uploads
-        if (service.image_url.startsWith('/lovable-uploads')) {
-          const cleanPath = service.image_url.replace('/lovable-uploads/', '');
-          console.log("Processing local path for service:", service.name, cleanPath);
-          
-          const { data } = supabase.storage
-            .from('salon_images')
-            .getPublicUrl(cleanPath);
-
-          if (data?.publicUrl) {
-            console.log("Generated public URL for service:", service.name, data.publicUrl);
-            setImageUrl(data.publicUrl);
-          }
-        } else {
-          // Direct URL case
-          setImageUrl(service.image_url);
-        }
-      } catch (error) {
-        console.error("Error loading image for service:", service.name, error);
-        setImageError(true);
-      }
-    };
-
-    loadImage();
-  }, [service.image_url, service.name]);
+  console.log("Service:", service.name, "Image URL:", service.image_url, "Public URL:", publicUrl);
   
   return (
     <motion.div
@@ -71,9 +39,9 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
       
       <Card className="relative bg-white/80 backdrop-blur-sm border-0 overflow-hidden">
         <div className="relative h-48 overflow-hidden bg-secondary/5">
-          {imageUrl && !imageError ? (
+          {publicUrl && !error && !imageError ? (
             <motion.img
-              src={imageUrl}
+              src={publicUrl}
               alt={service.name}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               onError={() => {
