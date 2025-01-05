@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Clock, DollarSign } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
-import { Service } from "@/integrations/supabase/types";
+import { Service } from "@/integrations/supabase/types/service";
 import { cn } from "@/lib/utils";
 
 interface ServiceCardProps {
