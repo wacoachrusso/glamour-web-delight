@@ -17,46 +17,47 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     const loadImageUrl = async () => {
-      console.log("Starting image load for product:", product.name);
-      console.log("Original image_url:", product.image_url);
-
+      console.log("Loading image for product:", product.name);
+      
       if (!product.image_url) {
-        console.log("No image URL provided for product:", product.name);
+        console.log("No image URL for product:", product.name);
+        setImageError(true);
         return;
       }
 
       try {
-        // If it starts with /lovable-uploads, it's a direct path
+        // If it's a local path starting with /lovable-uploads
         if (product.image_url.startsWith('/lovable-uploads')) {
-          console.log("Using direct path for product:", product.name, "Path:", product.image_url);
-          setImageUrl(product.image_url);
+          const { data: publicUrl } = supabase.storage
+            .from('salon_images')
+            .getPublicUrl(product.image_url.replace('/lovable-uploads/', ''));
+          
+          console.log("Generated public URL:", publicUrl);
+          setImageUrl(publicUrl.publicUrl);
           return;
         }
 
-        // If it's already a full URL, use it directly
+        // If it's already a full URL (including Supabase URLs)
         if (product.image_url.startsWith('http')) {
-          console.log("Using direct URL for product:", product.name, "URL:", product.image_url);
+          console.log("Using direct URL:", product.image_url);
           setImageUrl(product.image_url);
           return;
         }
 
-        // Otherwise, get the URL from Supabase storage
-        console.log("Attempting to get Supabase storage URL for:", product.image_url);
-        const { data } = supabase.storage
+        // For any other case, try to get URL from Supabase storage
+        const { data: publicUrl } = supabase.storage
           .from('salon_images')
           .getPublicUrl(product.image_url);
 
-        if (data) {
-          console.log("Generated public URL for", product.name, ":", data.publicUrl);
-          setImageUrl(data.publicUrl);
-        } else {
-          console.log("No public URL generated for product:", product.name);
-        }
+        console.log("Fallback public URL:", publicUrl);
+        setImageUrl(publicUrl.publicUrl);
       } catch (error) {
         console.error("Error loading image for product:", product.name, error);
+        setImageError(true);
       }
     };
 
@@ -73,22 +74,21 @@ const ProductCard = ({ product }: ProductCardProps) => {
       </CardHeader>
       <CardContent className="flex-1">
         <div className="relative h-72 overflow-hidden bg-secondary/5 mb-4 rounded-md">
-          {imageUrl ? (
+          {!imageError && imageUrl ? (
             <img
               src={imageUrl}
               alt={product.name}
               className="w-full h-full object-contain p-4"
-              onError={(e) => {
+              onError={() => {
                 console.error("Image failed to load:", imageUrl);
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-                target.nextElementSibling?.classList.remove('hidden');
+                setImageError(true);
               }}
             />
-          ) : null}
-          <div className={`absolute inset-0 flex items-center justify-center ${imageUrl ? 'hidden' : ''}`}>
-            <ImageOff className="w-16 h-16 text-secondary/30" />
-          </div>
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <ImageOff className="w-16 h-16 text-secondary/30" />
+            </div>
+          )}
         </div>
         <p className="text-muted-foreground">{product.description}</p>
         <p className="text-sm text-green-600 mt-4">Available in store</p>
