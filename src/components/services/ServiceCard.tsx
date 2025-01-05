@@ -14,7 +14,7 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const { t } = useTranslation();
-
+  
   // Format category string by removing spaces and converting to lowercase
   const formattedCategory = service.category.toLowerCase().replace(/\s+/g, '');
 
