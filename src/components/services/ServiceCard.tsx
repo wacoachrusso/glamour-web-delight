@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { Clock, ImageOff, Star } from "lucide-react";
+import { Clock, ImageOff, Star, Phone, Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Database } from "@/integrations/supabase/types";
-import BookingModal from "./BookingModal";
 
 type Service = Database['public']['Tables']['services']['Row'];
 
@@ -16,7 +14,6 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const { t } = useTranslation();
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   // Format category string by removing spaces and converting to lowercase
   const formattedCategory = service.category.toLowerCase().replace(/\s+/g, '');
@@ -89,21 +86,26 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
               ))}
             </div>
           </div>
-          <Button 
-            className="w-full bg-secondary hover:bg-secondary-light text-secondary-foreground group relative overflow-hidden"
-            onClick={() => setIsBookingModalOpen(true)}
-          >
-            <span className="absolute inset-0 w-0 bg-white transition-all duration-300 ease-out group-hover:w-full opacity-10"></span>
-            {t('services.bookNow')}
-          </Button>
+          
+          <div className="space-y-3">
+            <Button 
+              className="w-full bg-secondary hover:bg-secondary-light text-secondary-foreground group relative overflow-hidden"
+              onClick={() => window.location.href = 'tel:+19733445199'}
+            >
+              <Phone className="w-4 h-4 mr-2" />
+              {t('services.callToBook')}
+            </Button>
+            <Button 
+              variant="outline"
+              className="w-full group relative overflow-hidden"
+              onClick={() => window.location.href = 'mailto:glamoursbeautysalon1@gmail.com'}
+            >
+              <Mail className="w-4 h-4 mr-2" />
+              {t('services.emailToBook')}
+            </Button>
+          </div>
         </CardContent>
       </Card>
-
-      <BookingModal
-        service={service}
-        isOpen={isBookingModalOpen}
-        onClose={() => setIsBookingModalOpen(false)}
-      />
     </motion.div>
   );
 };
