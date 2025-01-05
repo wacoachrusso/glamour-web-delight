@@ -6,6 +6,6 @@ export interface Product {
   price: number;
   image_url: string | null;
   featured: boolean | null;
-  stock_quantity: number;
   created_at: string;
+  stock_quantity: number;
 }
