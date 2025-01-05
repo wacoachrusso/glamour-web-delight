@@ -60,6 +60,11 @@
       "tools": "Tools"
     }
   },
+  "store": {
+    "title": "Our",
+    "highlight": "Products",
+    "subtitle": "Discover our curated collection of professional beauty products available in our salon"
+  },
   "footer": {
     "contact": "Contact Us",
     "hours": "Opening Hours",

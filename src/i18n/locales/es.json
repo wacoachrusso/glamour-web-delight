@@ -60,6 +60,11 @@
       "tools": "Herramientas"
     }
   },
+  "store": {
+    "title": "Nuestros",
+    "highlight": "Productos",
+    "subtitle": "Descubre nuestra colección seleccionada de productos de belleza profesionales disponibles en nuestro salón"
+  },
   "footer": {
     "contact": "Contáctanos",
     "hours": "Horario de Apertura",

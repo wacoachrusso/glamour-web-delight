@@ -43,9 +43,9 @@
   },
   "products": {
     "title": "Produtos",
-    "highlight": "em Destaque",
-    "subtitle": "Descubra nossa coleção selecionada de produtos profissionais para cabelo",
-    "loading": "Carregando produtos...",
+    "highlight": "Destacados",
+    "subtitle": "Descubra nossa coleção selecionada de produtos profissionais para o cabelo",
+    "loading": "Cargando produtos...",
     "viewAll": "Ver Todos os Produtos",
     "addToCart": "Adicionar ao Carrinho",
     "price": "${price}",
@@ -59,6 +59,11 @@
       "color": "Coloração",
       "tools": "Ferramentas"
     }
+  },
+  "store": {
+    "title": "Nossos",
+    "highlight": "Produtos",
+    "subtitle": "Descubra nossa coleção selecionada de produtos de beleza profissionais disponíveis em nosso salão"
   },
   "footer": {
     "contact": "Contate-nos",
