@@ -1,11 +1,11 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Clock, ImageOff, Star } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Database } from "@/integrations/supabase/types";
-import { useToast } from "@/hooks/use-toast";
+import BookingModal from "./BookingModal";
 
 type Service = Database['public']['Tables']['services']['Row'];
 
@@ -16,8 +16,7 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const { toast } = useToast();
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   // Format category string by removing spaces and converting to lowercase
   const formattedCategory = service.category.toLowerCase().replace(/\s+/g, '');
@@ -37,16 +36,6 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
       "price": service.price,
       "priceCurrency": "USD"
     }
-  };
-
-  const handleBooking = () => {
-    console.log("Booking service:", service.name);
-    toast({
-      title: t('services.bookingComingSoon'),
-      description: t('services.bookingMessage'),
-      duration: 5000,
-    });
-    // TODO: Implement booking modal or navigation to booking page
   };
 
   return (
@@ -102,13 +91,19 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
           </div>
           <Button 
             className="w-full bg-secondary hover:bg-secondary-light text-secondary-foreground group relative overflow-hidden"
-            onClick={handleBooking}
+            onClick={() => setIsBookingModalOpen(true)}
           >
             <span className="absolute inset-0 w-0 bg-white transition-all duration-300 ease-out group-hover:w-full opacity-10"></span>
             {t('services.bookNow')}
           </Button>
         </CardContent>
       </Card>
+
+      <BookingModal
+        service={service}
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+      />
     </motion.div>
   );
 };
