@@ -15,6 +15,9 @@ interface ServiceCardProps {
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const { t } = useTranslation();
 
+  // Format category string by removing spaces and converting to lowercase
+  const formattedCategory = service.category.toLowerCase().replace(/\s+/g, '');
+
   // Generate schema markup for the service
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -48,7 +51,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
           {service.image_url ? (
             <img
               src={service.image_url}
-              alt={`${service.name} - ${service.description || t(`services.categories.${service.category.toLowerCase()}`)} at Glamour's Beauty Salon`}
+              alt={`${service.name} - ${service.description || t(`services.categories.${formattedCategory}`)} at Glamour's Beauty Salon`}
               className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
@@ -65,7 +68,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         
         <CardHeader className="relative">
           <div className="absolute -top-4 right-4 bg-secondary text-secondary-foreground px-4 py-1 rounded-full text-sm font-medium shadow-lg">
-            {t(`services.categories.${service.category.toLowerCase()}`)}
+            {t(`services.categories.${formattedCategory}`)}
           </div>
           <CardTitle className="text-2xl font-playfair mt-2">{service.name}</CardTitle>
           <CardDescription className="text-base">{service.description}</CardDescription>
