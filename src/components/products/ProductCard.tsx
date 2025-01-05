@@ -82,11 +82,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <ImageOff className="w-16 h-16 text-secondary/30" />
           </div>
         </div>
-        <p className="text-muted-foreground mb-4">{product.description}</p>
-        <div className="flex justify-between items-center">
-          <p className="font-semibold text-lg">${product.price.toFixed(2)}</p>
-          <p className="text-sm text-green-600">Available in store</p>
-        </div>
+        <p className="text-muted-foreground">{product.description}</p>
+        <p className="text-sm text-green-600 mt-4">Available in store</p>
       </CardContent>
     </Card>
   );
