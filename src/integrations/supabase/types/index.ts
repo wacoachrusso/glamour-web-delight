@@ -23,8 +23,8 @@ export interface Database {
           id?: string;
           service_id: string;
           customer_name: string;
-          customer_email: string;
           customer_phone?: string | null;
+          customer_email: string;
           booking_date: string;
           booking_time: string;
           status?: string;
