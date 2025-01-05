@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ShoppingCart, Clock, MapPin, Phone } from "lucide-react";
-import { Button } from "./ui/button";
+import { Clock, MapPin, Phone } from "lucide-react";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { MobileMenu } from "./MobileMenu";
 
@@ -82,19 +81,6 @@ export const Navbar = () => {
           {/* Right side items */}
           <div className="flex items-center gap-6">
             <LanguageSwitcher />
-            <Link to="/store">
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="relative hover:bg-secondary/5 transition-colors duration-300"
-              >
-                <ShoppingCart className="h-5 w-5 text-gray-600" />
-                <span className="sr-only">Shopping cart</span>
-                <div className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-secondary/10 text-secondary flex items-center justify-center text-xs font-medium border border-secondary/20">
-                  0
-                </div>
-              </Button>
-            </Link>
             <MobileMenu />
           </div>
         </div>
