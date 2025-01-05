@@ -93,7 +93,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
               onClick={() => window.location.href = 'tel:+19733445199'}
             >
               <Phone className="w-4 h-4 mr-2" />
-              {t('services.callToBook')}
+              {t('common.callToBook')}
             </Button>
             <Button 
               variant="outline"
@@ -101,7 +101,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
               onClick={() => window.location.href = 'mailto:glamoursbeautysalon1@gmail.com'}
             >
               <Mail className="w-4 h-4 mr-2" />
-              {t('services.emailToBook')}
+              {t('common.emailToBook')}
             </Button>
           </div>
         </CardContent>
