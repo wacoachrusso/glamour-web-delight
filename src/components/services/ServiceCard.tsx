@@ -47,14 +47,9 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         </CardHeader>
 
         <CardContent className="space-y-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-              <Clock className="w-4 h-4" />
-              <span>{t('services.duration', { duration: service.duration })}</span>
-            </div>
-            <span className="font-semibold text-lg">
-              ${service.price}
-            </span>
+          <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+            <Clock className="w-4 h-4" />
+            <span>{t('services.duration', { duration: service.duration })}</span>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
