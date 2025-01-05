@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, ImageIcon, Clock, DollarSign } from "lucide-react";
+import { Phone, Mail, ImageIcon, Clock } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "../ui/button";
 import {
@@ -24,13 +24,6 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const { t } = useTranslation();
   const { publicUrl } = useProductImage(service.image_url);
   const [imageError, setImageError] = useState(false);
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(price);
-  };
 
   const formatDuration = (minutes: number) => {
     if (minutes >= 60) {
@@ -81,18 +74,11 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         <CardHeader className="pt-6">
           <div className="flex justify-between items-start mb-2">
             <CardTitle className="text-2xl font-cormorant">{service.name}</CardTitle>
-            <span className="text-xl font-semibold text-secondary">
-              {formatPrice(service.price)}
-            </span>
           </div>
           <div className="flex items-center gap-4 text-sm text-gray-600 mb-2">
             <div className="flex items-center">
               <Clock className="w-4 h-4 mr-1 text-secondary" />
               {formatDuration(service.duration)}
-            </div>
-            <div className="flex items-center">
-              <DollarSign className="w-4 h-4 mr-1 text-secondary" />
-              Starting from {formatPrice(service.price)}
             </div>
           </div>
           <CardDescription className="text-base mt-2 text-gray-600">
