@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "./ui/button";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Phone } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const Hero = () => {
@@ -64,16 +64,17 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="flex justify-center pt-8"
             >
-              <Button 
-                className="bg-secondary hover:bg-secondary-light text-secondary-foreground text-lg px-12 py-7 
+              <a 
+                href="tel:+19733445199"
+                className="inline-flex items-center justify-center bg-secondary hover:bg-secondary-light text-secondary-foreground text-lg px-12 py-7 
                           transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl
-                          font-montserrat tracking-wider uppercase min-w-[240px] relative overflow-hidden
+                          font-montserrat tracking-wider uppercase min-w-[240px] relative overflow-hidden rounded-md
                           after:absolute after:inset-0 after:z-[-1] after:bg-secondary-light/20
                           after:translate-y-[100%] hover:after:translate-y-0 after:transition-transform after:duration-300"
               >
-                Book Your Visit
-                <ChevronRight className="ml-2 h-5 w-5" />
-              </Button>
+                <Phone className="mr-2 h-5 w-5" />
+                (973) 344-5199
+              </a>
             </motion.div>
           </motion.div>
         </div>
