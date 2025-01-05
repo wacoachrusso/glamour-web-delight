@@ -7,9 +7,7 @@ type Product = {
   id: string;
   name: string;
   description: string | null;
-  price: number;
   image_url: string | null;
-  stock_quantity: number;
   category: string;
 };
 
@@ -28,15 +26,17 @@ const ProductCard = ({ product }: ProductCardProps) => {
       }
 
       try {
+        // If it's already a full URL, use it directly
         if (product.image_url.startsWith('http')) {
-          console.log("Using direct URL for product:", product.name, product.image_url);
+          console.log("Using direct URL for product:", product.name);
           setImageUrl(product.image_url);
           return;
         }
 
+        // Extract filename from path
         const filename = product.image_url.split('/').pop();
         if (!filename) {
-          console.error("Invalid image URL format:", product.image_url);
+          console.error("Invalid image URL format for product:", product.name);
           return;
         }
 
@@ -45,10 +45,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
           .from('salon_images')
           .getPublicUrl(filename);
 
-        console.log("Generated public URL:", data.publicUrl);
-        setImageUrl(data.publicUrl);
+        if (data) {
+          console.log("Generated public URL for", product.name, ":", data.publicUrl);
+          setImageUrl(data.publicUrl);
+        }
       } catch (error) {
-        console.error("Error processing image URL:", error);
+        console.error("Error loading image for product:", product.name, error);
       }
     };
 
