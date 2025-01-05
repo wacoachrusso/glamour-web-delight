@@ -34,14 +34,14 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-10"
+            className="space-y-12"
           >
             {/* Main Heading */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-6xl sm:text-7xl md:text-8xl font-cormorant font-bold text-white leading-tight tracking-tight"
+              className="text-7xl sm:text-8xl md:text-9xl font-cormorant font-bold text-white leading-tight tracking-tight"
             >
               Discover Your <br />
               <span className="text-secondary">Timeless Beauty</span>
@@ -52,17 +52,17 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl md:text-2xl font-montserrat text-white/90 max-w-2xl mx-auto leading-relaxed tracking-wide"
+              className="text-2xl md:text-3xl font-montserrat text-white/90 max-w-2xl mx-auto leading-relaxed tracking-wide font-light"
             >
-              Where luxury meets transformation. Your perfect look awaits.
+              Where luxury meets transformation
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* CTA Button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-6 justify-center pt-8"
+              className="flex justify-center pt-8"
             >
               <Button 
                 className="bg-secondary hover:bg-secondary-light text-secondary-foreground text-lg px-12 py-7 
@@ -72,16 +72,6 @@ const Hero = () => {
                           after:translate-y-[100%] hover:after:translate-y-0 after:transition-transform after:duration-300"
               >
                 Book Your Visit
-                <ChevronRight className="ml-2 h-5 w-5" />
-              </Button>
-              
-              <Button 
-                variant="outline"
-                className="border-2 border-white hover:bg-white/10 text-white text-lg px-12 py-7
-                          transition-all duration-300 transform hover:-translate-y-1
-                          font-montserrat tracking-wider uppercase min-w-[240px] backdrop-blur-sm"
-              >
-                Explore Services
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
             </motion.div>
