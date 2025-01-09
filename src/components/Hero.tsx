@@ -43,8 +43,8 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-7xl sm:text-8xl md:text-9xl font-cormorant font-bold text-white leading-tight tracking-tight"
             >
-              Discover Your <br />
-              <span className="text-secondary">Timeless Beauty</span>
+              {t('hero.title')} <br />
+              <span className="text-secondary">{t('hero.highlight')}</span>
             </motion.h1>
             
             {/* Description */}
@@ -54,7 +54,7 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-2xl md:text-3xl font-montserrat text-white/90 max-w-2xl mx-auto leading-relaxed tracking-wide font-light"
             >
-              Where luxury meets transformation
+              {t('hero.description')}
             </motion.p>
 
             {/* CTA Button */}
@@ -73,7 +73,7 @@ const Hero = () => {
                           after:translate-y-[100%] hover:after:translate-y-0 after:transition-transform after:duration-300"
               >
                 <Phone className="mr-2 h-5 w-5" />
-                Book Your Visit
+                {t('hero.bookNow')}
               </a>
             </motion.div>
           </motion.div>

@@ -19,9 +19,10 @@
   },
   "hero": {
     "welcome": "BEM-VINDO AO LUXO",
-    "title": "Eleve Sua Beleza",
-    "description": "Experimente serviços de beleza luxuosos em um ambiente elegante. Sua jornada para o brilho começa aqui.",
-    "bookNow": "Agendar Agora",
+    "title": "Descubra Sua",
+    "highlight": "Beleza Atemporal",
+    "description": "Onde o luxo encontra a transformação",
+    "bookNow": "Agende Sua Visita",
     "ourServices": "Nossos Serviços"
   },
   "services": {
@@ -59,6 +60,16 @@
       "color": "Coloração",
       "tools": "Ferramentas"
     }
+  },
+  "team": {
+    "title": "Conheça Nossa",
+    "highlight": "Equipe Especializada",
+    "subtitle": "Nossa talentosa equipe de profissionais de beleza está dedicada a fazer você se sentir e parecer o seu melhor",
+    "comingSoon": "Em Breve",
+    "expertTitle": "Especialista em Beleza",
+    "memberPlaceholder": "Imagem temporária do membro da equipe",
+    "profileDescription": "O perfil do nosso membro da equipe está sendo elaborado com cuidado. Fique atento para conhecer nossos incríveis profissionais de beleza.",
+    "description": "Estamos animados para apresentar nossa incrível equipe de profissionais de beleza. Cada membro traz expertise única e paixão para criar experiências inesquecíveis para nossos clientes."
   },
   "store": {
     "title": "Nossos",

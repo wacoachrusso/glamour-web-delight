@@ -5,8 +5,11 @@ import Footer from "@/components/Footer";
 import { Instagram, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeader from "@/components/shared/SectionHeader";
+import { useTranslation } from "react-i18next";
 
 const Team = () => {
+  const { t } = useTranslation();
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -19,9 +22,9 @@ const Team = () => {
           className="max-w-6xl mx-auto"
         >
           <SectionHeader
-            titleKey="Meet Our"
-            highlightKey="Expert Team"
-            subtitleKey="Coming soon - Our talented team of beauty professionals is getting ready to be featured here. Each member brings unique expertise and passion to create unforgettable experiences for our clients."
+            titleKey="team.title"
+            highlightKey="team.highlight"
+            subtitleKey="team.subtitle"
           />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
@@ -38,7 +41,7 @@ const Team = () => {
                   <div className="relative h-80 overflow-hidden">
                     <img
                       src={`https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=800&q=80`}
-                      alt="Team member placeholder"
+                      alt={t('team.memberPlaceholder')}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -48,15 +51,15 @@ const Team = () => {
                     <div className="space-y-4">
                       <div className="space-y-2">
                         <h3 className="text-2xl font-cormorant font-semibold gradient-text">
-                          Coming Soon
+                          {t('team.comingSoon')}
                         </h3>
                         <p className="text-primary-foreground/60 text-sm">
-                          Beauty Expert
+                          {t('team.expertTitle')}
                         </p>
                       </div>
                       
                       <p className="text-primary-foreground/80">
-                        Our team member's profile is being crafted with care. Stay tuned to meet our amazing beauty professionals.
+                        {t('team.profileDescription')}
                       </p>
                       
                       <div className="pt-4 flex gap-4">
@@ -96,8 +99,7 @@ const Team = () => {
             className="text-center mt-16"
           >
             <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto">
-              We're excited to introduce you to our amazing team of beauty professionals.
-              Each member brings unique expertise and passion to create unforgettable experiences for our clients.
+              {t('team.description')}
             </p>
           </motion.div>
         </motion.div>
