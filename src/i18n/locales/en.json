@@ -40,6 +40,22 @@
       "beautyservices": "Beauty Services",
       "waxing": "Waxing Services",
       "facials": "Facial Treatments"
+    },
+    "names": {
+      "haircut": "Haircut",
+      "color_treatment": "Color Treatment",
+      "manicure": "Manicure",
+      "pedicure": "Pedicure",
+      "facial": "Facial",
+      "waxing": "Waxing"
+    },
+    "descriptions": {
+      "haircut": "Professional haircut and styling tailored to your preferences",
+      "color_treatment": "Premium hair coloring services using top-quality products",
+      "manicure": "Luxurious nail care and hand treatment",
+      "pedicure": "Relaxing foot care and nail treatment",
+      "facial": "Rejuvenating facial treatment for glowing skin",
+      "waxing": "Professional waxing services for smooth skin"
     }
   },
   "products": {
@@ -62,6 +78,22 @@
       "treatment": "Treatment",
       "color": "Hair Color",
       "tools": "Tools"
+    },
+    "names": {
+      "shampoo": "Professional Shampoo",
+      "conditioner": "Deep Conditioner",
+      "styling_gel": "Styling Gel",
+      "hair_mask": "Hair Mask",
+      "hair_oil": "Hair Oil",
+      "leave_in_conditioner": "Leave-in Conditioner"
+    },
+    "descriptions": {
+      "shampoo": "Premium salon-quality shampoo for all hair types",
+      "conditioner": "Intensive conditioning treatment for healthy hair",
+      "styling_gel": "Professional styling gel for long-lasting hold",
+      "hair_mask": "Deep treatment mask for damaged hair",
+      "hair_oil": "Nourishing oil for shine and protection",
+      "leave_in_conditioner": "Daily leave-in treatment for manageable hair"
     }
   },
   "team": {

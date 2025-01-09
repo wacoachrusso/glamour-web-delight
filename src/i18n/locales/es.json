@@ -40,6 +40,22 @@
       "beautyservices": "Servicios de Belleza",
       "waxing": "Servicios de Depilación",
       "facials": "Tratamientos Faciales"
+    },
+    "names": {
+      "haircut": "Corte de Pelo",
+      "color_treatment": "Tratamiento de Color",
+      "manicure": "Manicura",
+      "pedicure": "Pedicura",
+      "facial": "Facial",
+      "waxing": "Depilación"
+    },
+    "descriptions": {
+      "haircut": "Corte de pelo profesional y peinado adaptado a tus preferencias",
+      "color_treatment": "Servicios de coloración premium usando productos de alta calidad",
+      "manicure": "Cuidado de uñas y tratamiento de manos de lujo",
+      "pedicure": "Tratamiento relajante para pies y uñas",
+      "facial": "Tratamiento facial rejuvenecedor para una piel radiante",
+      "waxing": "Servicios de depilación profesional para una piel suave"
     }
   },
   "products": {
@@ -55,13 +71,21 @@
     "defaultDescription": "Experimenta el lujo del {{product}} de grado profesional diseñado para mejorar tu rutina de cuidado del cabello.",
     "availableAt": "Disponible en nuestro salón del centro",
     "learnMore": "Más Información",
-    "categories": {
-      "shampoo": "Champú",
-      "conditioner": "Acondicionador",
-      "styling": "Peinado",
-      "treatment": "Tratamiento",
-      "color": "Coloración",
-      "tools": "Herramientas"
+    "names": {
+      "shampoo": "Champú Profesional",
+      "conditioner": "Acondicionador Profundo",
+      "styling_gel": "Gel para Peinar",
+      "hair_mask": "Mascarilla Capilar",
+      "hair_oil": "Aceite Capilar",
+      "leave_in_conditioner": "Acondicionador sin Enjuague"
+    },
+    "descriptions": {
+      "shampoo": "Champú de calidad profesional para todo tipo de cabello",
+      "conditioner": "Tratamiento acondicionador intensivo para un cabello saludable",
+      "styling_gel": "Gel profesional para un peinado duradero",
+      "hair_mask": "Mascarilla de tratamiento profundo para cabello dañado",
+      "hair_oil": "Aceite nutritivo para brillo y protección",
+      "leave_in_conditioner": "Tratamiento diario sin enjuague para un cabello manejable"
     }
   },
   "team": {

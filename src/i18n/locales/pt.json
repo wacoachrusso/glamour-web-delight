@@ -10,7 +10,7 @@
     "about": "Sobre",
     "gallery": "Galeria",
     "contact": "Contato",
-    "bookNow": "Agendar",
+    "bookNow": "Agende",
     "products": "Produtos",
     "team": "Nossa Equipe",
     "hours": "Aberto todos os dias das 10h às 19h",
@@ -40,6 +40,22 @@
       "beautyservices": "Serviços de Beleza",
       "waxing": "Serviços de Depilação",
       "facials": "Tratamentos Faciais"
+    },
+    "names": {
+      "haircut": "Corte de Cabelo",
+      "color_treatment": "Tratamento de Cor",
+      "manicure": "Manicure",
+      "pedicure": "Pedicure",
+      "facial": "Facial",
+      "waxing": "Depilação"
+    },
+    "descriptions": {
+      "haircut": "Corte de cabelo profissional e penteado adaptado às suas preferências",
+      "color_treatment": "Serviços de coloração premium usando produtos de alta qualidade",
+      "manicure": "Cuidados com unhas e tratamento de mãos luxuoso",
+      "pedicure": "Tratamento relaxante para pés e unhas",
+      "facial": "Tratamento facial rejuvenescedor para uma pele radiante",
+      "waxing": "Serviços de depilação profissional para uma pele suave"
     }
   },
   "products": {
@@ -52,13 +68,24 @@
     "price": "${price}",
     "addedToCart": "Adicionado ao Carrinho",
     "addedToCartDescription": "{{name}} foi adicionado ao seu carrinho.",
-    "categories": {
-      "shampoo": "Shampoo",
-      "conditioner": "Condicionador",
-      "styling": "Finalização",
-      "treatment": "Tratamento",
-      "color": "Coloração",
-      "tools": "Ferramentas"
+    "defaultDescription": "Experimente o luxo do {{product}} de qualidade profissional projetado para melhorar sua rotina de cuidados com o cabelo.",
+    "availableAt": "Disponível em nosso salão do centro",
+    "learnMore": "Mais Informações",
+    "names": {
+      "shampoo": "Shampoo Profissional",
+      "conditioner": "Condicionador Profundo",
+      "styling_gel": "Gel para Modelar",
+      "hair_mask": "Máscara Capilar",
+      "hair_oil": "Óleo Capilar",
+      "leave_in_conditioner": "Condicionador sem Enxágue"
+    },
+    "descriptions": {
+      "shampoo": "Shampoo de qualidade profissional para todos os tipos de cabelo",
+      "conditioner": "Tratamento condicionador intensivo para cabelos saudáveis",
+      "styling_gel": "Gel profissional para modelagem duradoura",
+      "hair_mask": "Máscara de tratamento profundo para cabelos danificados",
+      "hair_oil": "Óleo nutritivo para brilho e proteção",
+      "leave_in_conditioner": "Tratamento diário sem enxágue para cabelos maleáveis"
     }
   },
   "team": {

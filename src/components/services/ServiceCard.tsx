@@ -52,7 +52,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         <div className="relative aspect-[4/3] overflow-hidden">
           <img
             src={!imageError ? getImageUrl(service.image_url) : "/placeholder.svg"}
-            alt={t('services.categories.' + service.category.toLowerCase())}
+            alt={t(`services.categories.${service.category.toLowerCase()}`)}
             onError={handleImageError}
             className={cn(
               "h-full w-full object-cover transition-transform duration-300 group-hover:scale-110",
@@ -62,8 +62,10 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         </div>
         
         <CardHeader>
-          <CardTitle className="text-xl font-cormorant">{service.name}</CardTitle>
-          <CardDescription>{service.description}</CardDescription>
+          <CardTitle className="text-xl font-cormorant">{t(`services.names.${service.name.toLowerCase().replace(/\s+/g, '_')}`, { defaultValue: service.name })}</CardTitle>
+          <CardDescription>
+            {t(`services.descriptions.${service.name.toLowerCase().replace(/\s+/g, '_')}`, { defaultValue: service.description })}
+          </CardDescription>
         </CardHeader>
         
         <CardContent>

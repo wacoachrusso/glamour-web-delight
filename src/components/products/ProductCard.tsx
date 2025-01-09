@@ -22,17 +22,17 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const { t } = useTranslation();
 
   const handleContactClick = () => {
-    window.location.href = 'tel:+1234567890';
+    window.location.href = 'tel:+19733445199';
     toast({
       title: t('products.addedToCart'),
-      description: t('products.addedToCartDescription', { name: product.name }),
+      description: t('products.addedToCartDescription', { name: t(`products.names.${product.name.toLowerCase().replace(/\s+/g, '_')}`, { defaultValue: product.name }) }),
     });
   };
 
   const handleLearnMoreClick = () => {
     toast({
       title: t('products.addedToCart'),
-      description: t('products.addedToCartDescription', { name: product.name }),
+      description: t('products.addedToCartDescription', { name: t(`products.names.${product.name.toLowerCase().replace(/\s+/g, '_')}`, { defaultValue: product.name }) }),
     });
     window.location.href = '/contact';
   };
@@ -41,20 +41,26 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <Card className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300 group animate-fadeIn">
       <CardHeader className="space-y-2">
         <div className="text-sm text-secondary uppercase tracking-wider font-medium">
-          {t('products.categories.' + product.category.toLowerCase())}
+          {t(`products.categories.${product.category.toLowerCase()}`)}
         </div>
-        <CardTitle className="text-2xl font-cormorant">{product.name}</CardTitle>
+        <CardTitle className="text-2xl font-cormorant">
+          {t(`products.names.${product.name.toLowerCase().replace(/\s+/g, '_')}`, { defaultValue: product.name })}
+        </CardTitle>
       </CardHeader>
       <CardContent className="flex-1 flex flex-col">
         <div className="relative h-80 overflow-hidden bg-secondary/5 mb-6 rounded-md group-hover:shadow-inner transition-all">
           <ProductImage 
             imageUrl={product.image_url} 
-            productName={product.name} 
+            productName={t(`products.names.${product.name.toLowerCase().replace(/\s+/g, '_')}`, { defaultValue: product.name })} 
           />
         </div>
         <div className="space-y-6 flex-grow">
           <p className="text-muted-foreground leading-relaxed">
-            {product.description || t('products.defaultDescription', { product: product.name.toLowerCase() })}
+            {t(`products.descriptions.${product.name.toLowerCase().replace(/\s+/g, '_')}`, { 
+              defaultValue: product.description || t('products.defaultDescription', { 
+                product: product.name.toLowerCase() 
+              })
+            })}
           </p>
           
           <div className="space-y-4">
