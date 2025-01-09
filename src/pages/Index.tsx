@@ -3,9 +3,12 @@ import Hero from "../components/Hero";
 import Services from "../components/Services";
 import FeaturedProducts from "../components/FeaturedProducts";
 import Footer from "../components/Footer";
-import { TestimonialCarousel } from "../components/testimonials/TestimonialCarousel";
+import { Testimonials } from "../components/testimonials/Testimonials";
+import { useTranslation } from "react-i18next";
 
 const Index = () => {
+  const { t } = useTranslation();
+  
   return (
     <div className="min-h-screen bg-gradient-to-b from-muted to-white">
       <Navbar />
@@ -15,9 +18,9 @@ const Index = () => {
       <section className="py-16 bg-muted/50">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-cormorant font-bold text-center mb-12">
-            What Our Clients Say
+            {t('testimonials.title')}
           </h2>
-          <TestimonialCarousel />
+          <Testimonials />
         </div>
       </section>
       <Footer />
