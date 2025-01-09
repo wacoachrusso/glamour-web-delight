@@ -4,6 +4,7 @@ import { Clock, DollarSign } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Service } from "@/integrations/supabase/types/service";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 interface ServiceCardProps {
   service: Service;
@@ -12,29 +13,26 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const [imageError, setImageError] = useState(false);
+  const { t } = useTranslation();
 
   const getImageUrl = (url: string | null) => {
     if (!url) return "/placeholder.svg";
     
-    // If it's already a full URL (e.g., from Unsplash), use it directly
     if (url.startsWith('http')) {
       console.log("Using direct URL:", url);
       return url;
     }
     
-    // If it's a local path starting with /lovable-uploads, use it directly
     if (url.startsWith('/lovable-uploads')) {
       console.log("Using local path:", url);
       return url;
     }
     
-    // For paths in Supabase storage
     if (url.includes('supabase')) {
       console.log("Using Supabase URL:", url);
       return url;
     }
     
-    // Default to placeholder if no valid URL is found
     console.log("Using placeholder for invalid URL:", url);
     return "/placeholder.svg";
   };
@@ -54,7 +52,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         <div className="relative aspect-[4/3] overflow-hidden">
           <img
             src={!imageError ? getImageUrl(service.image_url) : "/placeholder.svg"}
-            alt={service.name}
+            alt={t('services.categories.' + service.category.toLowerCase())}
             onError={handleImageError}
             className={cn(
               "h-full w-full object-cover transition-transform duration-300 group-hover:scale-110",
@@ -72,7 +70,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
           <div className="flex items-center justify-between text-sm text-muted-foreground">
             <div className="flex items-center">
               <Clock className="mr-1 h-4 w-4" />
-              <span>{service.duration} min</span>
+              <span>{t('services.duration', { duration: service.duration })}</span>
             </div>
             <div className="flex items-center">
               <DollarSign className="mr-1 h-4 w-4" />

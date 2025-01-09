@@ -52,6 +52,9 @@
     "price": "${price}",
     "addedToCart": "Añadido al Carrito",
     "addedToCartDescription": "{{name}} ha sido añadido a tu carrito.",
+    "defaultDescription": "Experimenta el lujo del {{product}} de grado profesional diseñado para mejorar tu rutina de cuidado del cabello.",
+    "availableAt": "Disponible en nuestro salón del centro",
+    "learnMore": "Más Información",
     "categories": {
       "shampoo": "Champú",
       "conditioner": "Acondicionador",

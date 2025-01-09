@@ -52,6 +52,9 @@
     "price": "${price}",
     "addedToCart": "Added to Cart",
     "addedToCartDescription": "{{name}} has been added to your cart.",
+    "defaultDescription": "Experience the luxury of professional-grade {{product}} designed to enhance your hair care routine.",
+    "availableAt": "Available at our salon in downtown",
+    "learnMore": "Learn More",
     "categories": {
       "shampoo": "Shampoo",
       "conditioner": "Conditioner",

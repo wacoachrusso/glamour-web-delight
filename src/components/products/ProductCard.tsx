@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ProductImage } from "./ProductImage";
 import { MapPin, Phone, ExternalLink } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { useTranslation } from "react-i18next";
 
 type Product = {
   id: string;
@@ -18,21 +19,21 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const handleContactClick = () => {
     window.location.href = 'tel:+1234567890';
     toast({
-      title: "Contact Information",
-      description: "Calling our store now...",
+      title: t('products.addedToCart'),
+      description: t('products.addedToCartDescription', { name: product.name }),
     });
   };
 
   const handleLearnMoreClick = () => {
     toast({
-      title: "Product Details",
-      description: "Redirecting to detailed product information...",
+      title: t('products.addedToCart'),
+      description: t('products.addedToCartDescription', { name: product.name }),
     });
-    // You can update this to navigate to a product detail page
     window.location.href = '/contact';
   };
 
@@ -40,7 +41,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <Card className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300 group animate-fadeIn">
       <CardHeader className="space-y-2">
         <div className="text-sm text-secondary uppercase tracking-wider font-medium">
-          {product.category}
+          {t('products.categories.' + product.category.toLowerCase())}
         </div>
         <CardTitle className="text-2xl font-cormorant">{product.name}</CardTitle>
       </CardHeader>
@@ -53,13 +54,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
         <div className="space-y-6 flex-grow">
           <p className="text-muted-foreground leading-relaxed">
-            {product.description || `Experience the luxury of professional-grade ${product.name.toLowerCase()} designed to enhance your hair care routine.`}
+            {product.description || t('products.defaultDescription', { product: product.name.toLowerCase() })}
           </p>
           
           <div className="space-y-4">
             <div className="flex items-center text-sm text-green-600">
               <MapPin className="w-4 h-4 mr-2" />
-              <span>Available at our salon in downtown</span>
+              <span>{t('products.availableAt')}</span>
             </div>
             
             <div className="grid grid-cols-2 gap-3">
@@ -69,14 +70,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 onClick={handleContactClick}
               >
                 <Phone className="w-4 h-4 mr-2" />
-                Contact Us
+                {t('nav.contact')}
               </Button>
               <Button 
                 className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground"
                 onClick={handleLearnMoreClick}
               >
                 <ExternalLink className="w-4 h-4 mr-2" />
-                Learn More
+                {t('products.learnMore')}
               </Button>
             </div>
           </div>
