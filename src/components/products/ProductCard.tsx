@@ -51,7 +51,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div className="relative h-80 overflow-hidden bg-secondary/5 mb-6 rounded-md group-hover:shadow-inner transition-all">
           <ProductImage 
             imageUrl={product.image_url} 
-            productName={t(`products.names.${product.name.toLowerCase().replace(/\s+/g, '_')}`, { defaultValue: product.name })} 
+            productName={t(`products.names.${product.name.toLowerCase().replace(/\s+/g, '_')}`, { defaultValue: product.name })}
+            category={product.category}
           />
         </div>
         <div className="space-y-6 flex-grow">

@@ -15,8 +15,20 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const [imageError, setImageError] = useState(false);
   const { t } = useTranslation();
 
-  const getImageUrl = (url: string | null) => {
-    if (!url) return "/placeholder.svg";
+  const getImageUrl = (url: string | null, category: string) => {
+    if (!url || imageError) {
+      // Fallback images based on service category
+      const categoryFallbacks: Record<string, string> = {
+        "Hair": "https://source.unsplash.com/photo-1560869713-da86bd4f8afd",
+        "Nails": "https://source.unsplash.com/photo-1604654894610-df63bc536371",
+        "Waxing": "https://source.unsplash.com/photo-1598440947619-2c35fc9aa908",
+        "Makeup": "https://source.unsplash.com/photo-1596462502278-27bfdc403348",
+        "Massage": "https://source.unsplash.com/photo-1544161515-4ab6ce6db874",
+        "Facial": "https://source.unsplash.com/photo-1570172619644-dfd03ed5d881"
+      };
+      
+      return categoryFallbacks[category] || "/placeholder.svg";
+    }
     
     if (url.startsWith('http')) {
       console.log("Using direct URL:", url);
@@ -25,11 +37,6 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
     
     if (url.startsWith('/lovable-uploads')) {
       console.log("Using local path:", url);
-      return url;
-    }
-    
-    if (url.includes('supabase')) {
-      console.log("Using Supabase URL:", url);
       return url;
     }
     
@@ -51,7 +58,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
       <Card className="group overflow-hidden transition-all duration-300 hover:shadow-lg">
         <div className="relative aspect-[4/3] overflow-hidden">
           <img
-            src={!imageError ? getImageUrl(service.image_url) : "/placeholder.svg"}
+            src={getImageUrl(service.image_url, service.category)}
             alt={t(`services.categories.${service.category.toLowerCase()}`)}
             onError={handleImageError}
             className={cn(
@@ -62,7 +69,9 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         </div>
         
         <CardHeader>
-          <CardTitle className="text-xl font-cormorant">{t(`services.names.${service.name.toLowerCase().replace(/\s+/g, '_')}`, { defaultValue: service.name })}</CardTitle>
+          <CardTitle className="text-xl font-cormorant">
+            {t(`services.names.${service.name.toLowerCase().replace(/\s+/g, '_')}`, { defaultValue: service.name })}
+          </CardTitle>
           <CardDescription>
             {t(`services.descriptions.${service.name.toLowerCase().replace(/\s+/g, '_')}`, { defaultValue: service.description })}
           </CardDescription>
