@@ -29,13 +29,31 @@ export const useProductImage = (imageUrl: string | null) => {
             return;
           }
 
-          console.log("Generated public URL:", data.publicUrl);
-          setPublicUrl(data.publicUrl);
+          // Add quality and size parameters to the URL if it's an image service that supports it
+          const optimizedUrl = new URL(data.publicUrl);
+          optimizedUrl.searchParams.set('quality', '80');
+          optimizedUrl.searchParams.set('width', '800');
+          
+          console.log("Generated optimized URL:", optimizedUrl.toString());
+          setPublicUrl(optimizedUrl.toString());
           return;
         }
 
         // Handle full URLs (including Supabase URLs)
         if (imageUrl.startsWith('http')) {
+          // Try to optimize the URL if it's from a known image service
+          try {
+            const url = new URL(imageUrl);
+            if (url.hostname.includes('unsplash.com')) {
+              url.searchParams.set('w', '800');
+              url.searchParams.set('q', '80');
+              setPublicUrl(url.toString());
+              return;
+            }
+          } catch (e) {
+            console.warn("Could not parse URL for optimization:", imageUrl);
+          }
+          
           console.log("Using direct URL:", imageUrl);
           setPublicUrl(imageUrl);
           return;
@@ -52,8 +70,13 @@ export const useProductImage = (imageUrl: string | null) => {
           return;
         }
 
-        console.log("Generated public URL from storage:", data.publicUrl);
-        setPublicUrl(data.publicUrl);
+        // Add optimization parameters if supported
+        const optimizedUrl = new URL(data.publicUrl);
+        optimizedUrl.searchParams.set('quality', '80');
+        optimizedUrl.searchParams.set('width', '800');
+
+        console.log("Generated optimized URL from storage:", optimizedUrl.toString());
+        setPublicUrl(optimizedUrl.toString());
       } catch (error) {
         console.error("Error loading image:", error);
         setError(true);

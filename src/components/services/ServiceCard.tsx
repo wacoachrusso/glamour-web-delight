@@ -13,40 +13,34 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const [imageError, setImageError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { t } = useTranslation();
 
   const getImageUrl = (url: string | null, category: string) => {
     if (!url || imageError) {
-      // Fallback images based on service category
       const categoryFallbacks: Record<string, string> = {
-        "Hair": "https://source.unsplash.com/photo-1560869713-da86bd4f8afd",
-        "Nails": "https://source.unsplash.com/photo-1604654894610-df63bc536371",
-        "Waxing": "https://source.unsplash.com/photo-1598440947619-2c35fc9aa908",
-        "Makeup": "https://source.unsplash.com/photo-1596462502278-27bfdc403348",
-        "Massage": "https://source.unsplash.com/photo-1544161515-4ab6ce6db874",
-        "Facial": "https://source.unsplash.com/photo-1570172619644-dfd03ed5d881"
+        "Hair": "photo-1560869713-da86bd4f8afd?w=800&q=80",
+        "Nails": "photo-1604654894610-df63bc536371?w=800&q=80",
+        "Waxing": "photo-1598440947619-2c35fc9aa908?w=800&q=80",
+        "Makeup": "photo-1596462502278-27bfdc403348?w=800&q=80",
+        "Massage": "photo-1544161515-4ab6ce6db874?w=800&q=80",
+        "Facial": "photo-1570172619644-dfd03ed5d881?w=800&q=80"
       };
       
-      return categoryFallbacks[category] || "/placeholder.svg";
+      return `https://source.unsplash.com/${categoryFallbacks[category] || "photo-1487412720507-e7ab37603c6f?w=800&q=80"}`;
     }
     
-    if (url.startsWith('http')) {
-      console.log("Using direct URL:", url);
-      return url;
-    }
-    
-    if (url.startsWith('/lovable-uploads')) {
-      console.log("Using local path:", url);
-      return url;
-    }
-    
-    console.log("Using placeholder for invalid URL:", url);
-    return "/placeholder.svg";
+    return url;
+  };
+
+  const handleImageLoad = () => {
+    setIsLoading(false);
   };
 
   const handleImageError = () => {
     console.error("Error loading image for service:", service.name);
     setImageError(true);
+    setIsLoading(false);
   };
 
   return (
@@ -57,12 +51,20 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
     >
       <Card className="group overflow-hidden transition-all duration-300 hover:shadow-lg">
         <div className="relative aspect-[4/3] overflow-hidden">
+          {isLoading && (
+            <div className="absolute inset-0 bg-secondary/5">
+              <div className="animate-pulse w-full h-full bg-secondary/10" />
+            </div>
+          )}
           <img
             src={getImageUrl(service.image_url, service.category)}
             alt={t(`services.categories.${service.category.toLowerCase()}`)}
             onError={handleImageError}
+            onLoad={handleImageLoad}
+            loading="lazy"
             className={cn(
               "h-full w-full object-cover transition-transform duration-300 group-hover:scale-110",
+              isLoading && "opacity-0",
               imageError && "object-contain p-4"
             )}
           />
