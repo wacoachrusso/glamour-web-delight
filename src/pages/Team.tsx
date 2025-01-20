@@ -11,7 +11,7 @@ const Team = () => {
   const { t } = useTranslation();
   
   return (
-    <div className="min-h-screen flex flex-col bg-radiant-light">
+    <div className="page-gradient min-h-screen flex flex-col">
       <Navbar />
       
       <main className="flex-grow container mx-auto px-4 py-16">
@@ -19,7 +19,7 @@ const Team = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="max-w-6xl mx-auto"
+          className="max-w-6xl mx-auto section-overlay"
         >
           <SectionHeader
             titleKey="team.title"

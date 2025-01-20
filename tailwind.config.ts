@@ -59,6 +59,8 @@ export default {
         'radiant-light': 'linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)',
         'radiant-warm': 'linear-gradient(to right, #ee9ca7, #ffdde1)',
         'radiant-gold': 'linear-gradient(to right, #D4AF37 0%, #F5E1A4 100%)',
+        'elegant-fade': 'linear-gradient(to bottom right, rgba(255,255,255,0.9), rgba(255,255,255,0.7))',
+        'soft-overlay': 'linear-gradient(to bottom, rgba(248,215,215,0.1), rgba(212,175,55,0.05))',
       },
       borderRadius: {
         lg: "var(--radius)",
