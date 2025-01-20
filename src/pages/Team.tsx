@@ -11,7 +11,7 @@ const Team = () => {
   const { t } = useTranslation();
   
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-radiant-light">
       <Navbar />
       
       <main className="flex-grow container mx-auto px-4 py-16">
@@ -28,7 +28,6 @@ const Team = () => {
           />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-            {/* Placeholder Team Member Cards */}
             {[1, 2, 3].map((index) => (
               <motion.div
                 key={index}
@@ -37,7 +36,7 @@ const Team = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group"
               >
-                <Card className="overflow-hidden bg-white/80 backdrop-blur-sm border-secondary/10 transition-all duration-300 hover:shadow-lg">
+                <Card className="overflow-hidden card-gradient transition-all duration-300 hover:shadow-xl">
                   <div className="relative h-80 overflow-hidden">
                     <img
                       src={`https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=800&q=80`}
@@ -66,21 +65,21 @@ const Team = () => {
                         <Button
                           variant="outline"
                           size="icon"
-                          className="rounded-full hover:bg-secondary hover:text-secondary-foreground"
+                          className="rounded-full hover:bg-secondary hover:text-secondary-foreground transition-colors duration-300"
                         >
                           <Instagram className="h-4 w-4" />
                         </Button>
                         <Button
                           variant="outline"
                           size="icon"
-                          className="rounded-full hover:bg-secondary hover:text-secondary-foreground"
+                          className="rounded-full hover:bg-secondary hover:text-secondary-foreground transition-colors duration-300"
                         >
                           <Linkedin className="h-4 w-4" />
                         </Button>
                         <Button
                           variant="outline"
                           size="icon"
-                          className="rounded-full hover:bg-secondary hover:text-secondary-foreground"
+                          className="rounded-full hover:bg-secondary hover:text-secondary-foreground transition-colors duration-300"
                         >
                           <Mail className="h-4 w-4" />
                         </Button>

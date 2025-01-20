@@ -101,3 +101,14 @@ html {
     @apply p-2;
   }
 }
+
+/* Card and container styles with elegant gradients */
+.card-gradient {
+  @apply bg-white/80 backdrop-blur-sm border border-secondary/10 shadow-lg;
+  background: linear-gradient(to bottom right, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+}
+
+.section-gradient {
+  @apply relative overflow-hidden;
+  background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+}

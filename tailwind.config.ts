@@ -55,6 +55,11 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      backgroundImage: {
+        'radiant-light': 'linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)',
+        'radiant-warm': 'linear-gradient(to right, #ee9ca7, #ffdde1)',
+        'radiant-gold': 'linear-gradient(to right, #D4AF37 0%, #F5E1A4 100%)',
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
