@@ -41,7 +41,19 @@ export function Testimonials() {
             <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 h-full flex flex-col">
               <div className="flex items-center gap-4 mb-6">
                 <Avatar className="w-16 h-16 border-2 border-primary shadow-md">
-                  <AvatarImage src={testimonial.image_url} alt={testimonial.client_name} />
+                  <AvatarImage 
+                    src={testimonial.image_url || `https://images.unsplash.com/photo-${
+                      [
+                        '1649972904349-6e44c42644a7',
+                        '1486312338219-ce68d2c6f44d',
+                        '1581091226825-a6a2a5aee158',
+                        '1519389950473-47ba0277781c',
+                        '1581092795360-fd1ca04f0952',
+                        '1605810230434-7631ac76ec81'
+                      ][index % 6]
+                    }?auto=format&fit=crop&w=150&h=150&q=80`} 
+                    alt={testimonial.client_name} 
+                  />
                   <AvatarFallback className="bg-primary/20 text-primary-foreground font-cormorant text-xl">
                     {testimonial.client_name.charAt(0)}
                   </AvatarFallback>
