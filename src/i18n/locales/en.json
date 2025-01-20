@@ -146,5 +146,10 @@
   "common": {
     "cancel": "Cancel",
     "submitting": "Submitting..."
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "subtitle": "Read about the experiences of our valued clients and their transformative journeys with us",
+    "loading": "Loading testimonials..."
   }
 }

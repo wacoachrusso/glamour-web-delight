@@ -136,5 +136,10 @@
   "common": {
     "cancel": "Cancelar",
     "submitting": "Enviando..."
+  },
+  "testimonials": {
+    "title": "Lo Que Dicen Nuestros Clientes",
+    "subtitle": "Lea sobre las experiencias de nuestros valiosos clientes y sus viajes transformadores con nosotros",
+    "loading": "Cargando testimonios..."
   }
 }

@@ -71,6 +71,14 @@
     "defaultDescription": "Experimente o luxo do {{product}} de qualidade profissional projetado para melhorar sua rotina de cuidados com o cabelo.",
     "availableAt": "Disponível em nosso salão do centro",
     "learnMore": "Mais Informações",
+    "categories": {
+      "shampoo": "Shampoo",
+      "conditioner": "Condicionador",
+      "styling": "Modelagem",
+      "treatment": "Tratamento",
+      "color": "Cor do Cabelo",
+      "tools": "Ferramentas"
+    },
     "names": {
       "shampoo": "Shampoo Profissional",
       "conditioner": "Condicionador Profundo",
@@ -131,10 +139,17 @@
     "error": "Erro no Agendamento",
     "tryAgain": "Por favor tente novamente mais tarde",
     "confirmationSent": "Email de confirmação foi enviado",
-    "confirmationDelayed": "Agendamento confirmado mas o email pode estar atrasado"
+    "confirmationDelayed": "Agendamento confirmado mas o email pode estar atrasado",
+    "selectEmployee": "Selecionar Estilista (Opcional)",
+    "anyAvailable": "Qualquer Estilista Disponível"
   },
   "common": {
     "cancel": "Cancelar",
     "submitting": "Enviando..."
+  },
+  "testimonials": {
+    "title": "O Que Nossos Clientes Dizem",
+    "subtitle": "Leia sobre as experiências de nossos valiosos clientes e suas jornadas transformadoras conosco",
+    "loading": "Carregando depoimentos..."
   }
 }
