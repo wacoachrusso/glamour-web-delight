@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { supabase } from "@/integrations/supabase/client"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Card, CardContent } from "@/components/ui/card"
+import { motion } from "framer-motion"
 import { useTranslation } from "react-i18next"
 
 const fetchTestimonials = async () => {
@@ -22,32 +22,51 @@ export function Testimonials() {
   const { t } = useTranslation()
 
   if (isLoading) return (
-    <div className="text-center text-lg text-muted-foreground">
+    <div className="text-center text-lg text-muted-foreground animate-pulse">
       {t('testimonials.loading')}
     </div>
   )
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
-      {testimonials?.map((testimonial) => (
-        <Card key={testimonial.id} className="bg-white/50 backdrop-blur-sm border-none shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <CardContent className="flex flex-col items-center p-6 space-y-4">
-            <Avatar className="w-20 h-20">
-              <AvatarImage src={testimonial.image_url} alt={testimonial.client_name} />
-              <AvatarFallback>{testimonial.client_name.charAt(0)}</AvatarFallback>
-            </Avatar>
-            <blockquote className="text-center text-lg text-muted-foreground italic">
-              "{testimonial.testimonial}"
-            </blockquote>
-            <div className="text-center">
-              <div className="font-semibold text-lg">{testimonial.client_name}</div>
-              <div className="text-secondary text-lg">
-                {"★".repeat(testimonial.rating || 5)}
+    <div className="relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-50" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4 relative z-10">
+        {testimonials?.map((testimonial, index) => (
+          <motion.div
+            key={testimonial.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+          >
+            <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 h-full flex flex-col">
+              <div className="flex items-center gap-4 mb-6">
+                <Avatar className="w-16 h-16 border-2 border-primary shadow-md">
+                  <AvatarImage src={testimonial.image_url} alt={testimonial.client_name} />
+                  <AvatarFallback className="bg-primary/20 text-primary-foreground font-cormorant text-xl">
+                    {testimonial.client_name.charAt(0)}
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <h3 className="font-cormorant text-xl font-semibold text-gray-800">
+                    {testimonial.client_name}
+                  </h3>
+                  <div className="text-secondary text-lg mt-1">
+                    {"★".repeat(testimonial.rating || 5)}
+                    <span className="text-gray-300">
+                      {"★".repeat(5 - (testimonial.rating || 5))}
+                    </span>
+                  </div>
+                </div>
               </div>
+              <blockquote className="flex-1">
+                <p className="text-gray-600 font-montserrat leading-relaxed italic">
+                  "{testimonial.testimonial}"
+                </p>
+              </blockquote>
             </div>
-          </CardContent>
-        </Card>
-      ))}
+          </motion.div>
+        ))}
+      </div>
     </div>
   )
 }
