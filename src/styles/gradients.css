@@ -1,0 +1,41 @@
+.card-gradient {
+  @apply bg-white/80 backdrop-blur-sm border border-secondary/10 shadow-lg;
+  background: linear-gradient(to bottom right, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+}
+
+.section-gradient {
+  @apply relative overflow-hidden;
+  background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+}
+
+.page-gradient {
+  background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+  background-attachment: fixed;
+  position: relative;
+}
+
+.page-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(248,215,215,0.1), rgba(212,175,55,0.05));
+  pointer-events: none;
+}
+
+.section-overlay {
+  position: relative;
+}
+
+.section-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, rgba(248,215,215,0.05), rgba(212,175,55,0.05));
+  pointer-events: none;
+}

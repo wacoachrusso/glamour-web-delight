@@ -1,0 +1,27 @@
+@layer components {
+  button, a {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  img {
+    @apply max-w-full h-auto;
+  }
+
+  .container {
+    @apply px-4 md:px-6 lg:px-8;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-secondary/50;
+  }
+
+  .loading-skeleton {
+    @apply animate-pulse bg-gray-200 rounded;
+  }
+}
+
+@media (max-width: 640px) {
+  button, a {
+    @apply p-2;
+  }
+}
