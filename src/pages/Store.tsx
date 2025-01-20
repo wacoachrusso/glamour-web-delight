@@ -6,21 +6,30 @@ import { supabase } from "@/integrations/supabase/client";
 import ProductCard from "@/components/products/ProductCard";
 import { Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Store = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const { data: products, isLoading } = useQuery({
+  const { data: products, isLoading, error } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
+      console.log("Fetching products...");
       const { data, error } = await supabase
         .from("products")
         .select("*")
         .order("created_at", { ascending: false });
 
-      if (error) throw error;
+      if (error) {
+        console.error("Error fetching products:", error);
+        throw error;
+      }
+      
+      console.log("Products fetched successfully:", data?.length);
       return data;
     },
+    retry: 2,
   });
 
   // Get unique categories from products
@@ -64,10 +73,20 @@ const Store = () => {
           </div>
         </div>
         
-        {isLoading ? (
+        {error ? (
+          <Alert variant="destructive" className="mb-8">
+            <AlertDescription>
+              There was an error loading the products. Please try again later.
+            </AlertDescription>
+          </Alert>
+        ) : isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="h-[32rem] bg-muted/20 animate-pulse rounded-lg" />
+              <div key={i} className="space-y-4">
+                <Skeleton className="h-[300px] w-full rounded-lg" />
+                <Skeleton className="h-4 w-3/4" />
+                <Skeleton className="h-4 w-1/2" />
+              </div>
             ))}
           </div>
         ) : (
