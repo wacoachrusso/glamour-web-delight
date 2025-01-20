@@ -2,14 +2,28 @@ import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Users, Calendar, Award, Star } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const MeetTheOwner = () => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = "/lovable-uploads/2d83d154-d2c7-4d46-b712-8a6b5d698c37.png";
+    img.onload = () => setImageLoaded(true);
+    
+    return () => {
+      img.onload = null;
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-primary/10">
       <Navbar />
       <main className="container mx-auto px-4 py-16 max-w-7xl">
         <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Image Section */}
+          {/* Image Section with Loading State */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -17,10 +31,17 @@ const MeetTheOwner = () => {
             className="relative"
           >
             <div className="absolute inset-0 bg-secondary/10 rounded-2xl transform rotate-3"></div>
+            {!imageLoaded && (
+              <Skeleton className="relative z-10 rounded-2xl w-full aspect-[3/4]" />
+            )}
             <img
               src="/lovable-uploads/2d83d154-d2c7-4d46-b712-8a6b5d698c37.png"
               alt="Angie Padilla - Owner of Glamour's Beauty Salon"
-              className="relative z-10 rounded-2xl shadow-xl w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-300"
+              className={`relative z-10 rounded-2xl shadow-xl w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-300 ${
+                imageLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
+              loading="lazy"
+              onLoad={() => setImageLoaded(true)}
             />
           </motion.div>
 
