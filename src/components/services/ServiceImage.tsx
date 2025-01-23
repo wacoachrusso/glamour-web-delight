@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ImageOff } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { supabase } from "@/integrations/supabase/client";
 
 interface ServiceImageProps {
   imageUrl: string | null;
@@ -13,26 +14,43 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
   const [isLoading, setIsLoading] = useState(true);
   const { t } = useTranslation();
 
-  const getImageUrl = (url: string | null) => {
+  const getImageUrl = async (url: string | null) => {
     if (!url) {
       console.log("No image URL provided for:", serviceName);
       return null;
     }
     
-    // Handle local uploads (starting with /lovable-uploads/)
-    if (url.startsWith('/lovable-uploads/')) {
-      console.log("Processing local upload for:", serviceName);
-      return url; // Return as is - Vite will handle the public path
+    try {
+      // Handle local uploads (starting with /lovable-uploads/)
+      if (url.startsWith('/lovable-uploads/')) {
+        const cleanPath = url.replace('/lovable-uploads/', '');
+        console.log("Processing local path:", cleanPath);
+        
+        const { data } = supabase.storage
+          .from('salon_images')
+          .getPublicUrl(cleanPath);
+
+        if (!data?.publicUrl) {
+          console.error("No public URL generated for:", serviceName);
+          return null;
+        }
+
+        console.log("Generated public URL:", data.publicUrl);
+        return data.publicUrl;
+      }
+      
+      // Handle external URLs (like Unsplash)
+      if (url.startsWith('http')) {
+        console.log("Using external URL for:", serviceName);
+        return url;
+      }
+      
+      console.log("Invalid image URL format for:", serviceName, url);
+      return null;
+    } catch (error) {
+      console.error("Error processing image URL for:", serviceName, error);
+      return null;
     }
-    
-    // Handle external URLs (like Unsplash)
-    if (url.startsWith('http')) {
-      console.log("Using external URL for:", serviceName, url);
-      return url;
-    }
-    
-    console.log("Invalid image URL format for:", serviceName, url);
-    return null;
   };
 
   const handleImageLoad = () => {
@@ -46,7 +64,23 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
     setIsLoading(false);
   };
 
-  const finalImageUrl = getImageUrl(imageUrl);
+  // Use effect to load the image URL
+  useState(() => {
+    const loadImage = async () => {
+      const url = await getImageUrl(imageUrl);
+      if (url) {
+        const img = new Image();
+        img.src = url;
+        img.onload = handleImageLoad;
+        img.onerror = handleImageError;
+      } else {
+        setImageError(true);
+        setIsLoading(false);
+      }
+    };
+    
+    loadImage();
+  }, [imageUrl]);
 
   return (
     <div className="relative aspect-[4/3] overflow-hidden bg-secondary/5">
@@ -55,9 +89,9 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
           <div className="animate-pulse w-full h-full bg-secondary/10" />
         </div>
       )}
-      {finalImageUrl && !imageError && (
+      {imageUrl && !imageError && (
         <img
-          src={finalImageUrl}
+          src={imageUrl}
           alt={t(`services.categories.${category.toLowerCase()}`)}
           onError={handleImageError}
           onLoad={handleImageLoad}
@@ -67,7 +101,7 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
           }`}
         />
       )}
-      {(imageError || !finalImageUrl) && !isLoading && (
+      {(imageError || !imageUrl) && !isLoading && (
         <div className="flex items-center justify-center w-full h-full">
           <ImageOff className="w-16 h-16 text-secondary/30" />
         </div>
