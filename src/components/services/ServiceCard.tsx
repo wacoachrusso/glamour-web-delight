@@ -50,9 +50,9 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       <Card className="group overflow-hidden transition-all duration-300 hover:shadow-lg">
-        <div className="relative aspect-[4/3] overflow-hidden">
+        <div className="relative aspect-[4/3] overflow-hidden bg-secondary/5">
           {isLoading && (
-            <div className="absolute inset-0 bg-secondary/5">
+            <div className="absolute inset-0">
               <div className="animate-pulse w-full h-full bg-secondary/10" />
             </div>
           )}
@@ -63,18 +63,20 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
             onLoad={handleImageLoad}
             loading="lazy"
             className={cn(
-              "h-full w-full object-cover transition-transform duration-300 group-hover:scale-110",
+              "h-full w-full object-cover transition-all duration-500",
+              "group-hover:scale-110 group-hover:rotate-1",
               isLoading && "opacity-0",
               imageError && "object-contain p-4"
             )}
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
         
         <CardHeader>
           <CardTitle className="text-xl font-cormorant">
             {t(`services.names.${service.name.toLowerCase().replace(/\s+/g, '_')}`, { defaultValue: service.name })}
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="line-clamp-2">
             {t(`services.descriptions.${service.name.toLowerCase().replace(/\s+/g, '_')}`, { defaultValue: service.description })}
           </CardDescription>
         </CardHeader>
