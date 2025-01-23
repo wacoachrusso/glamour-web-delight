@@ -65,7 +65,6 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
     setIsLoading(false);
   };
 
-  // Use effect to load the image URL
   useEffect(() => {
     const loadImage = async () => {
       const url = await getImageUrl(imageUrl);
