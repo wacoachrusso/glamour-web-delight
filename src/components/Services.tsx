@@ -26,8 +26,17 @@ const Services = () => {
         console.error("Error fetching services:", error);
         throw error;
       }
-      console.log("Fetched services:", data);
-      return data;
+
+      // Map default images for services without images
+      const mappedServices = data.map(service => ({
+        ...service,
+        image_url: service.image_url?.startsWith('http') ? 
+          `/lovable-uploads/2721060a-90fa-4a64-97e9-d7747f1a40a8.png` : 
+          service.image_url
+      }));
+      
+      console.log("Fetched services:", mappedServices);
+      return mappedServices;
     },
   });
 
