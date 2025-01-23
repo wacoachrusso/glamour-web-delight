@@ -1,13 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { ArrowUp, Filter, Loader2, Search } from "lucide-react";
+import { ArrowUp, Loader2, Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import ServiceCard from "@/components/services/ServiceCard";
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -41,7 +39,6 @@ const ServicesPage = () => {
     },
   });
 
-  // Handle scroll events for the "back to top" button
   const handleScroll = () => {
     setShowScrollTop(window.scrollY > 400);
   };
@@ -55,7 +52,6 @@ const ServicesPage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Filter services based on category and search query
   const filteredServices = services?.filter(service => {
     const matchesCategory = selectedCategory === "all" || service.category === selectedCategory;
     const matchesSearch = service.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -63,7 +59,6 @@ const ServicesPage = () => {
     return matchesCategory && matchesSearch;
   });
 
-  // Get unique categories
   const categories = Array.from(new Set(services?.map(service => service.category) || []));
 
   if (isLoading) {
@@ -94,16 +89,16 @@ const ServicesPage = () => {
             className="text-center mb-16"
           >
             <div className="w-24 h-0.5 bg-secondary mx-auto mb-8" />
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-cormorant font-bold mb-6 gradient-text">
-              {t('services.title')} <span className="text-secondary">{t('services.highlight')}</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-cormorant font-bold mb-6">
+              Our <span className="text-secondary">Services</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {t('services.subtitle')}
+              Discover our range of professional beauty and wellness services
             </p>
           </motion.div>
 
           {/* Filters */}
-          <div className="flex flex-col md:flex-row gap-4 mb-8">
+          <div className="flex flex-col md:flex-row gap-4 mb-12">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <Input
@@ -116,8 +111,7 @@ const ServicesPage = () => {
             </div>
             <Select value={selectedCategory} onValueChange={setSelectedCategory}>
               <SelectTrigger className="w-full md:w-[200px]">
-                <Filter className="w-4 h-4 mr-2" />
-                <SelectValue placeholder="Filter by category" />
+                <SelectValue placeholder="All Categories" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Categories</SelectItem>
@@ -131,9 +125,36 @@ const ServicesPage = () => {
           </div>
 
           {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredServices?.map((service, index) => (
-              <ServiceCard key={service.id} service={service} index={index} />
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group"
+              >
+                <div className="relative overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:shadow-xl">
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src={`${service.image_url}`}
+                      alt={service.name}
+                      className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-cormorant text-2xl font-bold text-gray-900 mb-2">
+                      {service.name}
+                    </h3>
+                    <p className="text-muted-foreground line-clamp-2">
+                      {service.description}
+                    </p>
+                    <div className="mt-4 flex items-center text-sm text-muted-foreground">
+                      <span>{t('services.duration', { duration: service.duration })}</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </div>
 
