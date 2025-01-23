@@ -27,12 +27,29 @@ const Services = () => {
         throw error;
       }
 
-      // Map default images for services without images
-      const mappedServices = data.map(service => ({
-        ...service,
-        image_url: service.image_url?.startsWith('http') ? 
-          `/lovable-uploads/2721060a-90fa-4a64-97e9-d7747f1a40a8.png` : 
-          service.image_url
+      // Map services to use storage URLs
+      const mappedServices = await Promise.all(data.map(async service => {
+        if (!service.image_url) {
+          return {
+            ...service,
+            image_url: '/lovable-uploads/2721060a-90fa-4a64-97e9-d7747f1a40a8.png'
+          };
+        }
+
+        // If it's already a storage path, use it directly
+        if (service.image_url.startsWith('/lovable-uploads/')) {
+          return service;
+        }
+
+        // Get the public URL from storage
+        const { data: storageData } = supabase.storage
+          .from('salon_images')
+          .getPublicUrl(service.image_url);
+
+        return {
+          ...service,
+          image_url: storageData.publicUrl || '/lovable-uploads/2721060a-90fa-4a64-97e9-d7747f1a40a8.png'
+        };
       }));
       
       console.log("Fetched services:", mappedServices);
