@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ImageOff } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
@@ -12,6 +12,7 @@ interface ServiceImageProps {
 export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImageProps) => {
   const [imageError, setImageError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [finalImageUrl, setFinalImageUrl] = useState<string | null>(null);
   const { t } = useTranslation();
 
   const getImageUrl = async (url: string | null) => {
@@ -65,10 +66,11 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
   };
 
   // Use effect to load the image URL
-  useState(() => {
+  useEffect(() => {
     const loadImage = async () => {
       const url = await getImageUrl(imageUrl);
       if (url) {
+        setFinalImageUrl(url);
         const img = new Image();
         img.src = url;
         img.onload = handleImageLoad;
@@ -80,7 +82,7 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
     };
     
     loadImage();
-  }, [imageUrl]);
+  }, [imageUrl, serviceName]);
 
   return (
     <div className="relative aspect-[4/3] overflow-hidden bg-secondary/5">
@@ -89,9 +91,9 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
           <div className="animate-pulse w-full h-full bg-secondary/10" />
         </div>
       )}
-      {imageUrl && !imageError && (
+      {finalImageUrl && !imageError && (
         <img
-          src={imageUrl}
+          src={finalImageUrl}
           alt={t(`services.categories.${category.toLowerCase()}`)}
           onError={handleImageError}
           onLoad={handleImageLoad}
@@ -101,7 +103,7 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
           }`}
         />
       )}
-      {(imageError || !imageUrl) && !isLoading && (
+      {(imageError || !finalImageUrl) && !isLoading && (
         <div className="flex items-center justify-center w-full h-full">
           <ImageOff className="w-16 h-16 text-secondary/30" />
         </div>
