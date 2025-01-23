@@ -25,7 +25,7 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
       // Handle local uploads (starting with /lovable-uploads/)
       if (url.startsWith('/lovable-uploads/')) {
         const cleanPath = url.replace('/lovable-uploads/', '');
-        console.log("Processing local path:", cleanPath);
+        console.log("Processing local path for", serviceName, ":", cleanPath);
         
         const { data } = supabase.storage
           .from('salon_images')
@@ -36,7 +36,7 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
           return null;
         }
 
-        console.log("Generated public URL:", data.publicUrl);
+        console.log("Generated public URL for", serviceName, ":", data.publicUrl);
         return data.publicUrl;
       }
       
@@ -46,8 +46,18 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
         return url;
       }
       
-      console.log("Invalid image URL format for:", serviceName, url);
-      return null;
+      // Handle direct storage paths
+      const { data } = supabase.storage
+        .from('salon_images')
+        .getPublicUrl(url);
+
+      if (!data?.publicUrl) {
+        console.error("No public URL generated for direct path:", serviceName);
+        return null;
+      }
+
+      console.log("Generated public URL from direct path for", serviceName, ":", data.publicUrl);
+      return data.publicUrl;
     } catch (error) {
       console.error("Error processing image URL for:", serviceName, error);
       return null;
