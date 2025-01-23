@@ -17,17 +17,22 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const { t } = useTranslation();
 
   const getImageUrl = (url: string | null) => {
-    console.log("Service:", service.name, "Image URL:", url); // Debug log
-    if (url?.startsWith('/lovable-uploads/')) {
-      console.log("Using uploaded image:", url); // Debug log
-      return url;
+    console.log("Service:", service.name, "Image URL:", url);
+    if (!url) return null;
+    
+    // If it's a lovable upload, prepend the public URL
+    if (url.startsWith('/lovable-uploads/')) {
+      const fullUrl = `${window.location.origin}${url}`;
+      console.log("Using uploaded image with full URL:", fullUrl);
+      return fullUrl;
     }
-    console.log("No valid image URL found for:", service.name); // Debug log
+    
+    console.log("No valid image URL found for:", service.name);
     return null;
   };
 
   const handleImageLoad = () => {
-    console.log("Image loaded successfully for:", service.name); // Debug log
+    console.log("Image loaded successfully for:", service.name);
     setIsLoading(false);
   };
 
@@ -50,7 +55,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
               <div className="animate-pulse w-full h-full bg-secondary/10" />
             </div>
           )}
-          {getImageUrl(service.image_url) && (
+          {getImageUrl(service.image_url) && !imageError && (
             <img
               src={getImageUrl(service.image_url)}
               alt={t(`services.categories.${service.category.toLowerCase()}`)}
