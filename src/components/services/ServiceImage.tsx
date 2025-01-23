@@ -14,16 +14,24 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
   const { t } = useTranslation();
 
   const getImageUrl = (url: string | null) => {
-    console.log("Service:", serviceName, "Image URL:", url);
-    if (!url) return null;
-    
-    if (url.startsWith('/lovable-uploads/')) {
-      const fullUrl = `${window.location.origin}${url}`;
-      console.log("Using uploaded image with full URL:", fullUrl);
-      return fullUrl;
+    if (!url) {
+      console.log("No image URL provided for:", serviceName);
+      return null;
     }
     
-    console.log("No valid image URL found for:", serviceName);
+    // Handle local uploads (starting with /lovable-uploads/)
+    if (url.startsWith('/lovable-uploads/')) {
+      console.log("Processing local upload for:", serviceName);
+      return url; // Return as is - Vite will handle the public path
+    }
+    
+    // Handle external URLs (like Unsplash)
+    if (url.startsWith('http')) {
+      console.log("Using external URL for:", serviceName, url);
+      return url;
+    }
+    
+    console.log("Invalid image URL format for:", serviceName, url);
     return null;
   };
 
@@ -38,6 +46,8 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
     setIsLoading(false);
   };
 
+  const finalImageUrl = getImageUrl(imageUrl);
+
   return (
     <div className="relative aspect-[4/3] overflow-hidden bg-secondary/5">
       {isLoading && (
@@ -45,19 +55,19 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
           <div className="animate-pulse w-full h-full bg-secondary/10" />
         </div>
       )}
-      {getImageUrl(imageUrl) && !imageError && (
+      {finalImageUrl && !imageError && (
         <img
-          src={getImageUrl(imageUrl)}
+          src={finalImageUrl}
           alt={t(`services.categories.${category.toLowerCase()}`)}
           onError={handleImageError}
           onLoad={handleImageLoad}
           loading="lazy"
           className={`h-full w-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:rotate-1 ${
-            isLoading ? "opacity-0" : ""
+            isLoading ? "opacity-0" : "opacity-100"
           }`}
         />
       )}
-      {(imageError || !getImageUrl(imageUrl)) && !isLoading && (
+      {(imageError || !finalImageUrl) && !isLoading && (
         <div className="flex items-center justify-center w-full h-full">
           <ImageOff className="w-16 h-16 text-secondary/30" />
         </div>
