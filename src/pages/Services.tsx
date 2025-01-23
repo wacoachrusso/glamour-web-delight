@@ -63,7 +63,7 @@ const ServicesPage = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-muted flex items-center justify-center">
+      <div className="min-h-screen bg-muted/30 flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -78,7 +78,7 @@ const ServicesPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-muted via-white/50 to-white/80">
+    <div className="min-h-screen bg-gradient-to-b from-muted/50 via-background to-background">
       <Navbar />
       <main className="py-24 md:py-32">
         <div className="container mx-auto px-4">
@@ -88,7 +88,7 @@ const ServicesPage = () => {
             transition={{ duration: 0.5 }}
             className="text-center mb-16"
           >
-            <div className="w-24 h-0.5 bg-secondary mx-auto mb-8" />
+            <div className="w-32 h-1 bg-secondary mx-auto mb-8 rounded-full" />
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-cormorant font-bold mb-6">
               Our <span className="text-secondary">Services</span>
             </h1>
@@ -97,10 +97,9 @@ const ServicesPage = () => {
             </p>
           </motion.div>
 
-          {/* Filters */}
           <div className="flex flex-col md:flex-row gap-4 mb-12">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
               <Input
                 type="text"
                 placeholder="Search services..."
@@ -124,7 +123,6 @@ const ServicesPage = () => {
             </Select>
           </div>
 
-          {/* Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredServices?.map((service, index) => (
               <motion.div
@@ -134,22 +132,27 @@ const ServicesPage = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group"
               >
-                <div className="relative overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:shadow-xl">
-                  <div className="aspect-[4/3] overflow-hidden">
+                <div className="relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl">
+                  <div className="aspect-[4/3] overflow-hidden bg-muted/10">
                     <img
-                      src={`${service.image_url}`}
+                      src={service.image_url}
                       alt={service.name}
                       className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
+                      onError={(e) => {
+                        console.error(`Error loading image for ${service.name}`);
+                        const target = e.target as HTMLImageElement;
+                        target.src = 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=800&q=80';
+                      }}
                     />
                   </div>
                   <div className="p-6">
-                    <h3 className="font-cormorant text-2xl font-bold text-gray-900 mb-2">
+                    <h3 className="font-cormorant text-2xl font-bold text-primary mb-2">
                       {service.name}
                     </h3>
-                    <p className="text-muted-foreground line-clamp-2">
+                    <p className="text-muted-foreground line-clamp-2 mb-4">
                       {service.description}
                     </p>
-                    <div className="mt-4 flex items-center text-sm text-muted-foreground">
+                    <div className="text-sm text-muted-foreground">
                       <span>{t('services.duration', { duration: service.duration })}</span>
                     </div>
                   </div>
@@ -158,13 +161,12 @@ const ServicesPage = () => {
             ))}
           </div>
 
-          {/* Back to Top Button */}
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: showScrollTop ? 1 : 0 }}
             transition={{ duration: 0.3 }}
             onClick={scrollToTop}
-            className={`fixed bottom-8 right-8 bg-secondary text-white p-3 rounded-full shadow-lg hover:bg-secondary-light transition-all duration-300 ${
+            className={`fixed bottom-8 right-8 bg-secondary text-white p-3 rounded-full shadow-lg hover:bg-secondary/90 transition-all duration-300 ${
               showScrollTop ? 'visible' : 'invisible'
             }`}
           >
