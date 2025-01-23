@@ -17,15 +17,17 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const { t } = useTranslation();
 
   const getImageUrl = (url: string | null) => {
-    // Only return the URL if it starts with /lovable-uploads/ (your recently uploaded images)
+    console.log("Service:", service.name, "Image URL:", url); // Debug log
     if (url?.startsWith('/lovable-uploads/')) {
+      console.log("Using uploaded image:", url); // Debug log
       return url;
     }
-    // Otherwise, show a neutral background
+    console.log("No valid image URL found for:", service.name); // Debug log
     return null;
   };
 
   const handleImageLoad = () => {
+    console.log("Image loaded successfully for:", service.name); // Debug log
     setIsLoading(false);
   };
 
