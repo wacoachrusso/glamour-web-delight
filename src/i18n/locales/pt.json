@@ -17,13 +17,14 @@
     "address": "275 Adams St, Newark NJ 07105",
     "phone": "(973) 344-5199"
   },
-  "hero": {
-    "welcome": "BEM-VINDO AO LUXO",
-    "title": "Descubra Sua",
-    "highlight": "Beleza Atemporal",
-    "description": "Onde o luxo encontra a transformação",
-    "bookNow": "Agende Sua Visita",
-    "ourServices": "Nossos Serviços"
+  "portfolio": {
+    "title": "Parte do",
+    "highlight": "Nosso Trabalho",
+    "subtitle": "Navegue pelo nosso portfólio de serviços de beleza transformadores",
+    "featuredTitle": "Portfólio",
+    "featuredHighlight": "Destacado",
+    "featuredSubtitle": "Veja algumas das nossas transformações mais impressionantes",
+    "viewMore": "Ver Mais Trabalhos"
   },
   "services": {
     "title": "Serviços",
@@ -57,99 +58,5 @@
       "facial": "Tratamento facial rejuvenescedor para uma pele radiante",
       "waxing": "Serviços de depilação profissional para uma pele suave"
     }
-  },
-  "products": {
-    "title": "Produtos",
-    "highlight": "Destacados",
-    "subtitle": "Descubra nossa coleção selecionada de produtos profissionais para o cabelo",
-    "loading": "Carregando produtos...",
-    "viewAll": "Ver Todos os Produtos",
-    "addToCart": "Adicionar ao Carrinho",
-    "price": "${price}",
-    "addedToCart": "Adicionado ao Carrinho",
-    "addedToCartDescription": "{{name}} foi adicionado ao seu carrinho.",
-    "defaultDescription": "Experimente o luxo do {{product}} de qualidade profissional projetado para melhorar sua rotina de cuidados com o cabelo.",
-    "availableAt": "Disponível em nosso salão do centro",
-    "learnMore": "Mais Informações",
-    "categories": {
-      "shampoo": "Shampoo",
-      "conditioner": "Condicionador",
-      "styling": "Modelagem",
-      "treatment": "Tratamento",
-      "color": "Cor do Cabelo",
-      "tools": "Ferramentas"
-    },
-    "names": {
-      "shampoo": "Shampoo Profissional",
-      "conditioner": "Condicionador Profundo",
-      "styling_gel": "Gel para Modelar",
-      "hair_mask": "Máscara Capilar",
-      "hair_oil": "Óleo Capilar",
-      "leave_in_conditioner": "Condicionador sem Enxágue"
-    },
-    "descriptions": {
-      "shampoo": "Shampoo de qualidade profissional para todos os tipos de cabelo",
-      "conditioner": "Tratamento condicionador intensivo para cabelos saudáveis",
-      "styling_gel": "Gel profissional para modelagem duradoura",
-      "hair_mask": "Máscara de tratamento profundo para cabelos danificados",
-      "hair_oil": "Óleo nutritivo para brilho e proteção",
-      "leave_in_conditioner": "Tratamento diário sem enxágue para cabelos maleáveis"
-    }
-  },
-  "team": {
-    "title": "Conheça Nossa",
-    "highlight": "Equipe Especializada",
-    "subtitle": "Nossa talentosa equipe de profissionais de beleza está dedicada a fazer você se sentir e parecer o seu melhor",
-    "comingSoon": "Em Breve",
-    "expertTitle": "Especialista em Beleza",
-    "memberPlaceholder": "Imagem temporária do membro da equipe",
-    "profileDescription": "O perfil do nosso membro da equipe está sendo elaborado com cuidado. Fique atento para conhecer nossos incríveis profissionais de beleza.",
-    "description": "Estamos animados para apresentar nossa incrível equipe de profissionais de beleza. Cada membro traz expertise única e paixão para criar experiências inesquecíveis para nossos clientes."
-  },
-  "store": {
-    "title": "Nossos",
-    "highlight": "Produtos",
-    "subtitle": "Descubra nossa coleção selecionada de produtos de beleza profissionais disponíveis em nosso salão"
-  },
-  "footer": {
-    "contact": "Contate-nos",
-    "hours": "Horário de Funcionamento",
-    "follow": "Siga-nos",
-    "address": "Visite-nos",
-    "rights": "Todos os direitos reservados",
-    "weekdays": "Segunda - Sexta",
-    "saturday": "Sábado",
-    "sunday": "Domingo",
-    "weekdayHours": "9:00 - 20:00",
-    "saturdayHours": "9:00 - 18:00",
-    "sundayHours": "10:00 - 16:00"
-  },
-  "bookings": {
-    "bookService": "Agendar {{service}}",
-    "duration": "Duração: {{duration}} minutos",
-    "name": "Nome Completo",
-    "email": "Endereço de Email",
-    "phone": "Número de Telefone",
-    "date": "Data do Agendamento",
-    "time": "Hora do Agendamento",
-    "notes": "Notas Adicionais",
-    "notesPlaceholder": "Algum pedido ou requisito especial?",
-    "confirm": "Confirmar Agendamento",
-    "success": "Agendamento Confirmado",
-    "error": "Erro no Agendamento",
-    "tryAgain": "Por favor tente novamente mais tarde",
-    "confirmationSent": "Email de confirmação foi enviado",
-    "confirmationDelayed": "Agendamento confirmado mas o email pode estar atrasado",
-    "selectEmployee": "Selecionar Estilista (Opcional)",
-    "anyAvailable": "Qualquer Estilista Disponível"
-  },
-  "common": {
-    "cancel": "Cancelar",
-    "submitting": "Enviando..."
-  },
-  "testimonials": {
-    "title": "O Que Nossos Clientes Dizem",
-    "subtitle": "Leia sobre as experiências de nossos valiosos clientes e suas jornadas transformadoras conosco",
-    "loading": "Carregando depoimentos..."
   }
 }

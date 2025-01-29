@@ -20,7 +20,11 @@
   "portfolio": {
     "title": "Some of",
     "highlight": "Our Work",
-    "subtitle": "Browse through our portfolio of transformative hair and beauty services"
+    "subtitle": "Browse through our portfolio of transformative hair and beauty services",
+    "featuredTitle": "Featured",
+    "featuredHighlight": "Portfolio",
+    "featuredSubtitle": "Take a look at some of our most stunning transformations",
+    "viewMore": "View More Work"
   },
   "services": {
     "title": "Services",

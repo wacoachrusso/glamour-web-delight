@@ -17,13 +17,14 @@
     "address": "275 Adams St, Newark NJ 07105",
     "phone": "(973) 344-5199"
   },
-  "hero": {
-    "welcome": "BIENVENIDO AL LUJO",
-    "title": "Descubre Tu",
-    "highlight": "Belleza Atemporal",
-    "description": "Donde el lujo se encuentra con la transformación",
-    "bookNow": "Reserva Tu Visita",
-    "ourServices": "Nuestros Servicios"
+  "portfolio": {
+    "title": "Parte de",
+    "highlight": "Nuestro Trabajo",
+    "subtitle": "Explora nuestro portafolio de servicios de belleza transformadores",
+    "featuredTitle": "Portafolio",
+    "featuredHighlight": "Destacado",
+    "featuredSubtitle": "Mira algunas de nuestras transformaciones más impresionantes",
+    "viewMore": "Ver Más Trabajos"
   },
   "services": {
     "title": "Servicios",
@@ -57,89 +58,5 @@
       "facial": "Tratamiento facial rejuvenecedor para una piel radiante",
       "waxing": "Servicios de depilación profesional para una piel suave"
     }
-  },
-  "products": {
-    "title": "Productos",
-    "highlight": "Destacados",
-    "subtitle": "Descubre nuestra colección seleccionada de productos profesionales para el cabello",
-    "loading": "Cargando productos...",
-    "viewAll": "Ver Todos los Productos",
-    "addToCart": "Añadir al Carrito",
-    "price": "${price}",
-    "addedToCart": "Añadido al Carrito",
-    "addedToCartDescription": "{{name}} ha sido añadido a tu carrito.",
-    "defaultDescription": "Experimenta el lujo del {{product}} de grado profesional diseñado para mejorar tu rutina de cuidado del cabello.",
-    "availableAt": "Disponible en nuestro salón del centro",
-    "learnMore": "Más Información",
-    "names": {
-      "shampoo": "Champú Profesional",
-      "conditioner": "Acondicionador Profundo",
-      "styling_gel": "Gel para Peinar",
-      "hair_mask": "Mascarilla Capilar",
-      "hair_oil": "Aceite Capilar",
-      "leave_in_conditioner": "Acondicionador sin Enjuague"
-    },
-    "descriptions": {
-      "shampoo": "Champú de calidad profesional para todo tipo de cabello",
-      "conditioner": "Tratamiento acondicionador intensivo para un cabello saludable",
-      "styling_gel": "Gel profesional para un peinado duradero",
-      "hair_mask": "Mascarilla de tratamiento profundo para cabello dañado",
-      "hair_oil": "Aceite nutritivo para brillo y protección",
-      "leave_in_conditioner": "Tratamiento diario sin enjuague para un cabello manejable"
-    }
-  },
-  "team": {
-    "title": "Conoce a Nuestro",
-    "highlight": "Equipo Experto",
-    "subtitle": "Nuestro talentoso equipo de profesionales de la belleza está dedicado a hacerte lucir y sentir lo mejor posible",
-    "comingSoon": "Próximamente",
-    "expertTitle": "Experto en Belleza",
-    "memberPlaceholder": "Imagen de marcador de posición del miembro del equipo",
-    "profileDescription": "El perfil de nuestro miembro del equipo está siendo elaborado con cuidado. Mantente atento para conocer a nuestros increíbles profesionales de la belleza.",
-    "description": "Estamos emocionados de presentarte a nuestro increíble equipo de profesionales de la belleza. Cada miembro aporta experiencia única y pasión para crear experiencias inolvidables para nuestros clientes."
-  },
-  "store": {
-    "title": "Nuestros",
-    "highlight": "Productos",
-    "subtitle": "Descubre nuestra colección seleccionada de productos de belleza profesionales disponibles en nuestro salón"
-  },
-  "footer": {
-    "contact": "Contáctanos",
-    "hours": "Horario de Apertura",
-    "follow": "Síguenos",
-    "address": "Visítanos",
-    "rights": "Todos los derechos reservados",
-    "weekdays": "Lunes - Viernes",
-    "saturday": "Sábado",
-    "sunday": "Domingo",
-    "weekdayHours": "9:00 AM - 8:00 PM",
-    "saturdayHours": "9:00 AM - 6:00 PM",
-    "sundayHours": "10:00 AM - 4:00 PM"
-  },
-  "bookings": {
-    "bookService": "Reservar {{service}}",
-    "duration": "Duración: {{duration}} minutos",
-    "name": "Nombre Completo",
-    "email": "Correo Electrónico",
-    "phone": "Número de Teléfono",
-    "date": "Fecha de Reserva",
-    "time": "Hora de Reserva",
-    "notes": "Notas Adicionales",
-    "notesPlaceholder": "¿Alguna solicitud o requisito especial?",
-    "confirm": "Confirmar Reserva",
-    "success": "Reserva Confirmada",
-    "error": "Error en la Reserva",
-    "tryAgain": "Por favor intente más tarde",
-    "confirmationSent": "El correo de confirmación ha sido enviado",
-    "confirmationDelayed": "Reserva confirmada pero el correo podría demorarse"
-  },
-  "common": {
-    "cancel": "Cancelar",
-    "submitting": "Enviando..."
-  },
-  "testimonials": {
-    "title": "Lo Que Dicen Nuestros Clientes",
-    "subtitle": "Lea sobre las experiencias de nuestros valiosos clientes y sus viajes transformadores con nosotros",
-    "loading": "Cargando testimonios..."
   }
 }
