@@ -9,7 +9,11 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Card className="h-full overflow-hidden group">
-      <ProductImage imageUrl={product.image_url} productName={product.name} />
+      <ProductImage 
+        imageUrl={product.image_url} 
+        productName={product.name} 
+        category={product.category}
+      />
       <CardHeader>
         <CardTitle className="text-xl">{product.name}</CardTitle>
         <CardDescription className="line-clamp-2">
