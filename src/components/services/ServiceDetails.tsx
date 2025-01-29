@@ -1,4 +1,4 @@
-import { Clock, DollarSign } from "lucide-react";
+import { Clock } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Service } from "@/integrations/supabase/types/service";
@@ -22,15 +22,9 @@ export const ServiceDetails = ({ service }: ServiceDetailsProps) => {
       </CardHeader>
       
       <CardContent>
-        <div className="flex items-center justify-between text-sm text-muted-foreground">
-          <div className="flex items-center">
-            <Clock className="mr-1 h-4 w-4" />
-            <span>{t('services.duration', { duration: service.duration })}</span>
-          </div>
-          <div className="flex items-center">
-            <DollarSign className="mr-1 h-4 w-4" />
-            <span>{service.price}</span>
-          </div>
+        <div className="flex items-center text-sm text-muted-foreground">
+          <Clock className="mr-1 h-4 w-4" />
+          <span>{t('services.duration', { duration: service.duration })}</span>
         </div>
       </CardContent>
     </>

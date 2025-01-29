@@ -14,11 +14,11 @@
     "bookNow": "Agende Agora"
   },
   "portfolio": {
-    "title": "Parte do",
-    "highlight": "Nosso Trabalho",
-    "subtitle": "Explore nosso portfólio de serviços de beleza transformadores",
-    "featuredTitle": "Portfólio",
-    "featuredHighlight": "Destacado",
+    "title": "Nossa",
+    "highlight": "Galeria",
+    "subtitle": "Explore nossa coleção de transformações deslumbrantes",
+    "featuredTitle": "Trabalhos",
+    "featuredHighlight": "Destacados",
     "featuredSubtitle": "Confira algumas de nossas transformações mais impressionantes",
     "viewMore": "Ver Mais Trabalhos"
   },
@@ -35,11 +35,23 @@
     "subtitle": "Serviços de beleza profissionais adaptados às suas necessidades",
     "viewAll": "Ver Todos os Serviços",
     "loading": "Carregando serviços...",
+    "duration": "{{duration}} minutos",
     "categories": {
       "hair": "Serviços de Cabelo",
       "nails": "Serviços de Unhas",
       "waxing": "Serviços de Depilação",
       "facials": "Tratamentos Faciais"
     }
+  },
+  "testimonials": {
+    "title": "O Que Nossos Clientes Dizem",
+    "subtitle": "Leia as experiências de nossos valiosos clientes"
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados"
+  },
+  "meta": {
+    "title": "Glamour's Beauty Salon - Serviços de Beleza Profissionais em Newark",
+    "description": "Serviços profissionais de cabelo, unhas e depilação em Newark, NJ. Agende seu horário hoje!"
   }
 }

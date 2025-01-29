@@ -14,11 +14,11 @@
     "bookNow": "Book Now"
   },
   "portfolio": {
-    "title": "Some of",
-    "highlight": "Our Work",
-    "subtitle": "Explore our portfolio of transformative beauty services",
+    "title": "Our",
+    "highlight": "Gallery",
+    "subtitle": "Explore our collection of stunning transformations",
     "featuredTitle": "Featured",
-    "featuredHighlight": "Portfolio",
+    "featuredHighlight": "Work",
     "featuredSubtitle": "Check out some of our most stunning transformations",
     "viewMore": "View More Work"
   },
@@ -35,11 +35,23 @@
     "subtitle": "Professional beauty services tailored to your needs",
     "viewAll": "View All Services",
     "loading": "Loading services...",
+    "duration": "{{duration}} minutes",
     "categories": {
       "hair": "Hair Services",
       "nails": "Nail Services",
       "waxing": "Waxing Services",
       "facials": "Facial Treatments"
     }
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "subtitle": "Read about experiences from our valued customers"
+  },
+  "footer": {
+    "rights": "All rights reserved"
+  },
+  "meta": {
+    "title": "Glamour's Beauty Salon - Professional Beauty Services in Newark",
+    "description": "Professional hair styling, nail care, and waxing services in Newark, NJ. Book your appointment today!"
   }
 }
