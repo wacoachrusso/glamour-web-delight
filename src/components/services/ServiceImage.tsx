@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ImageOff } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
+import ClickableImage from "../shared/ClickableImage";
 
 interface ServiceImageProps {
   imageUrl: string | null;
@@ -22,15 +23,12 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
     }
     
     try {
-      // Handle local uploads from public folder
       if (url.startsWith('/lovable-uploads/')) {
         console.log("Using local public file for", serviceName, ":", url);
         return url;
       }
       
-      // Handle external URLs (like Unsplash)
       if (url.startsWith('http')) {
-        // If it's already a complete Supabase URL, extract the path
         if (url.includes('storage/v1/object/public/salon_images/')) {
           const storagePath = url.split('salon_images/')[1];
           console.log("Extracted storage path for", serviceName, ":", storagePath);
@@ -45,12 +43,10 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
           }
         }
         
-        // If it's any other external URL (like Unsplash), use it directly
         console.log("Using external URL for", serviceName, ":", url);
         return url;
       }
       
-      // Handle storage bucket paths
       console.log("Getting storage URL for", serviceName, "from path:", url);
       
       const { data: publicUrlData } = supabase.storage
@@ -114,15 +110,10 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
         </div>
       )}
       {finalImageUrl && !imageError && (
-        <img
+        <ClickableImage
           src={finalImageUrl}
           alt={t(`services.categories.${category.toLowerCase()}`)}
-          onError={handleImageError}
-          onLoad={handleImageLoad}
-          loading="lazy"
-          className={`h-full w-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:rotate-1 ${
-            isLoading ? "opacity-0" : "opacity-100"
-          }`}
+          className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:rotate-1"
         />
       )}
       {(imageError || !finalImageUrl) && !isLoading && (

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import SectionHeader from "./shared/SectionHeader";
 import { Button } from "./ui/button";
+import ClickableImage from "./shared/ClickableImage";
 
 const FeaturedWork = () => {
   const { t } = useTranslation();
@@ -15,7 +16,6 @@ const FeaturedWork = () => {
     queryFn: async () => {
       console.log("Fetching featured portfolio images...");
       
-      // Get a subset of the local images for the homepage
       const featuredImages = [
         {
           id: '1',
@@ -47,7 +47,6 @@ const FeaturedWork = () => {
         }
       ];
 
-      // Combine with any featured Supabase images
       const { data: supabaseImages, error } = await supabase
         .from('portfolio_images')
         .select('*')
@@ -64,7 +63,7 @@ const FeaturedWork = () => {
         .filter((item, index, self) =>
           index === self.findIndex((t) => t.image_url === item.image_url)
         )
-        .slice(0, 4); // Only take the first 4 images
+        .slice(0, 4);
       
       console.log("Fetched featured portfolio images:", uniqueImages);
       return uniqueImages;
@@ -98,15 +97,10 @@ const FeaturedWork = () => {
               className="group relative aspect-square overflow-hidden rounded-xl bg-muted"
             >
               {image.image_url ? (
-                <img
+                <ClickableImage
                   src={image.image_url}
                   alt={image.title}
-                  className="h-full w-full object-cover transition-all duration-300 group-hover:scale-110"
-                  onError={(e) => {
-                    console.error(`Error loading image: ${image.image_url}`);
-                    const target = e.target as HTMLImageElement;
-                    target.parentElement?.classList.add('error-state');
-                  }}
+                  className="h-full w-full object-cover"
                 />
               ) : (
                 <div className="flex h-full items-center justify-center">
