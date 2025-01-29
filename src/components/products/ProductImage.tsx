@@ -1,7 +1,7 @@
-import { ImageOff } from "lucide-react";
 import { useProductImage } from "@/hooks/useProductImage";
 import { useState, useEffect } from "react";
 import ClickableImage from "../shared/ClickableImage";
+import ImageLoadingState from "../shared/ImageLoadingState";
 
 interface ProductImageProps {
   imageUrl: string | null;
@@ -37,29 +37,21 @@ export const ProductImage = ({ imageUrl, productName, category }: ProductImagePr
     };
   }, [publicUrl, error, category]);
 
-  if (isLoading) {
-    return (
-      <div className="w-full h-full flex items-center justify-center bg-secondary/5">
-        <div className="animate-pulse w-full h-full bg-secondary/10" />
-      </div>
-    );
-  }
-
-  if (!imgSrc) {
-    return (
-      <div className="flex items-center justify-center w-full h-full bg-secondary/5">
-        <ImageOff className="w-16 h-16 text-secondary/30" />
-      </div>
-    );
-  }
-
   return (
     <div className="relative w-full h-full">
-      <ClickableImage
-        src={imgSrc}
-        alt={productName}
-        className="w-full h-full object-cover rounded-md transition-transform duration-300 group-hover:scale-105"
+      <ImageLoadingState 
+        isLoading={isLoading} 
+        hasError={!imgSrc} 
+        className="absolute inset-0"
       />
+      
+      {imgSrc && (
+        <ClickableImage
+          src={imgSrc}
+          alt={productName}
+          className="w-full h-full object-cover rounded-md transition-transform duration-300 group-hover:scale-105"
+        />
+      )}
     </div>
   );
 };
