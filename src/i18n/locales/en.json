@@ -53,5 +53,13 @@
   "meta": {
     "title": "Glamour's Beauty Salon - Professional Beauty Services in Newark",
     "description": "Professional hair styling, nail care, and waxing services in Newark, NJ. Book your appointment today!"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "team": "Our Team",
+    "store": "Store",
+    "logo_alt": "Glamour's Beauty Salon"
   }
 }

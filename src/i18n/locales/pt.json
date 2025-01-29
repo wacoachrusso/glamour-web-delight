@@ -1,4 +1,12 @@
 {
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "services": "Serviços",
+    "team": "Nossa Equipe",
+    "store": "Loja",
+    "logo_alt": "Glamour's Beauty Salon"
+  },
   "contact": {
     "title": "Entre em",
     "highlight": "Contato",

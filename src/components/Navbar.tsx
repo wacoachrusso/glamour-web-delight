@@ -21,7 +21,7 @@ export const Navbar = () => {
           <Link to="/" className="flex items-center">
             <img 
               src="/lovable-uploads/513dcf5a-b256-4137-a428-3656375e1aa4.png"
-              alt="Glamour's Beauty Salon"
+              alt={t('nav.logo_alt')}
               className="h-14 w-auto object-contain"
             />
           </Link>
@@ -33,7 +33,7 @@ export const Navbar = () => {
               { path: "/meet-the-owner", label: t('nav.about') },
               { path: "/services", label: t('nav.services') },
               { path: "/team", label: t('nav.team') },
-              { path: "/store", label: t('nav.products') }
+              { path: "/store", label: t('nav.store') }
             ].map(({ path, label }) => (
               <Link
                 key={path}
