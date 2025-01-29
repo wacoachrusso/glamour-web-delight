@@ -21,7 +21,7 @@ const Store = () => {
       const { data, error } = await supabase
         .from("products")
         .select("*")
-        .order("created_at", { ascending: false });
+        .order("category", { ascending: true });
 
       if (error) {
         console.error("Error fetching products:", error);
@@ -54,7 +54,7 @@ const Store = () => {
 
         <div className="text-center mb-12">
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t("store.pricingMessage")}
+            We carry a wide selection of professional hair care products. Please inquire about pricing during your visit, as prices may vary based on current promotions and availability.
           </p>
         </div>
         
@@ -67,7 +67,7 @@ const Store = () => {
               className="flex items-center gap-2"
             >
               <Filter className="w-4 h-4" />
-              {t("store.allProducts")}
+              All Products
             </Button>
             {categories.map((category) => (
               <Button
@@ -101,7 +101,7 @@ const Store = () => {
           <>
             {filteredProducts?.length === 0 ? (
               <div className="text-center text-muted-foreground py-12">
-                {t("store.noProducts")}
+                No products found in this category.
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

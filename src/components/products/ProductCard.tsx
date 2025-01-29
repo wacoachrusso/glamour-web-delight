@@ -15,8 +15,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
         category={product.category}
       />
       <CardHeader>
-        <CardTitle className="text-xl">{product.name}</CardTitle>
-        <CardDescription className="line-clamp-2">
+        <CardTitle className="text-xl font-cormorant">{product.name}</CardTitle>
+        <CardDescription className="line-clamp-3">
           {product.description}
         </CardDescription>
       </CardHeader>
