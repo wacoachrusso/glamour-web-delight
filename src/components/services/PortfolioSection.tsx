@@ -4,6 +4,7 @@ import { ImageOff } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import SectionHeader from "../shared/SectionHeader";
+import ClickableImage from "../shared/ClickableImage";
 
 const PortfolioSection = () => {
   const { t } = useTranslation();
@@ -13,7 +14,6 @@ const PortfolioSection = () => {
     queryFn: async () => {
       console.log("Fetching portfolio images...");
       
-      // Define the local images from public/lovable-uploads
       const localImages = [
         {
           id: '1',
@@ -158,15 +158,10 @@ const PortfolioSection = () => {
               className="group relative aspect-square overflow-hidden rounded-xl bg-muted"
             >
               {image.image_url ? (
-                <img
+                <ClickableImage
                   src={image.image_url}
                   alt={image.title}
                   className="h-full w-full object-cover transition-all duration-300 group-hover:scale-110"
-                  onError={(e) => {
-                    console.error(`Error loading image: ${image.image_url}`);
-                    const target = e.target as HTMLImageElement;
-                    target.parentElement?.classList.add('error-state');
-                  }}
                 />
               ) : (
                 <div className="flex h-full items-center justify-center">
