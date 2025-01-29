@@ -17,92 +17,92 @@ const PortfolioSection = () => {
       const localImages = [
         {
           id: '1',
-          title: 'Balayage',
-          description: 'Professional balayage hair coloring',
+          title: 'Luxurious Balayage',
+          description: 'A stunning balayage treatment that creates a natural, sun-kissed look with seamless color transitions from root to tip.',
           image_url: '/lovable-uploads/Balayage5.jpg',
           category: 'Hair Color'
         },
         {
           id: '2',
-          title: 'Bayalage Style',
-          description: 'Modern bayalage technique',
+          title: 'Modern Balayage Style',
+          description: 'Contemporary balayage technique featuring soft, blended colors that create dimension and movement in the hair.',
           image_url: '/lovable-uploads/Bayalage.jpg',
           category: 'Hair Color'
         },
         {
           id: '3',
-          title: 'Blonde Highlights',
-          description: 'Beautiful blonde hair with highlights',
+          title: 'Blonde Highlights Transformation',
+          description: 'Bright, face-framing highlights that brighten the complexion and add dimension to natural hair color.',
           image_url: '/lovable-uploads/Blonde hair color with highlights.jpg',
           category: 'Hair Color'
         },
         {
           id: '4',
-          title: 'Eyelash Extensions',
-          description: 'Professional eyelash extension service',
+          title: 'Classic Eyelash Extensions',
+          description: 'Full, natural-looking eyelash extensions that enhance your eyes and eliminate the need for mascara.',
           image_url: '/lovable-uploads/EyelashExtensions.jpg',
           category: 'Beauty'
         },
         {
           id: '5',
-          title: 'Gel Manicure',
-          description: 'Long-lasting gel manicure',
+          title: 'Professional Gel Manicure',
+          description: 'Long-lasting, chip-resistant gel manicure with a perfect glossy finish that stays beautiful for weeks.',
           image_url: '/lovable-uploads/Gel manicure.jpg',
           category: 'Nails'
         },
         {
           id: '6',
-          title: 'Highlights',
-          description: 'Classic highlighting technique',
+          title: 'Traditional Highlights',
+          description: 'Classic highlighting technique creating beautiful, light-catching dimension throughout the hair.',
           image_url: '/lovable-uploads/Highlights.jpg',
           category: 'Hair Color'
         },
         {
           id: '7',
-          title: 'Natural Highlights',
-          description: 'Natural-looking highlights',
+          title: 'Natural Sun-Kissed Highlights',
+          description: 'Subtle, natural-looking highlights that mimic the effect of time spent in the summer sun.',
           image_url: '/lovable-uploads/Highlights2.jpg',
           category: 'Hair Color'
         },
         {
           id: '8',
-          title: 'Dimensional Highlights',
-          description: 'Multi-dimensional highlighting',
+          title: 'Multi-Dimensional Highlights',
+          description: 'Strategic placement of varying highlight tones creating depth and dimension for a dynamic look.',
           image_url: '/lovable-uploads/Highlights3.jpg',
           category: 'Hair Color'
         },
         {
           id: '9',
-          title: 'Layered Cut with Balayage',
-          description: 'Layered haircut with balayage coloring',
+          title: 'Layered Balayage Blend',
+          description: 'Expertly layered haircut combined with soft balayage coloring for movement and dimension.',
           image_url: '/lovable-uploads/Layers haircut and balayage.jpg',
           category: 'Hair Style'
         },
         {
           id: '10',
-          title: 'Layered Haircut',
-          description: 'Modern layered haircut',
+          title: 'Modern Layered Cut',
+          description: 'Fresh, contemporary layered haircut that adds volume and movement to the hair.',
           image_url: '/lovable-uploads/Layers haircut.jpg',
           category: 'Hair Style'
         },
         {
           id: '11',
-          title: 'Curtain Bangs',
-          description: 'Layered cut with curtain bangs',
+          title: 'Trendy Curtain Bangs',
+          description: 'Soft, face-framing curtain bangs with layers that perfectly blend into the rest of the hairstyle.',
           image_url: '/lovable-uploads/Layers with curtain bangs.jpg',
           category: 'Hair Style'
         },
         {
           id: '12',
-          title: 'Partial Highlights',
-          description: 'Partial highlighting technique',
+          title: 'Partial Highlight Design',
+          description: 'Strategic partial highlights focused on the crown and face-framing sections for a natural glow.',
           image_url: '/lovable-uploads/Partial highlights.jpg',
           category: 'Hair Color'
         },
         {
           id: '13',
-          title: 'Short Cut with Highlights',
-          description: 'Short haircut with highlights',
+          title: 'Short Cut with Bright Highlights',
+          description: 'Modern short haircut enhanced with bright highlights for a bold, contemporary look.',
           image_url: '/lovable-uploads/Short hair cut and highlights.jpg',
           category: 'Hair Style'
         }
@@ -179,6 +179,7 @@ const PortfolioSection = () => {
                   {image.description && (
                     <p className="mt-1 text-sm text-white/80">{image.description}</p>
                   )}
+                  <span className="mt-2 inline-block text-xs text-white/60">{image.category}</span>
                 </div>
               </div>
             </motion.div>
