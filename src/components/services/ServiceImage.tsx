@@ -29,33 +29,33 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
       }
       
       // Handle external URLs (like Unsplash)
-      if (url.startsWith('http') && !url.includes('supabase')) {
+      if (url.startsWith('http')) {
+        // If it's already a complete Supabase URL, extract the path
+        if (url.includes('storage/v1/object/public/salon_images/')) {
+          const storagePath = url.split('salon_images/')[1];
+          console.log("Extracted storage path for", serviceName, ":", storagePath);
+          
+          const { data: publicUrlData } = supabase.storage
+            .from('salon_images')
+            .getPublicUrl(storagePath);
+
+          if (publicUrlData?.publicUrl) {
+            console.log("Using public URL for", serviceName, ":", publicUrlData.publicUrl);
+            return publicUrlData.publicUrl;
+          }
+        }
+        
+        // If it's any other external URL (like Unsplash), use it directly
         console.log("Using external URL for", serviceName, ":", url);
         return url;
       }
       
       // Handle storage bucket paths
-      let storagePath = url;
-      if (url.includes('storage/v1/object/public/salon_images/')) {
-        storagePath = url.split('salon_images/')[1];
-      }
+      console.log("Getting storage URL for", serviceName, "from path:", url);
       
-      console.log("Getting storage URL for", serviceName, "from path:", storagePath);
-      
-      // Try to get a signed URL first
-      const { data: signedData, error: signedError } = await supabase.storage
-        .from('salon_images')
-        .createSignedUrl(storagePath, 3600);
-
-      if (signedData?.signedUrl) {
-        console.log("Using signed URL for", serviceName, ":", signedData.signedUrl);
-        return signedData.signedUrl;
-      }
-
-      // Fallback to public URL if signed URL fails
       const { data: publicUrlData } = supabase.storage
         .from('salon_images')
-        .getPublicUrl(storagePath);
+        .getPublicUrl(url);
 
       if (!publicUrlData?.publicUrl) {
         console.error("No public URL generated for", serviceName);
@@ -64,6 +64,7 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
 
       console.log("Using public URL for", serviceName, ":", publicUrlData.publicUrl);
       return publicUrlData.publicUrl;
+      
     } catch (error) {
       console.error("Error processing image URL for:", serviceName, error);
       return null;
