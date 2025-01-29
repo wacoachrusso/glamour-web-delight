@@ -10,23 +10,46 @@ interface ProductImageProps {
 }
 
 export const ProductImage = ({ imageUrl, productName, category }: ProductImageProps) => {
-  const { publicUrl, error } = useProductImage(imageUrl);
   const [isLoading, setIsLoading] = useState(true);
   const [imgSrc, setImgSrc] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!publicUrl && !error) return;
-    
+    if (!imageUrl) {
+      console.log("No image URL provided for product:", productName);
+      setImgSrc(getUnsplashFallbackImage(category));
+      setIsLoading(false);
+      return;
+    }
+
+    // For local uploads, use the URL directly
+    if (imageUrl.startsWith('/lovable-uploads/')) {
+      console.log("Loading local image for", productName, ":", imageUrl);
+      setImgSrc(imageUrl);
+      setIsLoading(false);
+      return;
+    }
+
+    // For external URLs, load them directly
+    if (imageUrl.startsWith('http')) {
+      console.log("Loading external image for", productName, ":", imageUrl);
+      setImgSrc(imageUrl);
+      setIsLoading(false);
+      return;
+    }
+
+    // For Supabase storage paths
+    console.log("Loading Supabase storage image for", productName, ":", imageUrl);
     const img = new Image();
-    img.src = error ? getUnsplashFallbackImage(category) : publicUrl;
+    img.src = imageUrl;
     
     img.onload = () => {
-      setImgSrc(img.src);
+      setImgSrc(imageUrl);
       setIsLoading(false);
+      console.log("Image loaded successfully for:", productName);
     };
     
     img.onerror = () => {
-      console.error("Image failed to load:", img.src);
+      console.error("Error loading image for:", productName, "Using fallback.");
       setImgSrc(getUnsplashFallbackImage(category));
       setIsLoading(false);
     };
@@ -35,7 +58,7 @@ export const ProductImage = ({ imageUrl, productName, category }: ProductImagePr
       img.onload = null;
       img.onerror = null;
     };
-  }, [publicUrl, error, category]);
+  }, [imageUrl, productName, category]);
 
   return (
     <div className="relative w-full h-full">
