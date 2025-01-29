@@ -34,31 +34,30 @@ const Store = () => {
     retry: 2,
   });
 
-  // Get unique categories from products
   const categories = products 
     ? Array.from(new Set(products.map(product => product.category)))
     : [];
 
-  // Filter products by selected category
   const filteredProducts = selectedCategory
     ? products?.filter(product => product.category === selectedCategory)
     : products;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-muted to-white">
+    <div className="min-h-screen bg-gradient-to-b from-muted/50 to-white">
       <Navbar />
       <main className="container mx-auto px-4 py-16">
         <h1 className="text-4xl md:text-5xl font-cormorant font-bold text-center mb-8">
-          {t("store.title")}
+          Professional Hair Care Products
         </h1>
 
         <div className="text-center mb-12">
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            We carry a wide selection of professional hair care products. Please inquire about pricing during your visit, as prices may vary based on current promotions and availability.
+            We carry a curated selection of premium professional hair care products. 
+            Please inquire about pricing and availability during your visit, as we offer 
+            special promotions and professional recommendations tailored to your needs.
           </p>
         </div>
         
-        {/* Category Filter */}
         <div className="mb-12">
           <div className="flex items-center justify-center gap-4 flex-wrap">
             <Button
@@ -88,8 +87,8 @@ const Store = () => {
             </AlertDescription>
           </Alert>
         ) : isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[...Array(6)].map((_, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {[...Array(8)].map((_, i) => (
               <div key={i} className="space-y-4">
                 <Skeleton className="h-[300px] w-full rounded-lg" />
                 <Skeleton className="h-4 w-3/4" />
@@ -104,7 +103,7 @@ const Store = () => {
                 No products found in this category.
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 {filteredProducts?.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
