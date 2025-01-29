@@ -29,35 +29,37 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
       }
       
       // Handle external URLs (like Unsplash)
-      if (url.startsWith('http')) {
+      if (url.startsWith('http') && !url.includes('supabase')) {
         console.log("Using external URL for", serviceName, ":", url);
         return url;
       }
       
       // Handle storage bucket paths
-      console.log("Getting storage URL for", serviceName, "from path:", url);
+      let storagePath = url;
+      if (url.includes('storage/v1/object/public/salon_images/')) {
+        storagePath = url.split('salon_images/')[1];
+      }
+      
+      console.log("Getting storage URL for", serviceName, "from path:", storagePath);
+      
+      // Try to get a signed URL first
+      const { data: signedData, error: signedError } = await supabase.storage
+        .from('salon_images')
+        .createSignedUrl(storagePath, 3600);
+
+      if (signedData?.signedUrl) {
+        console.log("Using signed URL for", serviceName, ":", signedData.signedUrl);
+        return signedData.signedUrl;
+      }
+
+      // Fallback to public URL if signed URL fails
       const { data: publicUrlData } = supabase.storage
         .from('salon_images')
-        .getPublicUrl(url);
+        .getPublicUrl(storagePath);
 
       if (!publicUrlData?.publicUrl) {
         console.error("No public URL generated for", serviceName);
         return null;
-      }
-
-      // Try to get a signed URL as fallback if needed
-      if (!publicUrlData.publicUrl.includes('salon_images')) {
-        const { data: signedData, error: signedError } = await supabase.storage
-          .from('salon_images')
-          .createSignedUrl(url, 3600);
-
-        if (signedError || !signedData?.signedUrl) {
-          console.error("Error getting signed URL for", serviceName, ":", signedError);
-          return null;
-        }
-
-        console.log("Using signed URL for", serviceName, ":", signedData.signedUrl);
-        return signedData.signedUrl;
       }
 
       console.log("Using public URL for", serviceName, ":", publicUrlData.publicUrl);
@@ -81,6 +83,9 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
 
   useEffect(() => {
     const loadImage = async () => {
+      setIsLoading(true);
+      setImageError(false);
+      
       const url = await getImageUrl(imageUrl);
       
       if (url) {
