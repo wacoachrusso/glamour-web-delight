@@ -8,6 +8,7 @@ import MeetTheOwner from "./pages/MeetTheOwner";
 import Store from "./pages/Store";
 import Team from "./pages/Team";
 import Services from "./pages/Services";
+import Portfolio from "./pages/Portfolio";
 import "./i18n/config";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/store" element={<Store />} />
           <Route path="/team" element={<Team />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/portfolio" element={<Portfolio />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

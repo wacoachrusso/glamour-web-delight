@@ -1,14 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import { ArrowUp, Loader2, Search } from "lucide-react";
+import { ArrowUp, Loader2, Search, Scissors } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import ServiceCard from "@/components/services/ServiceCard";
-import PortfolioSection from "@/components/services/PortfolioSection";
 import {
   Select,
   SelectContent,
@@ -19,6 +20,7 @@ import {
 
 const ServicesPage = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -96,9 +98,17 @@ const ServicesPage = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-cormorant font-bold mb-6">
               Our <span className="text-secondary">Services</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
               Discover our range of professional beauty and wellness services
             </p>
+            <Button 
+              variant="outline" 
+              onClick={() => navigate('/portfolio')}
+              className="border-2 border-secondary hover:bg-secondary/10 text-primary-foreground group"
+            >
+              View Our Work
+              <Scissors className="ml-2 h-4 w-4 transition-transform group-hover:rotate-45" />
+            </Button>
           </motion.div>
 
           <div className="flex flex-col md:flex-row gap-4 mb-12">
@@ -134,9 +144,6 @@ const ServicesPage = () => {
           </div>
         </div>
       </main>
-
-      {/* Portfolio Section */}
-      <PortfolioSection />
 
       {/* Scroll to Top Button */}
       <motion.button
