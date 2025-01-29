@@ -8,7 +8,7 @@ import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Input } from "@/components/ui/input";
 import ServiceCard from "@/components/services/ServiceCard";
-import PortfolioSection from "@/components/services/PortfolioSection";
+import PortfolioGallery from "@/components/portfolio/PortfolioGallery";
 import {
   Select,
   SelectContent,
@@ -135,8 +135,10 @@ const ServicesPage = () => {
         </div>
       </main>
 
-      {/* Portfolio Section */}
-      <PortfolioSection />
+      {/* Portfolio Gallery Section */}
+      <section className="py-24 bg-muted/30">
+        <PortfolioGallery />
+      </section>
 
       {/* Scroll to Top Button */}
       <motion.button
