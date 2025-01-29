@@ -12,18 +12,122 @@ const PortfolioSection = () => {
     queryKey: ["portfolioImages"],
     queryFn: async () => {
       console.log("Fetching portfolio images...");
-      const { data, error } = await supabase
+      
+      // Define the local images from public/lovable-uploads
+      const localImages = [
+        {
+          id: '1',
+          title: 'Balayage',
+          description: 'Professional balayage hair coloring',
+          image_url: '/lovable-uploads/Balayage5.jpg',
+          category: 'Hair Color'
+        },
+        {
+          id: '2',
+          title: 'Bayalage Style',
+          description: 'Modern bayalage technique',
+          image_url: '/lovable-uploads/Bayalage.jpg',
+          category: 'Hair Color'
+        },
+        {
+          id: '3',
+          title: 'Blonde Highlights',
+          description: 'Beautiful blonde hair with highlights',
+          image_url: '/lovable-uploads/Blonde hair color with highlights.jpg',
+          category: 'Hair Color'
+        },
+        {
+          id: '4',
+          title: 'Eyelash Extensions',
+          description: 'Professional eyelash extension service',
+          image_url: '/lovable-uploads/EyelashExtensions.jpg',
+          category: 'Beauty'
+        },
+        {
+          id: '5',
+          title: 'Gel Manicure',
+          description: 'Long-lasting gel manicure',
+          image_url: '/lovable-uploads/Gel manicure.jpg',
+          category: 'Nails'
+        },
+        {
+          id: '6',
+          title: 'Highlights',
+          description: 'Classic highlighting technique',
+          image_url: '/lovable-uploads/Highlights.jpg',
+          category: 'Hair Color'
+        },
+        {
+          id: '7',
+          title: 'Natural Highlights',
+          description: 'Natural-looking highlights',
+          image_url: '/lovable-uploads/Highlights2.jpg',
+          category: 'Hair Color'
+        },
+        {
+          id: '8',
+          title: 'Dimensional Highlights',
+          description: 'Multi-dimensional highlighting',
+          image_url: '/lovable-uploads/Highlights3.jpg',
+          category: 'Hair Color'
+        },
+        {
+          id: '9',
+          title: 'Layered Cut with Balayage',
+          description: 'Layered haircut with balayage coloring',
+          image_url: '/lovable-uploads/Layers haircut and balayage.jpg',
+          category: 'Hair Style'
+        },
+        {
+          id: '10',
+          title: 'Layered Haircut',
+          description: 'Modern layered haircut',
+          image_url: '/lovable-uploads/Layers haircut.jpg',
+          category: 'Hair Style'
+        },
+        {
+          id: '11',
+          title: 'Curtain Bangs',
+          description: 'Layered cut with curtain bangs',
+          image_url: '/lovable-uploads/Layers with curtain bangs.jpg',
+          category: 'Hair Style'
+        },
+        {
+          id: '12',
+          title: 'Partial Highlights',
+          description: 'Partial highlighting technique',
+          image_url: '/lovable-uploads/Partial highlights.jpg',
+          category: 'Hair Color'
+        },
+        {
+          id: '13',
+          title: 'Short Cut with Highlights',
+          description: 'Short haircut with highlights',
+          image_url: '/lovable-uploads/Short hair cut and highlights.jpg',
+          category: 'Hair Style'
+        }
+      ];
+
+      // Combine with any existing Supabase images
+      const { data: supabaseImages, error } = await supabase
         .from('portfolio_images')
         .select('*')
         .order('created_at', { ascending: false });
       
       if (error) {
         console.error("Error fetching portfolio images:", error);
-        throw error;
+        // Return local images if Supabase fetch fails
+        return localImages;
       }
       
-      console.log("Fetched portfolio images:", data);
-      return data;
+      // Combine and deduplicate images based on image_url
+      const allImages = [...localImages, ...supabaseImages];
+      const uniqueImages = allImages.filter((item, index, self) =>
+        index === self.findIndex((t) => t.image_url === item.image_url)
+      );
+      
+      console.log("Fetched portfolio images:", uniqueImages);
+      return uniqueImages;
     },
   });
 
