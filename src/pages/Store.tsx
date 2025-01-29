@@ -3,12 +3,11 @@ import { Navbar } from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import ProductCard from "@/components/products/ProductCard";
-import { Filter } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslation } from "react-i18next";
+import CategoryFilter from "@/components/store/CategoryFilter";
+import ProductGrid from "@/components/store/ProductGrid";
+import LoadingGrid from "@/components/store/LoadingGrid";
 
 const Store = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -56,27 +55,11 @@ const Store = () => {
           </p>
         </div>
         
-        <div className="mb-12">
-          <div className="flex items-center justify-center gap-4 flex-wrap">
-            <Button
-              variant={selectedCategory === null ? "secondary" : "outline"}
-              onClick={() => setSelectedCategory(null)}
-              className="flex items-center gap-2"
-            >
-              <Filter className="w-4 h-4" />
-              {t('store.allProducts')}
-            </Button>
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? "secondary" : "outline"}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
-        </div>
+        <CategoryFilter 
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onCategoryChange={setSelectedCategory}
+        />
         
         {error ? (
           <Alert variant="destructive" className="mb-8">
@@ -85,29 +68,9 @@ const Store = () => {
             </AlertDescription>
           </Alert>
         ) : isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className="space-y-4">
-                <Skeleton className="h-[300px] w-full rounded-lg" />
-                <Skeleton className="h-4 w-3/4" />
-                <Skeleton className="h-4 w-1/2" />
-              </div>
-            ))}
-          </div>
+          <LoadingGrid />
         ) : (
-          <>
-            {filteredProducts?.length === 0 ? (
-              <div className="text-center text-muted-foreground py-12">
-                {t('store.noProducts')}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                {filteredProducts?.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
-            )}
-          </>
+          <ProductGrid products={filteredProducts} isLoading={isLoading} />
         )}
       </main>
       <Footer />
