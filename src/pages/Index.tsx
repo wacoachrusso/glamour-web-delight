@@ -2,6 +2,7 @@ import { Navbar } from "../components/Navbar";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
 import FeaturedProducts from "../components/FeaturedProducts";
+import FeaturedWork from "../components/FeaturedWork";
 import Footer from "../components/Footer";
 import { Testimonials } from "../components/testimonials/Testimonials";
 import { useTranslation } from "react-i18next";
@@ -14,6 +15,7 @@ const Index = () => {
       <Navbar />
       <Hero />
       <Services />
+      <FeaturedWork />
       <FeaturedProducts />
       <section className="py-24 bg-gradient-to-b from-white via-primary/5 to-white">
         <div className="container mx-auto px-4">
