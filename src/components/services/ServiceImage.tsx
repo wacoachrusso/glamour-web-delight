@@ -34,19 +34,34 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
         return url;
       }
       
-      // Handle storage bucket paths - this is the main change
+      // Handle storage bucket paths
       console.log("Getting storage URL for", serviceName, "from path:", url);
-      const { data: storageData, error: storageError } = await supabase.storage
+      const { data: publicUrlData } = supabase.storage
         .from('salon_images')
-        .createSignedUrl(url, 3600); // 1 hour expiry
+        .getPublicUrl(url);
 
-      if (storageError || !storageData?.signedUrl) {
-        console.error("Error getting signed URL for", serviceName, ":", storageError);
+      if (!publicUrlData?.publicUrl) {
+        console.error("No public URL generated for", serviceName);
         return null;
       }
 
-      console.log("Generated signed URL for", serviceName, ":", storageData.signedUrl);
-      return storageData.signedUrl;
+      // Try to get a signed URL as fallback if needed
+      if (!publicUrlData.publicUrl.includes('salon_images')) {
+        const { data: signedData, error: signedError } = await supabase.storage
+          .from('salon_images')
+          .createSignedUrl(url, 3600);
+
+        if (signedError || !signedData?.signedUrl) {
+          console.error("Error getting signed URL for", serviceName, ":", signedError);
+          return null;
+        }
+
+        console.log("Using signed URL for", serviceName, ":", signedData.signedUrl);
+        return signedData.signedUrl;
+      }
+
+      console.log("Using public URL for", serviceName, ":", publicUrlData.publicUrl);
+      return publicUrlData.publicUrl;
     } catch (error) {
       console.error("Error processing image URL for:", serviceName, error);
       return null;
@@ -67,9 +82,11 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
   useEffect(() => {
     const loadImage = async () => {
       const url = await getImageUrl(imageUrl);
-      setFinalImageUrl(url);
       
       if (url) {
+        console.log("Setting final image URL for", serviceName, ":", url);
+        setFinalImageUrl(url);
+        
         const img = new Image();
         img.src = url;
         img.onload = handleImageLoad;
