@@ -8,9 +8,11 @@ import { Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTranslation } from "react-i18next";
 
 const Store = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const { data: products, isLoading, error } = useQuery({
     queryKey: ["products"],
@@ -47,8 +49,14 @@ const Store = () => {
       <Navbar />
       <main className="container mx-auto px-4 py-16">
         <h1 className="text-4xl md:text-5xl font-cormorant font-bold text-center mb-8">
-          Our Products
+          {t("store.title")}
         </h1>
+
+        <div className="text-center mb-12">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            {t("store.pricingMessage")}
+          </p>
+        </div>
         
         {/* Category Filter */}
         <div className="mb-12">
@@ -59,7 +67,7 @@ const Store = () => {
               className="flex items-center gap-2"
             >
               <Filter className="w-4 h-4" />
-              All Products
+              {t("store.allProducts")}
             </Button>
             {categories.map((category) => (
               <Button
@@ -76,7 +84,7 @@ const Store = () => {
         {error ? (
           <Alert variant="destructive" className="mb-8">
             <AlertDescription>
-              There was an error loading the products. Please try again later.
+              {t("store.errorLoading")}
             </AlertDescription>
           </Alert>
         ) : isLoading ? (
@@ -93,7 +101,7 @@ const Store = () => {
           <>
             {filteredProducts?.length === 0 ? (
               <div className="text-center text-muted-foreground py-12">
-                No products found in this category.
+                {t("store.noProducts")}
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
