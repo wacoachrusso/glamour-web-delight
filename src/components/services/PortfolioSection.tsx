@@ -1,9 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { motion } from "framer-motion";
-import { ImageOff } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import SectionHeader from "../shared/SectionHeader";
+import InteractiveBentoGallery from "../ui/interactive-bento-gallery";
 
 const PortfolioSection = () => {
   const { t } = useTranslation();
@@ -22,8 +21,108 @@ const PortfolioSection = () => {
         throw error;
       }
       
-      console.log("Fetched portfolio images:", data);
-      return data;
+      // Transform the data to match MediaItemType
+      const transformedImages = [
+        {
+          id: 1,
+          type: "image",
+          title: "Balayage Transformation",
+          desc: "Beautiful blonde balayage by our expert colorists",
+          url: "/lovable-uploads/Balayage5.jpg",
+          span: "md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2"
+        },
+        {
+          id: 2,
+          type: "image",
+          title: "Classic Bayalage",
+          desc: "Seamless color transition for a natural look",
+          url: "/lovable-uploads/Bayalage.jpg",
+          span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-2"
+        },
+        {
+          id: 3,
+          type: "image",
+          title: "Blonde Highlights",
+          desc: "Stunning blonde highlights with dimensional color",
+          url: "/lovable-uploads/Blonde hair color with highlights.jpg",
+          span: "md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2"
+        },
+        {
+          id: 4,
+          type: "image",
+          title: "Eyelash Extensions",
+          desc: "Beautiful, natural-looking lash extensions",
+          url: "/lovable-uploads/EyelashExtensions.jpg",
+          span: "md:col-span-2 md:row-span-2 sm:col-span-1 sm:row-span-2"
+        },
+        {
+          id: 5,
+          type: "image",
+          title: "Gel Manicure",
+          desc: "Long-lasting, glossy gel manicure",
+          url: "/lovable-uploads/Gel manicure.jpg",
+          span: "md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2"
+        },
+        {
+          id: 6,
+          type: "image",
+          title: "Highlights",
+          desc: "Perfect placement of highlights for maximum impact",
+          url: "/lovable-uploads/Highlights.jpg",
+          span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-2"
+        },
+        {
+          id: 7,
+          type: "image",
+          title: "Modern Highlights",
+          desc: "Contemporary highlighting techniques",
+          url: "/lovable-uploads/Highlights2.jpg",
+          span: "md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2"
+        },
+        {
+          id: 8,
+          type: "image",
+          title: "Natural Highlights",
+          desc: "Sun-kissed natural-looking highlights",
+          url: "/lovable-uploads/Highlights3.jpg",
+          span: "md:col-span-2 md:row-span-2 sm:col-span-1 sm:row-span-2"
+        },
+        {
+          id: 9,
+          type: "image",
+          title: "Layered Balayage",
+          desc: "Perfectly blended balayage on layered cut",
+          url: "/lovable-uploads/Layers haircut and balayage.jpg",
+          span: "md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2"
+        },
+        {
+          id: 10,
+          type: "image",
+          title: "Modern Layers",
+          desc: "Contemporary layered haircut",
+          url: "/lovable-uploads/Layers haircut.jpg",
+          span: "md:col-span-2 md:row-span-2 sm:col-span-2 sm:row-span-2"
+        },
+        {
+          id: 11,
+          type: "image",
+          title: "Curtain Bangs",
+          desc: "Trendy curtain bangs with layers",
+          url: "/lovable-uploads/Layers with curtain bangs.jpg",
+          span: "md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2"
+        },
+        {
+          id: 12,
+          type: "image",
+          title: "Partial Highlights",
+          desc: "Strategic partial highlights for dimension",
+          url: "/lovable-uploads/Partial highlights.jpg",
+          span: "md:col-span-2 md:row-span-2 sm:col-span-1 sm:row-span-2"
+        }
+      ];
+      
+      console.log("Transformed portfolio images:", transformedImages);
+      return transformedImages;
     },
   });
 
@@ -44,42 +143,13 @@ const PortfolioSection = () => {
           subtitleKey="portfolio.subtitle"
         />
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {portfolioImages?.map((image, index) => (
-            <motion.div
-              key={image.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative aspect-square overflow-hidden rounded-xl bg-muted"
-            >
-              {image.image_url ? (
-                <img
-                  src={image.image_url}
-                  alt={image.title}
-                  className="h-full w-full object-cover transition-all duration-300 group-hover:scale-110"
-                  onError={(e) => {
-                    console.error(`Error loading image: ${image.image_url}`);
-                    const target = e.target as HTMLImageElement;
-                    target.parentElement?.classList.add('error-state');
-                  }}
-                />
-              ) : (
-                <div className="flex h-full items-center justify-center">
-                  <ImageOff className="h-12 w-12 text-muted-foreground/40" />
-                </div>
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <h3 className="text-lg font-semibold">{image.title}</h3>
-                  {image.description && (
-                    <p className="mt-1 text-sm text-white/80">{image.description}</p>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {portfolioImages && (
+          <InteractiveBentoGallery
+            mediaItems={portfolioImages}
+            title={t('portfolio.title') + " " + t('portfolio.highlight')}
+            description={t('portfolio.subtitle')}
+          />
+        )}
       </div>
     </section>
   );
