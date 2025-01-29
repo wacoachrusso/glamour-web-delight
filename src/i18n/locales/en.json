@@ -17,6 +17,14 @@
     "address": "275 Adams St, Newark NJ 07105",
     "phone": "(973) 344-5199"
   },
+  "hero": {
+    "welcome": "WELCOME TO LUXURY",
+    "title": "Discover Your",
+    "highlight": "Timeless Beauty",
+    "description": "Where luxury meets transformation",
+    "bookNow": "Book Your Visit",
+    "ourServices": "Our Services"
+  },
   "portfolio": {
     "title": "Some of",
     "highlight": "Our Work",
