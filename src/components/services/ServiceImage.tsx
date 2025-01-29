@@ -22,28 +22,31 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
     }
     
     try {
-      // Handle local uploads (starting with /lovable-uploads/)
+      // Handle local uploads from public folder
       if (url.startsWith('/lovable-uploads/')) {
-        return url; // Return as is since these are served directly from public folder
+        console.log("Using local public file for", serviceName, ":", url);
+        return url;
       }
       
       // Handle external URLs (like Unsplash)
       if (url.startsWith('http')) {
+        console.log("Using external URL for", serviceName, ":", url);
         return url;
       }
       
-      // Handle storage bucket paths
-      const { data } = supabase.storage
+      // Handle storage bucket paths - this is the main change
+      console.log("Getting storage URL for", serviceName, "from path:", url);
+      const { data: storageData, error: storageError } = await supabase.storage
         .from('salon_images')
-        .getPublicUrl(url);
+        .createSignedUrl(url, 3600); // 1 hour expiry
 
-      if (!data?.publicUrl) {
-        console.error("No public URL generated for:", serviceName);
+      if (storageError || !storageData?.signedUrl) {
+        console.error("Error getting signed URL for", serviceName, ":", storageError);
         return null;
       }
 
-      console.log("Generated public URL for", serviceName, ":", data.publicUrl);
-      return data.publicUrl;
+      console.log("Generated signed URL for", serviceName, ":", storageData.signedUrl);
+      return storageData.signedUrl;
     } catch (error) {
       console.error("Error processing image URL for:", serviceName, error);
       return null;
