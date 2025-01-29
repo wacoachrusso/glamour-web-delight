@@ -47,14 +47,12 @@ const Store = () => {
       <Navbar />
       <main className="container mx-auto px-4 py-16">
         <h1 className="text-4xl md:text-5xl font-cormorant font-bold text-center mb-8">
-          Professional Hair Care Products
+          {t('store.title')}
         </h1>
 
         <div className="text-center mb-12">
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            We carry a curated selection of premium professional hair care products. 
-            Please inquire about pricing and availability during your visit, as we offer 
-            special promotions and professional recommendations tailored to your needs.
+            {t('store.pricingMessage')}
           </p>
         </div>
         
@@ -66,7 +64,7 @@ const Store = () => {
               className="flex items-center gap-2"
             >
               <Filter className="w-4 h-4" />
-              All Products
+              {t('store.allProducts')}
             </Button>
             {categories.map((category) => (
               <Button
@@ -83,7 +81,7 @@ const Store = () => {
         {error ? (
           <Alert variant="destructive" className="mb-8">
             <AlertDescription>
-              {t("store.errorLoading")}
+              {t('store.errorLoading')}
             </AlertDescription>
           </Alert>
         ) : isLoading ? (
@@ -100,7 +98,7 @@ const Store = () => {
           <>
             {filteredProducts?.length === 0 ? (
               <div className="text-center text-muted-foreground py-12">
-                No products found in this category.
+                {t('store.noProducts')}
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
