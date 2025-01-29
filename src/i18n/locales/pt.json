@@ -1,68 +1,45 @@
 {
-  "meta": {
-    "title": "Salão de Beleza Glamour - Serviços de Luxo para Cabelo, Unhas e Depilação",
-    "description": "Experimente serviços de beleza de luxo no Salão de Beleza Glamour. Serviços profissionais de cabelo, cuidados com unhas e depilação em um ambiente elegante.",
-    "keywords": "salão de beleza, cabeleireiro, salão de unhas, serviços de depilação, serviços de beleza, Newark NJ, penteado profissional, cuidados com unhas"
-  },
-  "nav": {
-    "home": "Início",
-    "services": "Serviços",
-    "about": "Sobre",
-    "gallery": "Galeria",
-    "contact": "Contato",
-    "bookNow": "Agende",
-    "products": "Produtos",
-    "team": "Nossa Equipe",
+  "contact": {
+    "title": "Entre em",
+    "highlight": "Contato",
+    "subtitle": "Adoraríamos ouvir de você. Envie-nos uma mensagem e responderemos o mais breve possível.",
     "hours": "Aberto todos os dias das 10h às 19h",
     "address": "275 Adams St, Newark NJ 07105",
     "phone": "(973) 344-5199"
   },
   "hero": {
-    "title": "Experimente",
-    "highlight": "Verdadeira Beleza",
-    "description": "Descubra serviços de beleza de luxo feitos especialmente para você",
+    "title": "Glamour's",
+    "highlight": "Beauty Salon",
+    "description": "Serviços Profissionais de Cabelo, Unhas e Depilação",
     "bookNow": "Agende Agora"
   },
   "portfolio": {
     "title": "Parte do",
     "highlight": "Nosso Trabalho",
-    "subtitle": "Navegue pelo nosso portfólio de serviços de beleza transformadores",
+    "subtitle": "Explore nosso portfólio de serviços de beleza transformadores",
     "featuredTitle": "Portfólio",
     "featuredHighlight": "Destacado",
-    "featuredSubtitle": "Veja algumas das nossas transformações mais impressionantes",
+    "featuredSubtitle": "Confira algumas de nossas transformações mais impressionantes",
     "viewMore": "Ver Mais Trabalhos"
   },
+  "products": {
+    "title": "Produtos",
+    "highlight": "Destacados",
+    "subtitle": "Descubra nossa seleção de produtos de beleza premium",
+    "viewAll": "Ver Todos os Produtos",
+    "loading": "Carregando produtos..."
+  },
   "services": {
-    "title": "Serviços",
-    "highlight": "de Luxo",
-    "subtitle": "Desfrute de nossos tratamentos de beleza premium, criados para realçar sua beleza natural",
-    "loading": "Carregando nossos serviços de luxo...",
+    "title": "Nossos",
+    "highlight": "Serviços",
+    "subtitle": "Serviços de beleza profissionais adaptados às suas necessidades",
     "viewAll": "Ver Todos os Serviços",
-    "bookNow": "Agendar Agora",
-    "duration": "{{duration}} minutos",
+    "loading": "Carregando serviços...",
     "categories": {
-      "haircolor": "Coloração",
-      "haircare": "Cuidados com Cabelo",
-      "nailcare": "Cuidados com Unhas",
-      "beautyservices": "Serviços de Beleza",
+      "hair": "Serviços de Cabelo",
+      "nails": "Serviços de Unhas",
       "waxing": "Serviços de Depilação",
       "facials": "Tratamentos Faciais"
-    },
-    "names": {
-      "haircut": "Corte de Cabelo",
-      "color_treatment": "Tratamento de Cor",
-      "manicure": "Manicure",
-      "pedicure": "Pedicure",
-      "facial": "Facial",
-      "waxing": "Depilação"
-    },
-    "descriptions": {
-      "haircut": "Corte de cabelo profissional e penteado adaptado às suas preferências",
-      "color_treatment": "Serviços de coloração premium usando produtos de alta qualidade",
-      "manicure": "Cuidados com unhas e tratamento de mãos luxuoso",
-      "pedicure": "Tratamento relaxante para pés e unhas",
-      "facial": "Tratamento facial rejuvenescedor para uma pele radiante",
-      "waxing": "Serviços de depilação profissional para uma pele suave"
     }
   }
 }
