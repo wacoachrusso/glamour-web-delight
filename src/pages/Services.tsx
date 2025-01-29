@@ -85,7 +85,6 @@ const ServicesPage = () => {
     <div className="min-h-screen bg-gradient-to-b from-muted/50 via-background to-background">
       <Navbar />
       
-      {/* Services Section */}
       <main className="py-24 md:py-32">
         <div className="container mx-auto px-4">
           <motion.div
@@ -116,35 +115,37 @@ const ServicesPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-3xl mx-auto mb-16 p-6 bg-white/50 backdrop-blur-sm rounded-lg shadow-lg border border-secondary/20"
+            className="max-w-3xl mx-auto mb-16 p-8 bg-white/80 backdrop-blur-sm rounded-xl shadow-xl border-2 border-secondary/30 relative before:absolute before:inset-0 before:bg-radiant-warm before:opacity-5 before:rounded-xl"
           >
-            <h2 className="text-2xl font-cormorant font-semibold text-center mb-4">Find Your Perfect Service</h2>
-            <p className="text-muted-foreground text-center mb-6">Use our search tools to quickly find the service you're looking for</p>
-            
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary w-5 h-5" />
-                <Input
-                  type="text"
-                  placeholder="Search services..."
-                  className="pl-10 border-secondary/30 focus:border-secondary"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
+            <div className="relative z-10">
+              <h2 className="text-2xl font-cormorant font-semibold text-center mb-4">Find Your Perfect Service</h2>
+              <p className="text-muted-foreground text-center mb-8">Use our search tools to quickly find the service you're looking for</p>
+              
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="relative flex-1 group">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-secondary w-5 h-5 transition-colors group-hover:text-secondary/80" />
+                  <Input
+                    type="text"
+                    placeholder="Search services..."
+                    className="pl-10 border-secondary/30 focus:border-secondary shadow-sm focus:shadow-md transition-shadow duration-300 bg-white/90"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                  <SelectTrigger className="w-full md:w-[200px] border-secondary/30 shadow-sm hover:shadow-md transition-shadow duration-300 bg-white/90">
+                    <SelectValue placeholder="All Categories" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Categories</SelectItem>
+                    {categories.map((category) => (
+                      <SelectItem key={category} value={category}>
+                        {category}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="w-full md:w-[200px] border-secondary/30">
-                  <SelectValue placeholder="All Categories" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Categories</SelectItem>
-                  {categories.map((category) => (
-                    <SelectItem key={category} value={category}>
-                      {category}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
             </div>
           </motion.div>
 
