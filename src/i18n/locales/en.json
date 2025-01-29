@@ -17,6 +17,12 @@
     "address": "275 Adams St, Newark NJ 07105",
     "phone": "(973) 344-5199"
   },
+  "hero": {
+    "title": "Experience",
+    "highlight": "True Beauty",
+    "description": "Discover luxury beauty services tailored just for you",
+    "bookNow": "Book Now"
+  },
   "portfolio": {
     "title": "Some of",
     "highlight": "Our Work",
