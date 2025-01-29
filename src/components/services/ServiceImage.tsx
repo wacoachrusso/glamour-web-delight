@@ -24,39 +24,25 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
     try {
       // Handle local uploads (starting with /lovable-uploads/)
       if (url.startsWith('/lovable-uploads/')) {
-        const cleanPath = url.replace('/lovable-uploads/', '');
-        console.log("Processing local path for", serviceName, ":", cleanPath);
-        
-        const { data } = supabase.storage
-          .from('salon_images')
-          .getPublicUrl(cleanPath);
-
-        if (!data?.publicUrl) {
-          console.error("No public URL generated for:", serviceName);
-          return null;
-        }
-
-        console.log("Generated public URL for", serviceName, ":", data.publicUrl);
-        return data.publicUrl;
+        return url; // Return as is since these are served directly from public folder
       }
       
       // Handle external URLs (like Unsplash)
       if (url.startsWith('http')) {
-        console.log("Using external URL for:", serviceName);
         return url;
       }
       
-      // Handle direct storage paths
+      // Handle storage bucket paths
       const { data } = supabase.storage
         .from('salon_images')
         .getPublicUrl(url);
 
       if (!data?.publicUrl) {
-        console.error("No public URL generated for direct path:", serviceName);
+        console.error("No public URL generated for:", serviceName);
         return null;
       }
 
-      console.log("Generated public URL from direct path for", serviceName, ":", data.publicUrl);
+      console.log("Generated public URL for", serviceName, ":", data.publicUrl);
       return data.publicUrl;
     } catch (error) {
       console.error("Error processing image URL for:", serviceName, error);
@@ -78,8 +64,9 @@ export const ServiceImage = ({ imageUrl, serviceName, category }: ServiceImagePr
   useEffect(() => {
     const loadImage = async () => {
       const url = await getImageUrl(imageUrl);
+      setFinalImageUrl(url);
+      
       if (url) {
-        setFinalImageUrl(url);
         const img = new Image();
         img.src = url;
         img.onload = handleImageLoad;

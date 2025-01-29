@@ -1,7 +1,42 @@
 {
+  "meta": {
+    "title": "Glamour's Beauty Salon - Luxury Hair, Nail and Waxing Services",
+    "description": "Experience luxury beauty services at Glamour's Beauty Salon. Professional hair, nail care and waxing services in an elegant setting.",
+    "keywords": "beauty salon, hair salon, nail salon, waxing services, beauty services, Newark NJ, professional hairstyling, nail care"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About Us",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "bookNow": "Book Now",
+    "products": "Products",
+    "team": "Our Team",
+    "hours": "Open daily 10am - 7pm",
+    "address": "275 Adams St, Newark NJ 07105",
+    "phone": "(973) 344-5199"
+  },
   "portfolio": {
     "title": "Some of",
     "highlight": "Our Work",
     "subtitle": "Browse through our portfolio of transformative hair and beauty services"
+  },
+  "services": {
+    "title": "Services",
+    "highlight": "of Luxury",
+    "subtitle": "Enjoy our premium beauty treatments, designed to enhance your natural beauty",
+    "loading": "Loading our luxury services...",
+    "viewAll": "View All Services",
+    "bookNow": "Book Now",
+    "duration": "{{duration}} minutes",
+    "categories": {
+      "haircolor": "Hair Color",
+      "haircare": "Hair Care",
+      "nailcare": "Nail Care",
+      "beautyservices": "Beauty Services",
+      "waxing": "Waxing Services",
+      "facials": "Facial Treatments"
+    }
   }
 }
