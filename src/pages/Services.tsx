@@ -7,6 +7,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Input } from "@/components/ui/input";
+import ServiceCard from "@/components/services/ServiceCard";
+import PortfolioSection from "@/components/services/PortfolioSection";
 import {
   Select,
   SelectContent,
@@ -80,6 +82,8 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-muted/50 via-background to-background">
       <Navbar />
+      
+      {/* Services Section */}
       <main className="py-24 md:py-32">
         <div className="container mx-auto px-4">
           <motion.div
@@ -125,55 +129,28 @@ const ServicesPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredServices?.map((service, index) => (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group"
-              >
-                <div className="relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl">
-                  <div className="aspect-[4/3] overflow-hidden bg-muted/10">
-                    <img
-                      src={service.image_url}
-                      alt={service.name}
-                      className="h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
-                      onError={(e) => {
-                        console.error(`Error loading image for ${service.name}`);
-                        const target = e.target as HTMLImageElement;
-                        target.src = 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=800&q=80';
-                      }}
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="font-cormorant text-2xl font-bold text-primary mb-2">
-                      {service.name}
-                    </h3>
-                    <p className="text-muted-foreground line-clamp-2 mb-4">
-                      {service.description}
-                    </p>
-                    <div className="text-sm text-muted-foreground">
-                      <span>{t('services.duration', { duration: service.duration })}</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+              <ServiceCard key={service.id} service={service} index={index} />
             ))}
           </div>
-
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: showScrollTop ? 1 : 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={scrollToTop}
-            className={`fixed bottom-8 right-8 bg-secondary text-white p-3 rounded-full shadow-lg hover:bg-secondary/90 transition-all duration-300 ${
-              showScrollTop ? 'visible' : 'invisible'
-            }`}
-          >
-            <ArrowUp className="w-6 h-6" />
-          </motion.button>
         </div>
       </main>
+
+      {/* Portfolio Section */}
+      <PortfolioSection />
+
+      {/* Scroll to Top Button */}
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showScrollTop ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        onClick={scrollToTop}
+        className={`fixed bottom-8 right-8 bg-secondary text-white p-3 rounded-full shadow-lg hover:bg-secondary/90 transition-all duration-300 ${
+          showScrollTop ? 'visible' : 'invisible'
+        }`}
+      >
+        <ArrowUp className="w-6 h-6" />
+      </motion.button>
+
       <Footer />
     </div>
   );
