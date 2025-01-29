@@ -27,7 +27,12 @@
     "highlight": "Destacados",
     "subtitle": "Descubre nuestra selección de productos de belleza premium",
     "viewAll": "Ver Todos los Productos",
-    "loading": "Cargando productos..."
+    "loading": "Cargando productos...",
+    "allProducts": "Todos los Productos",
+    "searchPlaceholder": "Buscar productos...",
+    "noProducts": "No se encontraron productos en esta categoría.",
+    "category": "Categoría",
+    "allCategories": "Todas las Categorías"
   },
   "services": {
     "title": "Nuestros",
@@ -41,17 +46,41 @@
       "nails": "Servicios de Uñas",
       "waxing": "Servicios de Depilación",
       "facials": "Tratamientos Faciales"
-    }
+    },
+    "findService": "Encuentra tu Servicio Perfecto",
+    "searchDescription": "Usa nuestras herramientas de búsqueda para encontrar rápidamente el servicio que buscas",
+    "searchPlaceholder": "Buscar servicios..."
   },
   "testimonials": {
     "title": "Lo Que Dicen Nuestros Clientes",
     "subtitle": "Lee las experiencias de nuestros valiosos clientes"
   },
   "footer": {
-    "rights": "Todos los derechos reservados"
+    "rights": "Todos los derechos reservados",
+    "contact": "Contáctanos",
+    "hours": "Horario",
+    "social": "Síguenos"
   },
   "meta": {
     "title": "Glamour's Beauty Salon - Servicios de Belleza Profesionales en Newark",
     "description": "Servicios profesionales de peluquería, cuidado de uñas y depilación en Newark, NJ. ¡Reserva tu cita hoy!"
+  },
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "services": "Servicios",
+    "team": "Nuestro Equipo",
+    "store": "Tienda",
+    "logo_alt": "Glamour's Beauty Salon"
+  },
+  "team": {
+    "title": "Conoce a Nuestro",
+    "highlight": "Equipo",
+    "subtitle": "Conoce a los profesionales talentosos detrás de nuestros servicios",
+    "memberPlaceholder": "Miembro del Equipo",
+    "comingSoon": "Próximamente",
+    "expertTitle": "Experto en Belleza",
+    "profileDescription": "El perfil de nuestro miembro del equipo estará disponible pronto.",
+    "description": "Estamos constantemente ampliando nuestro equipo de profesionales talentosos. ¡Vuelve pronto para conocer a nuestros nuevos miembros del equipo!"
   }
 }

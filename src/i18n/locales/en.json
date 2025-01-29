@@ -27,7 +27,12 @@
     "highlight": "Products",
     "subtitle": "Discover our selection of premium beauty products",
     "viewAll": "View All Products",
-    "loading": "Loading products..."
+    "loading": "Loading products...",
+    "allProducts": "All Products",
+    "searchPlaceholder": "Search products...",
+    "noProducts": "No products found in this category.",
+    "category": "Category",
+    "allCategories": "All Categories"
   },
   "services": {
     "title": "Our",
@@ -41,14 +46,20 @@
       "nails": "Nail Services",
       "waxing": "Waxing Services",
       "facials": "Facial Treatments"
-    }
+    },
+    "findService": "Find Your Perfect Service",
+    "searchDescription": "Use our search tools to quickly find the service you're looking for",
+    "searchPlaceholder": "Search services..."
   },
   "testimonials": {
     "title": "What Our Clients Say",
     "subtitle": "Read about experiences from our valued customers"
   },
   "footer": {
-    "rights": "All rights reserved"
+    "rights": "All rights reserved",
+    "contact": "Contact Us",
+    "hours": "Business Hours",
+    "social": "Follow Us"
   },
   "meta": {
     "title": "Glamour's Beauty Salon - Professional Beauty Services in Newark",
@@ -61,5 +72,15 @@
     "team": "Our Team",
     "store": "Store",
     "logo_alt": "Glamour's Beauty Salon"
+  },
+  "team": {
+    "title": "Meet Our",
+    "highlight": "Team",
+    "subtitle": "Get to know the talented professionals behind our services",
+    "memberPlaceholder": "Team Member",
+    "comingSoon": "Coming Soon",
+    "expertTitle": "Beauty Expert",
+    "profileDescription": "Our team member's profile will be available soon.",
+    "description": "We're constantly growing our team of talented professionals. Check back soon to meet our newest team members!"
   }
 }

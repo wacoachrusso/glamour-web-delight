@@ -1,12 +1,4 @@
 {
-  "nav": {
-    "home": "Início",
-    "about": "Sobre",
-    "services": "Serviços",
-    "team": "Nossa Equipe",
-    "store": "Loja",
-    "logo_alt": "Glamour's Beauty Salon"
-  },
   "contact": {
     "title": "Entre em",
     "highlight": "Contato",
@@ -35,7 +27,12 @@
     "highlight": "Destacados",
     "subtitle": "Descubra nossa seleção de produtos de beleza premium",
     "viewAll": "Ver Todos os Produtos",
-    "loading": "Carregando produtos..."
+    "loading": "Carregando produtos...",
+    "allProducts": "Todos os Produtos",
+    "searchPlaceholder": "Buscar produtos...",
+    "noProducts": "Nenhum produto encontrado nesta categoria.",
+    "category": "Categoria",
+    "allCategories": "Todas as Categorias"
   },
   "services": {
     "title": "Nossos",
@@ -46,20 +43,44 @@
     "duration": "{{duration}} minutos",
     "categories": {
       "hair": "Serviços de Cabelo",
-      "nails": "Serviços de Unhas",
+      "nails": "Serviços de Unhas", 
       "waxing": "Serviços de Depilação",
       "facials": "Tratamentos Faciais"
-    }
+    },
+    "findService": "Encontre seu Serviço Perfeito",
+    "searchDescription": "Use nossas ferramentas de busca para encontrar rapidamente o serviço que você procura",
+    "searchPlaceholder": "Buscar serviços..."
   },
   "testimonials": {
     "title": "O Que Nossos Clientes Dizem",
     "subtitle": "Leia as experiências de nossos valiosos clientes"
   },
   "footer": {
-    "rights": "Todos os direitos reservados"
+    "rights": "Todos os direitos reservados",
+    "contact": "Contate-nos",
+    "hours": "Horário de Funcionamento",
+    "social": "Siga-nos"
   },
   "meta": {
     "title": "Glamour's Beauty Salon - Serviços de Beleza Profissionais em Newark",
     "description": "Serviços profissionais de cabelo, unhas e depilação em Newark, NJ. Agende seu horário hoje!"
+  },
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "services": "Serviços",
+    "team": "Nossa Equipe",
+    "store": "Loja",
+    "logo_alt": "Glamour's Beauty Salon"
+  },
+  "team": {
+    "title": "Conheça Nossa",
+    "highlight": "Equipe",
+    "subtitle": "Conheça os profissionais talentosos por trás de nossos serviços",
+    "memberPlaceholder": "Membro da Equipe",
+    "comingSoon": "Em Breve",
+    "expertTitle": "Especialista em Beleza",
+    "profileDescription": "O perfil do nosso membro da equipe estará disponível em breve.",
+    "description": "Estamos constantemente expandindo nossa equipe de profissionais talentosos. Volte em breve para conhecer nossos novos membros da equipe!"
   }
 }
