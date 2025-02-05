@@ -21,8 +21,8 @@ const Hero = () => {
         className="absolute inset-0"
         style={{
           background: `
-            linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%),
-            linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(248,215,215,0.2) 100%)
+            linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%),
+            linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(248,215,215,0.2) 100%)
           `
         }}
       />
@@ -44,7 +44,9 @@ const Hero = () => {
               className="text-7xl sm:text-8xl md:text-9xl font-cormorant font-bold text-white leading-tight tracking-tight"
             >
               {t('hero.title')} <br />
-              <span className="text-secondary">{t('hero.highlight')}</span>
+              <span className="text-secondary bg-clip-text text-transparent bg-gradient-to-r from-secondary via-secondary-light to-secondary">
+                {t('hero.highlight')}
+              </span>
             </motion.h1>
             
             {/* Description */}
@@ -66,10 +68,10 @@ const Hero = () => {
             >
               <a 
                 href="tel:+19733445199"
-                className="inline-flex items-center justify-center bg-secondary hover:bg-secondary-light text-secondary-foreground text-lg px-12 py-7 
+                className="inline-flex items-center justify-center bg-gradient-to-r from-secondary to-secondary-light text-secondary-foreground text-lg px-12 py-7 
                           transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl
                           font-montserrat tracking-wider uppercase min-w-[240px] relative overflow-hidden rounded-md
-                          after:absolute after:inset-0 after:z-[-1] after:bg-secondary-light/20
+                          after:absolute after:inset-0 after:z-[-1] after:bg-white/20
                           after:translate-y-[100%] hover:after:translate-y-0 after:transition-transform after:duration-300"
               >
                 <Phone className="mr-2 h-5 w-5" />
