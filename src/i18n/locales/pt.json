@@ -8,12 +8,10 @@
     "phone": "(973) 344-5199"
   },
   "hero": {
-    "welcome": "Bem-vindo ao",
     "title": "Glamour's",
     "highlight": "Beauty Salon",
     "description": "Serviços Profissionais de Cabelo, Unhas e Depilação",
-    "bookNow": "Agende Agora",
-    "learnMore": "Saiba Mais"
+    "bookNow": "Agende Agora"
   },
   "portfolio": {
     "title": "Nossa",
@@ -61,7 +59,7 @@
     "rights": "Todos os direitos reservados",
     "contact": "Contate-nos",
     "hours": "Horário de Funcionamento",
-    "follow": "Siga-nos"
+    "social": "Siga-nos"
   },
   "meta": {
     "title": "Glamour's Beauty Salon - Serviços de Beleza Profissionais em Newark",
@@ -73,9 +71,7 @@
     "services": "Serviços",
     "team": "Nossa Equipe",
     "store": "Loja",
-    "logo_alt": "Glamour's Beauty Salon",
-    "phone": "(973) 344-5199",
-    "address": "275 Adams St, Newark NJ 07105"
+    "logo_alt": "Glamour's Beauty Salon"
   },
   "team": {
     "title": "Conheça Nossa",

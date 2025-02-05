@@ -42,12 +42,4 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-cormorant font-bold tracking-tight;
-  }
-
-  p {
-    @apply font-montserrat leading-relaxed text-primary-foreground/80;
-  }
 }
