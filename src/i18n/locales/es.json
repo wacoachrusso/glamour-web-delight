@@ -1,4 +1,17 @@
 {
+  "blog": {
+    "featured": {
+      "title": "Belleza y",
+      "highlight": "Estilo",
+      "subtitle": "Consejos de expertos e ideas de nuestros profesionales de la belleza para ayudarte a lucir y sentirte mejor",
+      "viewAll": "Ver Todos los Artículos"
+    },
+    "title": "Nuestro Blog de Belleza",
+    "notFound": {
+      "title": "Publicación no encontrada",
+      "message": "La publicación que buscas no existe o ha sido eliminada."
+    }
+  },
   "contact": {
     "title": "Ponte en",
     "highlight": "Contacto",
@@ -50,7 +63,25 @@
     },
     "findService": "Encuentra tu Servicio Perfecto",
     "searchDescription": "Usa nuestras herramientas de búsqueda para encontrar rápidamente el servicio que buscas",
-    "searchPlaceholder": "Buscar servicios..."
+    "searchPlaceholder": "Buscar servicios...",
+    "names": {
+      "haircut": "Corte de Pelo",
+      "color": "Tinte de Cabello",
+      "highlights": "Mechas",
+      "manicure": "Manicura",
+      "pedicure": "Pedicura",
+      "facial": "Facial",
+      "waxing": "Depilación"
+    },
+    "descriptions": {
+      "haircut": "Corte de pelo profesional y peinado",
+      "color": "Servicio completo de coloración",
+      "highlights": "Mechas parciales o completas",
+      "manicure": "Manicura clásica o en gel",
+      "pedicure": "Tratamiento relajante de pedicura",
+      "facial": "Limpieza facial profunda",
+      "waxing": "Varios servicios de depilación"
+    }
   },
   "testimonials": {
     "title": "Lo Que Dicen Nuestros Clientes",

@@ -12,8 +12,107 @@
       "message": "The blog post you're looking for doesn't exist or has been removed."
     }
   },
+  "contact": {
+    "title": "Get in",
+    "highlight": "Touch",
+    "subtitle": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+    "hours": "Open daily from 10am to 7pm",
+    "address": "275 Adams St, Newark NJ 07105",
+    "phone": "(973) 344-5199"
+  },
+  "hero": {
+    "title": "Glamour's",
+    "highlight": "Beauty Salon",
+    "description": "Professional Hair, Nail & Waxing Services",
+    "bookAppointment": "Book Appointment",
+    "callNow": "Call Now"
+  },
+  "portfolio": {
+    "title": "Our",
+    "highlight": "Gallery",
+    "subtitle": "Explore our collection of stunning transformations",
+    "featuredTitle": "Featured",
+    "featuredHighlight": "Work",
+    "featuredSubtitle": "Check out some of our most impressive transformations",
+    "viewMore": "View More Work"
+  },
+  "products": {
+    "title": "Featured",
+    "highlight": "Products",
+    "subtitle": "Discover our selection of premium beauty products",
+    "viewAll": "View All Products",
+    "loading": "Loading products...",
+    "allProducts": "All Products",
+    "searchPlaceholder": "Search products...",
+    "noProducts": "No products found in this category.",
+    "category": "Category",
+    "allCategories": "All Categories"
+  },
+  "services": {
+    "title": "Our",
+    "highlight": "Services",
+    "subtitle": "Professional beauty services tailored to your needs",
+    "viewAll": "View All Services",
+    "loading": "Loading services...",
+    "duration": "{{duration}} minutes",
+    "categories": {
+      "hair": "Hair Services",
+      "nails": "Nail Services",
+      "waxing": "Waxing Services",
+      "facials": "Facial Treatments"
+    },
+    "findService": "Find Your Perfect Service",
+    "searchDescription": "Use our search tools to quickly find the service you're looking for",
+    "searchPlaceholder": "Search services...",
+    "names": {
+      "haircut": "Haircut",
+      "color": "Hair Color",
+      "highlights": "Highlights",
+      "manicure": "Manicure",
+      "pedicure": "Pedicure",
+      "facial": "Facial",
+      "waxing": "Waxing"
+    },
+    "descriptions": {
+      "haircut": "Professional haircut and style",
+      "color": "Full hair color service",
+      "highlights": "Partial or full highlights",
+      "manicure": "Classic or gel manicure",
+      "pedicure": "Relaxing pedicure treatment",
+      "facial": "Deep cleansing facial",
+      "waxing": "Various waxing services"
+    }
+  },
   "testimonials": {
     "title": "What Our Clients Say",
-    "subtitle": "Read the experiences of our satisfied clients."
+    "subtitle": "Read the experiences of our valued clients"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "contact": "Contact Us",
+    "hours": "Opening Hours",
+    "social": "Follow Us"
+  },
+  "meta": {
+    "title": "Glamour's Beauty Salon - Professional Beauty Services in Newark",
+    "description": "Professional hair, nail, and waxing services in Newark, NJ. Book your appointment today!"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "team": "Our Team",
+    "store": "Store",
+    "logo_alt": "Glamour's Beauty Salon"
+  },
+  "team": {
+    "title": "Meet Our",
+    "highlight": "Team",
+    "subtitle": "Meet the talented professionals behind our services",
+    "memberPlaceholder": "Team Member",
+    "comingSoon": "Coming Soon",
+    "expertTitle": "Beauty Expert",
+    "profileDescription": "Our team member's profile will be available soon.",
+    "description": "We're constantly expanding our team of talented professionals. Check back soon to meet our new team members!"
   }
 }

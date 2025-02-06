@@ -1,4 +1,17 @@
 {
+  "blog": {
+    "featured": {
+      "title": "Beleza e",
+      "highlight": "Estilo",
+      "subtitle": "Conselhos especializados e insights de nossos profissionais de beleza para ajudar você a se sentir e parecer melhor",
+      "viewAll": "Ver Todos os Artigos"
+    },
+    "title": "Nosso Blog de Beleza",
+    "notFound": {
+      "title": "Post não encontrado",
+      "message": "O post do blog que você está procurando não existe ou foi removido."
+    }
+  },
   "contact": {
     "title": "Entre em",
     "highlight": "Contato",
@@ -44,13 +57,31 @@
     "duration": "{{duration}} minutos",
     "categories": {
       "hair": "Serviços de Cabelo",
-      "nails": "Serviços de Unhas", 
+      "nails": "Serviços de Unhas",
       "waxing": "Serviços de Depilação",
       "facials": "Tratamentos Faciais"
     },
     "findService": "Encontre seu Serviço Perfeito",
     "searchDescription": "Use nossas ferramentas de busca para encontrar rapidamente o serviço que você procura",
-    "searchPlaceholder": "Buscar serviços..."
+    "searchPlaceholder": "Buscar serviços...",
+    "names": {
+      "haircut": "Corte de Cabelo",
+      "color": "Coloração",
+      "highlights": "Mechas",
+      "manicure": "Manicure",
+      "pedicure": "Pedicure",
+      "facial": "Limpeza de Pele",
+      "waxing": "Depilação"
+    },
+    "descriptions": {
+      "haircut": "Corte de cabelo profissional e finalização",
+      "color": "Serviço completo de coloração",
+      "highlights": "Mechas parciais ou completas",
+      "manicure": "Manicure clássica ou em gel",
+      "pedicure": "Tratamento relaxante de pedicure",
+      "facial": "Limpeza de pele profunda",
+      "waxing": "Diversos serviços de depilação"
+    }
   },
   "testimonials": {
     "title": "O Que Nossos Clientes Dizem",
