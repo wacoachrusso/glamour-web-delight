@@ -6,11 +6,13 @@ import Services from "./pages/Services";
 import Team from "./pages/Team";
 import Store from "./pages/Store";
 import MeetTheOwner from "./pages/MeetTheOwner";
+import { ScrollToTop } from "./components/ScrollToTop";
 import "./App.css";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/meet-the-owner" element={<MeetTheOwner />} />
