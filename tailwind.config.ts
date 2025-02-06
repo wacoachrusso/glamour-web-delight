@@ -71,6 +71,28 @@ export default {
         cormorant: ["Cormorant Garamond", "serif"],
         montserrat: ["Montserrat", "sans-serif"],
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#1A1A1A',
+            a: {
+              color: '#D4AF37',
+              '&:hover': {
+                color: '#F5E1A4',
+              },
+            },
+            h1: {
+              fontFamily: 'Cormorant Garamond, serif',
+            },
+            h2: {
+              fontFamily: 'Cormorant Garamond, serif',
+            },
+            h3: {
+              fontFamily: 'Cormorant Garamond, serif',
+            },
+          },
+        },
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -92,5 +114,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;

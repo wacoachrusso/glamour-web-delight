@@ -5,6 +5,11 @@
       "highlight": "Tips",
       "subtitle": "Expert advice and insights from our beauty professionals to help you look and feel your best",
       "viewAll": "View All Articles"
+    },
+    "title": "Our Beauty Blog",
+    "notFound": {
+      "title": "Post not found",
+      "message": "The blog post you're looking for doesn't exist or has been removed."
     }
   },
   "testimonials": {
