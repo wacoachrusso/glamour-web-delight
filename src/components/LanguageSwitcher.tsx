@@ -10,7 +10,7 @@ import {
 import { useEffect } from "react";
 
 const LanguageSwitcher = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const languages = [
     { code: 'en', name: 'English' },
@@ -22,25 +22,25 @@ const LanguageSwitcher = () => {
   useEffect(() => {
     const savedLang = localStorage.getItem('i18nextLng');
     if (savedLang && languages.some(lang => lang.code === savedLang)) {
-      i18n.changeLanguage(savedLang);
+      void i18n.changeLanguage(savedLang);
     } else {
       // Set default language if none is saved
-      i18n.changeLanguage('en');
+      void i18n.changeLanguage('en');
     }
   }, [i18n]);
 
   const handleLanguageChange = (langCode: string) => {
-    i18n.changeLanguage(langCode);
+    void i18n.changeLanguage(langCode);
     localStorage.setItem('i18nextLng', langCode);
     // Update HTML lang attribute for SEO
     document.documentElement.lang = langCode;
     // Update meta description for SEO
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', i18n.t('meta.description'));
+      metaDescription.setAttribute('content', t('meta.description'));
     }
     // Update page title for SEO
-    document.title = i18n.t('meta.title');
+    document.title = t('meta.title');
   };
 
   // Get current language with fallback to 'en'
