@@ -61,37 +61,7 @@ export default {
         'radiant-gold': 'linear-gradient(to right, #D4AF37 0%, #F5E1A4 100%)',
         'elegant-fade': 'linear-gradient(to bottom right, rgba(255,255,255,0.9), rgba(255,255,255,0.7))',
         'soft-overlay': 'linear-gradient(to bottom, rgba(248,215,215,0.1), rgba(212,175,55,0.05))',
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      fontFamily: {
-        cormorant: ["Cormorant Garamond", "serif"],
-        montserrat: ["Montserrat", "sans-serif"],
-      },
-      typography: {
-        DEFAULT: {
-          css: {
-            color: '#1A1A1A',
-            a: {
-              color: '#D4AF37',
-              '&:hover': {
-                color: '#F5E1A4',
-              },
-            },
-            h1: {
-              fontFamily: 'Cormorant Garamond, serif',
-            },
-            h2: {
-              fontFamily: 'Cormorant Garamond, serif',
-            },
-            h3: {
-              fontFamily: 'Cormorant Garamond, serif',
-            },
-          },
-        },
+        'gradient-radial': 'radial-gradient(circle, var(--tw-gradient-stops))',
       },
       keyframes: {
         "accordion-down": {
@@ -106,11 +76,17 @@ export default {
           from: { opacity: "0", transform: "translateY(10px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        shimmer: {
+          '0%': { opacity: '1' },
+          '50%': { opacity: '0.7' },
+          '100%': { opacity: '1' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         fadeIn: "fadeIn 0.5s ease-out forwards",
+        shimmer: "shimmer 3s ease-in-out infinite",
       },
     },
   },

@@ -50,22 +50,29 @@ const MeetTheOwner = () => {
               onLoad={() => setImageLoaded(true)}
             />
             
-            {/* Logo Section */}
-            <div className="relative z-10 flex justify-center">
+            {/* Logo Section with Sparkle Animation */}
+            <div className="relative z-10 flex justify-center mt-12">
               {!logoLoaded && (
                 <Skeleton className="w-96 h-48 rounded-xl" />
               )}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="bg-gradient-to-b from-white/90 to-white/70 backdrop-blur p-6 rounded-xl shadow-lg border border-secondary/10"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ 
+                  duration: 0.8,
+                  delay: 0.3,
+                  ease: [0.4, 0, 0.2, 1]
+                }}
+                className="relative"
               >
+                <div className="absolute inset-0 animate-pulse mix-blend-overlay opacity-50 bg-gradient-radial from-secondary/20 via-transparent to-transparent rounded-xl"></div>
                 <img
                   src="/lovable-uploads/3c07d34d-d0dd-4c09-bb31-2cea54fc22e0.png"
                   alt="Glamour's Beauty Salon Logo"
-                  className={`w-80 h-auto transition-all duration-300 ${
-                    logoLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                  className={`w-80 h-auto transition-all duration-500 ${
+                    logoLoaded 
+                      ? 'opacity-100 scale-100 animate-shimmer' 
+                      : 'opacity-0 scale-95'
                   }`}
                   loading="lazy"
                   onLoad={() => setLogoLoaded(true)}
