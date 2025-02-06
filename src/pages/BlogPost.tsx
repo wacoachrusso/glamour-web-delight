@@ -7,6 +7,7 @@ import { Calendar, ArrowLeft, Clock, Tag } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import { Navbar } from "@/components/Navbar";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -29,16 +30,19 @@ const BlogPost = () => {
 
   if (isLoading) {
     return (
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto">
-          <Skeleton className="h-8 w-32 mb-8" /> {/* Back button skeleton */}
-          <Skeleton className="h-12 w-3/4 mx-auto mb-4" />
-          <Skeleton className="h-6 w-48 mx-auto mb-8" />
-          <Skeleton className="h-64 w-full mb-8" />
-          <div className="space-y-4">
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-5/6" />
-            <Skeleton className="h-4 w-4/6" />
+      <div className="min-h-screen bg-gradient-to-b from-muted to-white">
+        <Navbar />
+        <div className="container mx-auto px-4 py-16">
+          <div className="max-w-4xl mx-auto">
+            <Skeleton className="h-8 w-32 mb-8" />
+            <Skeleton className="h-12 w-3/4 mx-auto mb-4" />
+            <Skeleton className="h-6 w-48 mx-auto mb-8" />
+            <Skeleton className="h-64 w-full mb-8" />
+            <div className="space-y-4">
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-5/6" />
+              <Skeleton className="h-4 w-4/6" />
+            </div>
           </div>
         </div>
       </div>
@@ -47,25 +51,54 @@ const BlogPost = () => {
 
   if (!post) {
     return (
-      <div className="container mx-auto px-4 py-16 text-center">
-        <h1 className="text-2xl font-bold mb-4">{t("blog.notFound.title")}</h1>
-        <p>{t("blog.notFound.message")}</p>
-        <Link to="/blog">
-          <Button variant="secondary" className="mt-4">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            {t("blog.featured.viewAll")}
-          </Button>
-        </Link>
+      <div className="min-h-screen bg-gradient-to-b from-muted to-white">
+        <Navbar />
+        <div className="container mx-auto px-4 py-16 text-center">
+          <h1 className="text-2xl font-bold mb-4">{t("blog.notFound.title")}</h1>
+          <p>{t("blog.notFound.message")}</p>
+          <Link to="/blog">
+            <Button variant="secondary" className="mt-4">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              {t("blog.featured.viewAll")}
+            </Button>
+          </Link>
+        </div>
       </div>
     );
   }
 
-  const readingTime = Math.ceil(post.content.split(' ').length / 200); // Assuming average reading speed of 200 words per minute
+  const readingTime = Math.ceil(post.content.split(' ').length / 200);
+
+  // Convert markdown-style content to HTML with proper styling
+  const formatContent = (content: string) => {
+    return content
+      .split('\n\n')
+      .map((paragraph, index) => {
+        // Handle headers
+        if (paragraph.startsWith('##')) {
+          return `<h2 class="text-2xl font-cormorant font-bold mt-8 mb-4 text-primary-foreground/90">${paragraph.replace('##', '').trim()}</h2>`;
+        }
+        // Handle bullet points
+        if (paragraph.includes('- **')) {
+          const listItems = paragraph.split('\n').map(item => {
+            if (item.includes('- **')) {
+              const [title, ...rest] = item.split('**');
+              return `<li class="mb-3"><span class="font-bold">${rest[0]}</span>${rest[1].replace('**', '')}</li>`;
+            }
+            return `<li class="mb-3">${item.replace('- ', '')}</li>`;
+          }).join('');
+          return `<ul class="list-disc list-inside space-y-2 ml-4 mb-6">${listItems}</ul>`;
+        }
+        // Regular paragraphs
+        return `<p class="mb-6 leading-relaxed text-primary-foreground/80">${paragraph}</p>`;
+      })
+      .join('');
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-muted to-white">
+      <Navbar />
       <article className="container mx-auto px-4 py-16 max-w-4xl">
-        {/* Back Button */}
         <Link to="/blog">
           <Button variant="ghost" className="mb-8 hover:bg-secondary/10">
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -79,7 +112,7 @@ const BlogPost = () => {
           className="space-y-8"
         >
           <header className="text-center space-y-6">
-            <h1 className="text-4xl md:text-5xl font-cormorant font-bold mb-4 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-cormorant font-bold mb-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-primary-dark to-secondary">
               {post.title}
             </h1>
             
@@ -116,8 +149,8 @@ const BlogPost = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="prose prose-lg max-w-none prose-headings:font-cormorant prose-headings:font-bold prose-p:text-gray-700 prose-a:text-secondary hover:prose-a:text-secondary-light prose-img:rounded-lg"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            className="prose prose-lg max-w-none"
+            dangerouslySetInnerHTML={{ __html: formatContent(post.content) }}
           />
 
           {post.tags && post.tags.length > 0 && (
