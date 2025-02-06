@@ -46,7 +46,8 @@
     "searchPlaceholder": "Search products...",
     "noProducts": "No products found in this category.",
     "category": "Category",
-    "allCategories": "All Categories"
+    "allCategories": "All Categories",
+    "errorLoading": "Error loading products. Please try again later."
   },
   "services": {
     "title": "Our",
@@ -103,6 +104,7 @@
     "services": "Services",
     "team": "Our Team",
     "store": "Store",
+    "blog": "Blog",
     "logo_alt": "Glamour's Beauty Salon"
   },
   "team": {

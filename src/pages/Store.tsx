@@ -46,12 +46,12 @@ const Store = () => {
       <Navbar />
       <main className="container mx-auto px-4 py-16">
         <h1 className="text-4xl md:text-5xl font-cormorant font-bold text-center mb-8">
-          {t('store.title')}
+          {t('products.title')} <span className="text-secondary">{t('products.highlight')}</span>
         </h1>
 
         <div className="text-center mb-12">
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t('store.pricingMessage')}
+            {t('products.subtitle')}
           </p>
         </div>
         
@@ -64,7 +64,7 @@ const Store = () => {
         {error ? (
           <Alert variant="destructive" className="mb-8">
             <AlertDescription>
-              {t('store.errorLoading')}
+              {t('products.errorLoading')}
             </AlertDescription>
           </Alert>
         ) : isLoading ? (
