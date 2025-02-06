@@ -51,20 +51,20 @@ const MeetTheOwner = () => {
             />
             
             {/* Logo Section */}
-            <div className="relative z-10 flex justify-center mt-8">
+            <div className="relative z-10 flex justify-center">
               {!logoLoaded && (
-                <Skeleton className="w-72 h-72 rounded-full" />
+                <Skeleton className="w-96 h-48 rounded-xl" />
               )}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="bg-white/80 backdrop-blur-sm p-8 rounded-full shadow-lg border border-secondary/20"
+                className="bg-gradient-to-b from-white/90 to-white/70 backdrop-blur p-6 rounded-xl shadow-lg border border-secondary/10"
               >
                 <img
                   src="/lovable-uploads/3c07d34d-d0dd-4c09-bb31-2cea54fc22e0.png"
                   alt="Glamour's Beauty Salon Logo"
-                  className={`w-64 h-auto transition-all duration-300 ${
+                  className={`w-80 h-auto transition-all duration-300 ${
                     logoLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                   }`}
                   loading="lazy"
