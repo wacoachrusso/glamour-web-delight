@@ -12,14 +12,14 @@ const Index = () => {
   const { t } = useTranslation();
   
   return (
-    <div className="min-h-screen bg-gradient-to-b from-muted to-white">
+    <div className="min-h-screen w-full bg-gradient-to-b from-muted to-white">
       <Navbar />
       <Hero />
       <Services />
       <FeaturedWork />
       <FeaturedProducts />
       <FeaturedBlog />
-      <section className="py-24 bg-gradient-to-b from-white via-primary/5 to-white">
+      <section className="w-full py-24 bg-gradient-to-b from-white via-primary/5 to-white">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-cormorant font-bold text-center mb-4">
             {t('testimonials.title')}
