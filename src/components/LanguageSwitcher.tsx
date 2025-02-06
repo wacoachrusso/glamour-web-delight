@@ -23,6 +23,9 @@ const LanguageSwitcher = () => {
     const savedLang = localStorage.getItem('i18nextLng');
     if (savedLang && languages.some(lang => lang.code === savedLang)) {
       i18n.changeLanguage(savedLang);
+    } else {
+      // Set default language if none is saved
+      i18n.changeLanguage('en');
     }
   }, [i18n]);
 
@@ -40,6 +43,9 @@ const LanguageSwitcher = () => {
     document.title = i18n.t('meta.title');
   };
 
+  // Get current language with fallback to 'en'
+  const currentLanguage = i18n.language || 'en';
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -51,7 +57,7 @@ const LanguageSwitcher = () => {
           <Globe className="h-5 w-5" />
           <span className="sr-only">Select language</span>
           <span className="absolute -bottom-1 -right-1 text-[10px] font-medium">
-            {i18n.language.toUpperCase()}
+            {currentLanguage.toUpperCase()}
           </span>
         </Button>
       </DropdownMenuTrigger>
@@ -61,7 +67,7 @@ const LanguageSwitcher = () => {
             key={lang.code}
             onClick={() => handleLanguageChange(lang.code)}
             className={`cursor-pointer ${
-              i18n.language === lang.code ? 'bg-secondary/10' : ''
+              currentLanguage === lang.code ? 'bg-secondary/10' : ''
             }`}
           >
             {lang.name}
