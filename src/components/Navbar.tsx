@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { MobileMenu } from "./MobileMenu";
 import { cn } from "@/lib/utils";
+import { BookOpen } from "lucide-react";
 
 export const Navbar = () => {
   const { t } = useTranslation();
@@ -17,7 +18,13 @@ export const Navbar = () => {
     { path: "/meet-the-owner", label: t('nav.about') },
     { path: "/services", label: t('nav.services') },
     { path: "/team", label: t('nav.team') },
-    { path: "/store", label: t('nav.store') }
+    { path: "/store", label: t('nav.store') },
+    { 
+      path: "/blog", 
+      label: t('nav.blog'),
+      icon: BookOpen,
+      isNew: true 
+    }
   ];
 
   return (
@@ -35,17 +42,23 @@ export const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-10">
-            {navItems.map(({ path, label }) => (
+            {navItems.map(({ path, label, icon: Icon, isNew }) => (
               <Link
                 key={path}
                 to={path}
                 className={cn(
-                  "text-primary-foreground/80 transition-all duration-300 font-medium tracking-widest text-sm relative group",
+                  "text-primary-foreground/80 transition-all duration-300 font-medium tracking-widest text-sm relative group flex items-center gap-1",
                   isActiveLink(path) && "text-secondary",
                   !isActiveLink(path) && "hover:text-secondary"
                 )}
               >
+                {Icon && <Icon className="h-4 w-4" />}
                 {label}
+                {isNew && (
+                  <span className="absolute -top-3 -right-6 bg-secondary text-white text-xs px-1.5 py-0.5 rounded-full">
+                    New
+                  </span>
+                )}
                 <span 
                   className={cn(
                     "absolute inset-x-0 bottom-0 h-0.5 bg-secondary transform transition-transform duration-300 ease-out",
