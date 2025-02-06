@@ -27,19 +27,29 @@
   }
 
   * {
-    @apply border-border;
+    @apply border-border m-0 p-0;
+    box-sizing: border-box;
   }
 
-  html {
-    @apply antialiased scroll-smooth;
+  html, body, #root {
+    @apply w-full min-h-screen overflow-x-hidden;
+    margin: 0;
+    padding: 0;
   }
 
   body {
-    @apply bg-background text-foreground font-montserrat min-h-screen overflow-x-hidden;
+    @apply bg-background text-foreground font-montserrat;
     background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
     background-attachment: fixed;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+  }
+
+  #root {
+    @apply flex flex-col;
+    isolation: isolate;
   }
 }
