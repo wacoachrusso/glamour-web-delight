@@ -2,12 +2,15 @@ import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
-import { format } from "date-fns";
-import { Calendar, ArrowLeft, Clock, Tag } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
+import { BlogHeader } from "@/components/blog/BlogHeader";
+import { BlogContent } from "@/components/blog/BlogContent";
+import { BlogTags } from "@/components/blog/BlogTags";
+import { formatContent } from "@/utils/blogUtils";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -68,32 +71,7 @@ const BlogPost = () => {
   }
 
   const readingTime = Math.ceil(post.content.split(' ').length / 200);
-
-  // Convert markdown-style content to HTML with proper styling
-  const formatContent = (content: string) => {
-    return content
-      .split('\n\n')
-      .map((paragraph, index) => {
-        // Handle headers
-        if (paragraph.startsWith('##')) {
-          return `<h2 class="text-2xl font-cormorant font-bold mt-8 mb-4 text-primary-foreground/90">${paragraph.replace('##', '').trim()}</h2>`;
-        }
-        // Handle bullet points
-        if (paragraph.includes('- **')) {
-          const listItems = paragraph.split('\n').map(item => {
-            if (item.includes('- **')) {
-              const [title, ...rest] = item.split('**');
-              return `<li class="mb-3"><span class="font-bold">${rest[0]}</span>${rest[1].replace('**', '')}</li>`;
-            }
-            return `<li class="mb-3">${item.replace('- ', '')}</li>`;
-          }).join('');
-          return `<ul class="list-disc list-inside space-y-2 ml-4 mb-6">${listItems}</ul>`;
-        }
-        // Regular paragraphs
-        return `<p class="mb-6 leading-relaxed text-primary-foreground/80">${paragraph}</p>`;
-      })
-      .join('');
-  };
+  const formattedContent = formatContent(post.content);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-muted to-white">
@@ -111,28 +89,12 @@ const BlogPost = () => {
           animate={{ opacity: 1, y: 0 }}
           className="space-y-8"
         >
-          <header className="text-center space-y-6">
-            <h1 className="text-4xl md:text-5xl font-cormorant font-bold mb-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-primary-dark to-secondary">
-              {post.title}
-            </h1>
-            
-            <div className="flex items-center justify-center gap-6 text-sm text-secondary/80">
-              <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4" />
-                <time dateTime={post.published_at}>
-                  {format(new Date(post.published_at), "MMMM d, yyyy")}
-                </time>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4" />
-                <span>{readingTime} min read</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Tag className="h-4 w-4" />
-                <span className="text-primary-dark">{post.category}</span>
-              </div>
-            </div>
-          </header>
+          <BlogHeader 
+            title={post.title}
+            publishedAt={post.published_at}
+            readingTime={readingTime}
+            category={post.category}
+          />
 
           {post.featured_image && (
             <motion.img
@@ -145,31 +107,12 @@ const BlogPost = () => {
             />
           )}
 
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="prose prose-lg max-w-none"
-            dangerouslySetInnerHTML={{ __html: formatContent(post.content) }}
+          <BlogContent 
+            content={post.content}
+            formattedContent={formattedContent}
           />
 
-          {post.tags && post.tags.length > 0 && (
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="flex flex-wrap gap-2 pt-8 border-t border-secondary/10"
-            >
-              {post.tags.map((tag: string) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm hover:bg-secondary/20 transition-colors"
-                >
-                  {tag}
-                </span>
-              ))}
-            </motion.div>
-          )}
+          <BlogTags tags={post.tags} />
         </motion.div>
       </article>
     </div>
