@@ -55,6 +55,10 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      fontFamily: {
+        montserrat: ["Montserrat", "sans-serif"],
+        cormorant: ["Cormorant Garamond", "serif"],
+      },
       backgroundImage: {
         'radiant-light': 'linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)',
         'radiant-warm': 'linear-gradient(to right, #ee9ca7, #ffdde1)',
