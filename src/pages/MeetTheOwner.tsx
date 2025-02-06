@@ -7,14 +7,20 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const MeetTheOwner = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [logoLoaded, setLogoLoaded] = useState(false);
 
   useEffect(() => {
     const img = new Image();
     img.src = "/lovable-uploads/2d83d154-d2c7-4d46-b712-8a6b5d698c37.png";
     img.onload = () => setImageLoaded(true);
     
+    const logo = new Image();
+    logo.src = "/lovable-uploads/789a6486-f3a1-4fb4-bc1e-61ac0a7ea95b.png";
+    logo.onload = () => setLogoLoaded(true);
+    
     return () => {
       img.onload = null;
+      logo.onload = null;
     };
   }, []);
 
@@ -28,7 +34,7 @@ const MeetTheOwner = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="relative"
+            className="relative space-y-6"
           >
             <div className="absolute inset-0 bg-secondary/10 rounded-2xl transform rotate-3"></div>
             {!imageLoaded && (
@@ -43,6 +49,22 @@ const MeetTheOwner = () => {
               loading="lazy"
               onLoad={() => setImageLoaded(true)}
             />
+            
+            {/* Logo Section */}
+            <div className="relative z-10 flex justify-center">
+              {!logoLoaded && (
+                <Skeleton className="w-48 h-48 rounded-full" />
+              )}
+              <img
+                src="/lovable-uploads/789a6486-f3a1-4fb4-bc1e-61ac0a7ea95b.png"
+                alt="Glamour's Beauty Salon Logo"
+                className={`w-48 h-auto transition-opacity duration-300 ${
+                  logoLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+                loading="lazy"
+                onLoad={() => setLogoLoaded(true)}
+              />
+            </div>
           </motion.div>
 
           {/* Content Section */}
