@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 const MeetTheOwner = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [logoLoaded, setLogoLoaded] = useState(false);
+  const [salonImageLoaded, setSalonImageLoaded] = useState(false);
 
   useEffect(() => {
     const img = new Image();
@@ -17,10 +18,15 @@ const MeetTheOwner = () => {
     const logo = new Image();
     logo.src = "/lovable-uploads/3c07d34d-d0dd-4c09-bb31-2cea54fc22e0.png";
     logo.onload = () => setLogoLoaded(true);
+
+    const salonImg = new Image();
+    salonImg.src = "/lovable-uploads/513dcf5a-b256-4137-a428-3656375e1aa4.png";
+    salonImg.onload = () => setSalonImageLoaded(true);
     
     return () => {
       img.onload = null;
       logo.onload = null;
+      salonImg.onload = null;
     };
   }, []);
 
@@ -50,10 +56,10 @@ const MeetTheOwner = () => {
               onLoad={() => setImageLoaded(true)}
             />
             
-            {/* Logo Section with Sparkle Animation */}
-            <div className="relative z-10 flex justify-center mt-12">
-              {!logoLoaded && (
-                <Skeleton className="w-96 h-48 rounded-xl" />
+            {/* Salon Image and Logo Overlay */}
+            <div className="relative z-10 mt-12">
+              {!salonImageLoaded && (
+                <Skeleton className="w-full h-48 rounded-xl" />
               )}
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -63,20 +69,37 @@ const MeetTheOwner = () => {
                   delay: 0.3,
                   ease: [0.4, 0, 0.2, 1]
                 }}
-                className="relative"
+                className="relative rounded-xl overflow-hidden"
               >
-                <div className="absolute inset-0 animate-pulse mix-blend-overlay opacity-50 bg-gradient-radial from-secondary/20 via-transparent to-transparent rounded-xl"></div>
+                {/* Salon Image */}
                 <img
-                  src="/lovable-uploads/3c07d34d-d0dd-4c09-bb31-2cea54fc22e0.png"
-                  alt="Glamour's Beauty Salon Logo"
-                  className={`w-80 h-auto transition-all duration-500 ${
-                    logoLoaded 
-                      ? 'opacity-100 scale-100 animate-shimmer' 
-                      : 'opacity-0 scale-95'
+                  src="/lovable-uploads/513dcf5a-b256-4137-a428-3656375e1aa4.png"
+                  alt="Glamour's Beauty Salon Interior"
+                  className={`w-full h-48 object-cover transition-all duration-500 ${
+                    salonImageLoaded ? 'opacity-100' : 'opacity-0'
                   }`}
                   loading="lazy"
-                  onLoad={() => setLogoLoaded(true)}
+                  onLoad={() => setSalonImageLoaded(true)}
                 />
+                
+                {/* Logo Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent mix-blend-overlay"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {!logoLoaded && (
+                    <Skeleton className="w-64 h-32" />
+                  )}
+                  <img
+                    src="/lovable-uploads/3c07d34d-d0dd-4c09-bb31-2cea54fc22e0.png"
+                    alt="Glamour's Beauty Salon Logo"
+                    className={`w-64 transition-all duration-500 mix-blend-overlay ${
+                      logoLoaded 
+                        ? 'opacity-90 scale-100 animate-shimmer' 
+                        : 'opacity-0 scale-95'
+                    }`}
+                    loading="lazy"
+                    onLoad={() => setLogoLoaded(true)}
+                  />
+                </div>
               </motion.div>
             </div>
           </motion.div>
