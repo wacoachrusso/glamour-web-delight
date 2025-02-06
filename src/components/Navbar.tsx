@@ -12,9 +12,16 @@ export const Navbar = () => {
     return location.pathname === path;
   };
 
+  const navItems = [
+    { path: "/", label: t('nav.home') },
+    { path: "/meet-the-owner", label: t('nav.about') },
+    { path: "/services", label: t('nav.services') },
+    { path: "/team", label: t('nav.team') },
+    { path: "/store", label: t('nav.store') }
+  ];
+
   return (
     <header className="sticky top-0 z-50 w-full backdrop-blur-sm">
-      {/* Main Navigation */}
       <div className="bg-white/95 backdrop-blur-md border-b border-secondary/10 shadow-sm">
         <div className="container flex h-20 items-center justify-between">
           {/* Logo */}
@@ -28,13 +35,7 @@ export const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-10">
-            {[
-              { path: "/", label: t('nav.home') },
-              { path: "/meet-the-owner", label: t('nav.about') },
-              { path: "/services", label: t('nav.services') },
-              { path: "/team", label: t('nav.team') },
-              { path: "/store", label: t('nav.store') }
-            ].map(({ path, label }) => (
+            {navItems.map(({ path, label }) => (
               <Link
                 key={path}
                 to={path}

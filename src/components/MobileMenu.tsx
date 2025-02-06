@@ -20,6 +20,14 @@ export const MobileMenu = () => {
     window.open(wazeUrl, '_blank');
   };
 
+  const navItems = [
+    { path: "/", label: "HOME" },
+    { path: "/meet-the-owner", label: "ABOUT US" },
+    { path: "/services", label: "SERVICES" },
+    { path: "/team", label: "OUR TEAM" },
+    { path: "/store", label: "PRODUCTS" }
+  ];
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -53,13 +61,7 @@ export const MobileMenu = () => {
           </div>
 
           <nav className="flex flex-col gap-4">
-            {[
-              { path: "/", label: "HOME" },
-              { path: "/meet-the-owner", label: "ABOUT US" },
-              { path: "/services", label: "SERVICES" },
-              { path: "/team", label: "OUR TEAM" },
-              { path: "/store", label: "PRODUCTS" }
-            ].map(({ path, label }) => (
+            {navItems.map(({ path, label }) => (
               <Link
                 key={path}
                 to={path}
