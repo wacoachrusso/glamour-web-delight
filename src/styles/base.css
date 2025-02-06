@@ -32,11 +32,11 @@
   }
 
   html {
-    @apply overflow-x-hidden;
+    @apply h-full overflow-x-hidden;
   }
 
   body {
-    @apply bg-background text-foreground font-montserrat overflow-x-hidden w-full;
+    @apply bg-background text-foreground font-montserrat overflow-x-hidden w-full h-full;
     background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
     background-attachment: fixed;
     text-rendering: optimizeLegibility;
@@ -47,7 +47,7 @@
   }
 
   #root {
-    @apply flex flex-col min-h-screen w-full;
+    @apply flex flex-col min-h-full w-full;
     isolation: isolate;
   }
 }
