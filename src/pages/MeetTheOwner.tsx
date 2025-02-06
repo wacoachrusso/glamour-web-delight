@@ -15,7 +15,7 @@ const MeetTheOwner = () => {
     img.onload = () => setImageLoaded(true);
     
     const logo = new Image();
-    logo.src = "/lovable-uploads/789a6486-f3a1-4fb4-bc1e-61ac0a7ea95b.png";
+    logo.src = "/lovable-uploads/3c07d34d-d0dd-4c09-bb31-2cea54fc22e0.png";
     logo.onload = () => setLogoLoaded(true);
     
     return () => {
@@ -34,7 +34,7 @@ const MeetTheOwner = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="relative space-y-6"
+            className="relative space-y-8"
           >
             <div className="absolute inset-0 bg-secondary/10 rounded-2xl transform rotate-3"></div>
             {!imageLoaded && (
@@ -51,19 +51,26 @@ const MeetTheOwner = () => {
             />
             
             {/* Logo Section */}
-            <div className="relative z-10 flex justify-center">
+            <div className="relative z-10 flex justify-center mt-8">
               {!logoLoaded && (
-                <Skeleton className="w-48 h-48 rounded-full" />
+                <Skeleton className="w-72 h-72 rounded-full" />
               )}
-              <img
-                src="/lovable-uploads/789a6486-f3a1-4fb4-bc1e-61ac0a7ea95b.png"
-                alt="Glamour's Beauty Salon Logo"
-                className={`w-48 h-auto transition-opacity duration-300 ${
-                  logoLoaded ? 'opacity-100' : 'opacity-0'
-                }`}
-                loading="lazy"
-                onLoad={() => setLogoLoaded(true)}
-              />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="bg-white/80 backdrop-blur-sm p-8 rounded-full shadow-lg border border-secondary/20"
+              >
+                <img
+                  src="/lovable-uploads/3c07d34d-d0dd-4c09-bb31-2cea54fc22e0.png"
+                  alt="Glamour's Beauty Salon Logo"
+                  className={`w-64 h-auto transition-all duration-300 ${
+                    logoLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                  }`}
+                  loading="lazy"
+                  onLoad={() => setLogoLoaded(true)}
+                />
+              </motion.div>
             </div>
           </motion.div>
 
