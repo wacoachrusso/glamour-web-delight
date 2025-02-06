@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import BlogCard from "@/components/blog/BlogCard";
 import { useTranslation } from "react-i18next";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Navbar } from "@/components/Navbar";
 
 const Blog = () => {
   const { t } = useTranslation();
@@ -24,11 +25,14 @@ const Blog = () => {
 
   if (isLoading) {
     return (
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <Skeleton key={i} className="h-64" />
-          ))}
+      <div className="min-h-screen bg-gradient-to-b from-muted to-white">
+        <Navbar />
+        <div className="container mx-auto px-4 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <Skeleton key={i} className="h-64" />
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -36,6 +40,7 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-muted to-white">
+      <Navbar />
       <div className="container mx-auto px-4 py-16">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
