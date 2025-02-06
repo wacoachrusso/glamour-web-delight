@@ -11,7 +11,8 @@
     "title": "Glamour's",
     "highlight": "Beauty Salon",
     "description": "Professional Hair, Nail & Waxing Services",
-    "bookNow": "Book Now"
+    "bookAppointment": "Book Appointment",
+    "callNow": "Call Now"
   },
   "portfolio": {
     "title": "Our",

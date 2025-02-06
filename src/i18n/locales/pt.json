@@ -11,7 +11,8 @@
     "title": "Glamour's",
     "highlight": "Beauty Salon",
     "description": "Serviços Profissionais de Cabelo, Unhas e Depilação",
-    "bookNow": "Agende Agora"
+    "bookAppointment": "Agendar Consulta",
+    "callNow": "Ligar Agora"
   },
   "portfolio": {
     "title": "Nossa",
