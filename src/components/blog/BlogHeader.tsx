@@ -12,35 +12,26 @@ interface BlogHeaderProps {
 export const BlogHeader = ({ title, publishedAt, readingTime, category }: BlogHeaderProps) => {
   return (
     <header className="text-center space-y-6">
-      <motion.h1 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-4xl md:text-5xl font-cormorant font-bold mb-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-primary-dark to-secondary"
-      >
+      <h1 className="text-4xl md:text-5xl font-cormorant font-bold mb-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-primary-dark to-secondary">
         {title}
-      </motion.h1>
+      </h1>
       
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
-        className="flex items-center justify-center gap-6 text-sm text-secondary/80"
-      >
-        <div className="flex items-center gap-2 hover:text-secondary transition-colors">
+      <div className="flex items-center justify-center gap-6 text-sm text-secondary/80">
+        <div className="flex items-center gap-2">
           <Calendar className="h-4 w-4" />
           <time dateTime={publishedAt}>
             {format(new Date(publishedAt), "MMMM d, yyyy")}
           </time>
         </div>
-        <div className="flex items-center gap-2 hover:text-secondary transition-colors">
+        <div className="flex items-center gap-2">
           <Clock className="h-4 w-4" />
           <span>{readingTime} min read</span>
         </div>
         <div className="flex items-center gap-2">
           <Tag className="h-4 w-4" />
-          <span className="text-primary-dark hover:text-secondary transition-colors">{category}</span>
+          <span className="text-primary-dark">{category}</span>
         </div>
-      </motion.div>
+      </div>
     </header>
   );
 };
