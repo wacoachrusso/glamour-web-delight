@@ -10,7 +10,9 @@ import { Navbar } from "@/components/Navbar";
 import { BlogHeader } from "@/components/blog/BlogHeader";
 import { BlogContent } from "@/components/blog/BlogContent";
 import { BlogTags } from "@/components/blog/BlogTags";
+import { AuthorSignature } from "@/components/blog/AuthorSignature";
 import { formatContent } from "@/utils/blogUtils";
+import { format } from "date-fns";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -72,6 +74,7 @@ const BlogPost = () => {
 
   const readingTime = Math.ceil(post.content.split(' ').length / 200);
   const formattedContent = formatContent(post.content);
+  const formattedDate = format(new Date(post.published_at), "MMMM d, yyyy");
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-muted to-white">
@@ -113,6 +116,11 @@ const BlogPost = () => {
           />
 
           <BlogTags tags={post.tags} />
+          
+          <AuthorSignature 
+            author={post.author}
+            date={formattedDate}
+          />
         </motion.div>
       </article>
     </div>
