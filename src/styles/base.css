@@ -31,13 +31,14 @@
     box-sizing: border-box;
   }
 
-  html {
+  html, body {
     @apply h-full overflow-x-hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
 
-  html::-webkit-scrollbar {
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
     display: none;
   }
 
