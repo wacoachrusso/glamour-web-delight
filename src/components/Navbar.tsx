@@ -18,6 +18,7 @@ export const Navbar = () => {
     { path: "/meet-the-owner", label: t('nav.about') },
     { path: "/services", label: t('nav.services') },
     { path: "/team", label: t('nav.team') },
+    { path: "/portfolio", label: t('nav.portfolio') },
     { path: "/store", label: t('nav.store') },
     { 
       path: "/blog", 

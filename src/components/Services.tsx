@@ -16,6 +16,12 @@ const Services = () => {
     queryKey: ["featuredServices"],
     queryFn: async () => {
       console.log("Fetching services...");
+      // First, get all images from storage bucket
+      const { data: storageImages } = await supabase
+        .storage
+        .from('salon_images')
+        .list();
+
       const { data, error } = await supabase
         .from('services')
         .select('*')
@@ -28,11 +34,31 @@ const Services = () => {
       }
 
       // Map services to use storage URLs
+      const getDefaultImageForCategory = (category: string, name: string) => {
+        const categoryMap: { [key: string]: string } = {
+          'Hair': '/lovable-uploads/Layers with curtain bangs.jpg',
+          'Color': '/lovable-uploads/Blonde hair color with highlights.jpg',
+          'Facial': '/lovable-uploads/facials.jpg',
+          'Waxing': '/lovable-uploads/spa-services-card-waxing.avif',
+          'Nails': '/lovable-uploads/Gel manicure.jpg',
+          'Lashes': '/lovable-uploads/EyelashExtensions.jpg'
+        };
+
+        // Check if service name contains specific keywords for more precise matching
+        if (name.toLowerCase().includes('highlight')) return '/lovable-uploads/Highlights3.jpg';
+        if (name.toLowerCase().includes('balayage')) return '/lovable-uploads/Layers haircut and balayage.jpg';
+        if (name.toLowerCase().includes('layer')) return '/lovable-uploads/Layers with curtain bangs.jpg';
+        if (name.toLowerCase().includes('cut')) return '/lovable-uploads/Short hair cut and highlights.jpg';
+        if (name.toLowerCase().includes('color')) return '/lovable-uploads/Blonde hair color with highlights.jpg';
+        
+        return categoryMap[category] || '/lovable-uploads/2721060a-90fa-4a64-97e9-d7747f1a40a8.png';
+      };
+
       const mappedServices = await Promise.all(data.map(async service => {
         if (!service.image_url) {
           return {
             ...service,
-            image_url: '/lovable-uploads/2721060a-90fa-4a64-97e9-d7747f1a40a8.png'
+            image_url: getDefaultImageForCategory(service.category, service.name)
           };
         }
 
@@ -41,14 +67,26 @@ const Services = () => {
           return service;
         }
 
-        // Get the public URL from storage
-        const { data: storageData } = supabase.storage
-          .from('salon_images')
-          .getPublicUrl(service.image_url);
+        // Check if the image exists in storage
+        const storageImage = storageImages?.find(img => 
+          img.name === service.image_url || 
+          `${service.category.toLowerCase()}/${service.image_url}` === img.name
+        );
+
+        if (storageImage) {
+          const { data: storageData } = supabase.storage
+            .from('salon_images')
+            .getPublicUrl(storageImage.name);
+
+          return {
+            ...service,
+            image_url: storageData.publicUrl
+          };
+        }
 
         return {
           ...service,
-          image_url: storageData.publicUrl || '/lovable-uploads/2721060a-90fa-4a64-97e9-d7747f1a40a8.png'
+          image_url: getDefaultImageForCategory(service.category, service.name)
         };
       }));
       

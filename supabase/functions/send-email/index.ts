@@ -26,6 +26,32 @@ interface EmailRequest {
   };
 }
 
+const MAX_EMAILS_PER_HOUR = 100;
+const emailCountMap = new Map<string, { count: number; timestamp: number }>();
+
+const isRateLimited = (email: string): boolean => {
+  const now = Date.now();
+  const hourInMs = 60 * 60 * 1000;
+  const record = emailCountMap.get(email);
+
+  if (!record || (now - record.timestamp) > hourInMs) {
+    emailCountMap.set(email, { count: 1, timestamp: now });
+    return false;
+  }
+
+  if (record.count >= MAX_EMAILS_PER_HOUR) {
+    return true;
+  }
+
+  record.count++;
+  return false;
+};
+
+const validateEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -36,6 +62,11 @@ const handler = async (req: Request): Promise<Response> => {
     const { type, language = "en", to, data }: EmailRequest = await req.json();
     console.log("Received email request:", { type, language, to, data });
 
+    // Validate API key
+    if (!RESEND_API_KEY) {
+      throw new Error("Missing RESEND_API_KEY environment variable");
+    }
+
     let emailContent: string;
     let subject: string;
     let recipients: string[];
@@ -44,10 +75,32 @@ const handler = async (req: Request): Promise<Response> => {
     const VERIFIED_EMAIL = "mikescordcutters@gmail.com";
 
     if (type === "order_confirmation" && data?.orderDetails) {
+      // Validate order details
+      if (!data.orderDetails.orderId || !data.orderDetails.items || !data.orderDetails.total) {
+        throw new Error("Invalid order details");
+      }
+      if (!validateEmail(data.orderDetails.customerEmail)) {
+        throw new Error("Invalid customer email");
+      }
+      if (isRateLimited(data.orderDetails.customerEmail)) {
+        throw new Error("Rate limit exceeded for this email address");
+      }
+
       emailContent = generateOrderConfirmationEmail(data.orderDetails, language);
       subject = translations[language].orderConfirmation.subject;
       recipients = [data.orderDetails.customerEmail];
     } else if (type === "inquiry_response" && data?.inquiryDetails) {
+      // Validate inquiry details
+      if (!data.inquiryDetails.customerName || !data.inquiryDetails.message) {
+        throw new Error("Invalid inquiry details");
+      }
+      if (!validateEmail(data.inquiryDetails.customerEmail)) {
+        throw new Error("Invalid customer email");
+      }
+      if (isRateLimited(data.inquiryDetails.customerEmail)) {
+        throw new Error("Rate limit exceeded for this email address");
+      }
+
       emailContent = generateInquiryResponseEmail(data.inquiryDetails, language);
       subject = translations[language].inquiryResponse.subject;
       recipients = [data.inquiryDetails.customerEmail];
@@ -148,7 +201,7 @@ const handler = async (req: Request): Promise<Response> => {
   } catch (error: any) {
     console.error("Error in send-email function:", error);
     return new Response(JSON.stringify({ error: error.message }), {
-      status: 500,
+      status: error.message.includes("Rate limit") ? 429 : 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }

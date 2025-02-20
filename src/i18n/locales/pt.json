@@ -1,4 +1,14 @@
 {
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "services": "Serviços",
+    "team": "Equipe",
+    "portfolio": "Nosso Trabalho",
+    "store": "Loja",
+    "blog": "Blog",
+    "logo_alt": "Logo do Glamour's Beauty Salon"
+  },
   "blog": {
     "featured": {
       "title": "Beleza e",
@@ -91,7 +101,11 @@
     "rights": "Todos os direitos reservados",
     "contact": "Contate-nos",
     "hours": "Horário de Funcionamento",
-    "social": "Siga-nos"
+    "social": "Siga-nos",
+    "follow": "Siga-nos",
+    "openWeek": "Aberto 7 dias por semana",
+    "everyday": "Todos os dias",
+    "includingHolidays": "Incluindo feriados"
   },
   "meta": {
     "title": "Glamour's Beauty Salon - Serviços de Beleza Profissionais em Newark",

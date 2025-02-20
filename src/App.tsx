@@ -6,6 +6,7 @@ import Services from "./pages/Services";
 import Team from "./pages/Team";
 import Store from "./pages/Store";
 import MeetTheOwner from "./pages/MeetTheOwner";
+import Portfolio from "./pages/Portfolio";
 import { ScrollToTop } from "./components/ScrollToTop";
 import "./App.css";
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/store" element={<Store />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/portfolio" element={<Portfolio />} />
       </Routes>
     </Router>
   );

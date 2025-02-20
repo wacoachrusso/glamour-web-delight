@@ -22,18 +22,18 @@ const BusinessHours = () => {
               <Clock className="w-5 h-5 text-secondary" />
             </div>
             <span className="text-primary-foreground/80 font-medium">
-              Open 7 days a week
+              {t('footer.openWeek')}
             </span>
           </div>
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-primary-foreground/60">Every day</span>
+              <span className="text-primary-foreground/60">{t('footer.everyday')}</span>
               <span className="text-primary-foreground font-medium">
                 10:00 AM - 7:00 PM
               </span>
             </div>
             <p className="text-sm text-primary-foreground/60 italic mt-4 text-center">
-              Including holidays
+              {t('footer.includingHolidays')}
             </p>
           </div>
         </div>
