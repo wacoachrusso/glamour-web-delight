@@ -7,9 +7,12 @@
     "portfolio": "Our Work",
     "store": "Store",
     "blog": "Blog",
-    "logo_alt": "Glamour's Beauty Salon Logo"
+    "logo_alt": "Glamour's Beauty Salon Logo",
+    "phone": "(973) 344-5199",
+    "address": "275 Adams St, Newark NJ 07105"
   },
   "blog": {
+    "readingTime": "{{minutes}} min read",
     "featured": {
       "title": "Beauty & Style",
       "highlight": "Tips",
@@ -20,7 +23,16 @@
     "notFound": {
       "title": "Post not found",
       "message": "The blog post you're looking for doesn't exist or has been removed."
-    }
+    },
+    "categories": {
+      "hair": "Hair Care",
+      "skincare": "Skincare",
+      "makeup": "Makeup",
+      "nails": "Nail Care",
+      "tips": "Beauty Tips",
+      "trends": "Beauty Trends"
+    },
+    "viewAll": "View All Posts"
   },
   "contact": {
     "title": "Get in",
@@ -57,7 +69,14 @@
     "noProducts": "No products found in this category.",
     "category": "Category",
     "allCategories": "All Categories",
-    "errorLoading": "Error loading products. Please try again later."
+    "errorLoading": "Error loading products. Please try again later.",
+    "categories": {
+      "haircare": "Hair Care",
+      "skincare": "Skin Care",
+      "nailcare": "Nail Care",
+      "tools": "Beauty Tools",
+      "accessories": "Accessories"
+    }
   },
   "services": {
     "title": "Our",
@@ -111,15 +130,6 @@
   "meta": {
     "title": "Glamour's Beauty Salon - Professional Beauty Services in Newark",
     "description": "Professional hair, nail, and waxing services in Newark, NJ. Book your appointment today!"
-  },
-  "nav": {
-    "home": "Home",
-    "about": "About",
-    "services": "Services",
-    "team": "Our Team",
-    "store": "Store",
-    "blog": "Blog",
-    "logo_alt": "Glamour's Beauty Salon"
   },
   "team": {
     "title": "Meet Our",

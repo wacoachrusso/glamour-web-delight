@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
+      - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+    depends_on:
+      - supabase
+
+  supabase:
+    image: supabase/supabase-docker:latest
+    ports:
+      - "54321:54321"
+      - "54322:54322"
+    environment:
+      POSTGRES_PASSWORD: your-super-secret-password
+      JWT_SECRET: your-super-secret-jwt-token
+      DASHBOARD_USERNAME: admin
+      DASHBOARD_PASSWORD: admin
+    volumes:
+      - ./supabase/seed:/docker-entrypoint-initdb.d
+      - supabase-data:/var/lib/postgresql/data
+
+volumes:
+  supabase-data:

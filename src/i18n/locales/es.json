@@ -7,9 +7,12 @@
     "portfolio": "Nuestro Trabajo",
     "store": "Tienda",
     "blog": "Blog",
-    "logo_alt": "Logo de Glamour's Beauty Salon"
+    "logo_alt": "Logo de Glamour's Beauty Salon",
+    "phone": "(973) 344-5199",
+    "address": "275 Adams St, Newark NJ 07105"
   },
   "blog": {
+    "readingTime": "{{minutes}} min de lectura",
     "featured": {
       "title": "Belleza y",
       "highlight": "Estilo",
@@ -20,7 +23,16 @@
     "notFound": {
       "title": "Publicación no encontrada",
       "message": "La publicación que buscas no existe o ha sido eliminada."
-    }
+    },
+    "categories": {
+      "hair": "Cuidado del Cabello",
+      "skincare": "Cuidado de la Piel",
+      "makeup": "Maquillaje",
+      "nails": "Cuidado de Uñas",
+      "tips": "Consejos de Belleza",
+      "trends": "Tendencias de Belleza"
+    },
+    "viewAll": "Ver Todas las Publicaciones"
   },
   "contact": {
     "title": "Ponte en",
@@ -56,7 +68,15 @@
     "searchPlaceholder": "Buscar productos...",
     "noProducts": "No se encontraron productos en esta categoría.",
     "category": "Categoría",
-    "allCategories": "Todas las Categorías"
+    "allCategories": "Todas las Categorías",
+    "errorLoading": "Error al cargar productos. Por favor, inténtalo de nuevo más tarde.",
+    "categories": {
+      "haircare": "Cuidado del Cabello",
+      "skincare": "Cuidado de la Piel",
+      "nailcare": "Cuidado de Uñas",
+      "tools": "Herramientas de Belleza",
+      "accessories": "Accesorios"
+    }
   },
   "services": {
     "title": "Nuestros",
@@ -110,14 +130,6 @@
   "meta": {
     "title": "Glamour's Beauty Salon - Servicios de Belleza Profesionales en Newark",
     "description": "Servicios profesionales de peluquería, cuidado de uñas y depilación en Newark, NJ. ¡Reserva tu cita hoy!"
-  },
-  "nav": {
-    "home": "Inicio",
-    "about": "Nosotros",
-    "services": "Servicios",
-    "team": "Nuestro Equipo",
-    "store": "Tienda",
-    "logo_alt": "Glamour's Beauty Salon"
   },
   "team": {
     "title": "Conoce a Nuestro",

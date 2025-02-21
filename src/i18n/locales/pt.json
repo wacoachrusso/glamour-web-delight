@@ -7,9 +7,12 @@
     "portfolio": "Nosso Trabalho",
     "store": "Loja",
     "blog": "Blog",
-    "logo_alt": "Logo do Glamour's Beauty Salon"
+    "logo_alt": "Logo do Glamour's Beauty Salon",
+    "phone": "(973) 344-5199",
+    "address": "275 Adams St, Newark NJ 07105"
   },
   "blog": {
+    "readingTime": "{{minutes}} min de leitura",
     "featured": {
       "title": "Beleza e",
       "highlight": "Estilo",
@@ -20,7 +23,16 @@
     "notFound": {
       "title": "Post não encontrado",
       "message": "O post do blog que você está procurando não existe ou foi removido."
-    }
+    },
+    "categories": {
+      "hair": "Cuidados com o Cabelo",
+      "skincare": "Cuidados com a Pele",
+      "makeup": "Maquiagem",
+      "nails": "Cuidados com as Unhas",
+      "tips": "Dicas de Beleza",
+      "trends": "Tendências de Beleza"
+    },
+    "viewAll": "Ver Todos os Posts"
   },
   "contact": {
     "title": "Entre em",
@@ -56,7 +68,15 @@
     "searchPlaceholder": "Buscar produtos...",
     "noProducts": "Nenhum produto encontrado nesta categoria.",
     "category": "Categoria",
-    "allCategories": "Todas as Categorias"
+    "allCategories": "Todas as Categorias",
+    "errorLoading": "Erro ao carregar produtos. Por favor, tente novamente mais tarde.",
+    "categories": {
+      "haircare": "Cuidados com o Cabelo",
+      "skincare": "Cuidados com a Pele",
+      "nailcare": "Cuidados com as Unhas",
+      "tools": "Ferramentas de Beleza",
+      "accessories": "Acessórios"
+    }
   },
   "services": {
     "title": "Nossos",
@@ -110,14 +130,6 @@
   "meta": {
     "title": "Glamour's Beauty Salon - Serviços de Beleza Profissionais em Newark",
     "description": "Serviços profissionais de cabelo, unhas e depilação em Newark, NJ. Agende seu horário hoje!"
-  },
-  "nav": {
-    "home": "Início",
-    "about": "Sobre",
-    "services": "Serviços",
-    "team": "Nossa Equipe",
-    "store": "Loja",
-    "logo_alt": "Glamour's Beauty Salon"
   },
   "team": {
     "title": "Conheça Nossa",

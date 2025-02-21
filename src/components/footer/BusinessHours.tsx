@@ -12,27 +12,27 @@ const BusinessHours = () => {
       transition={{ duration: 0.5, delay: 0.2 }}
       className="space-y-8"
     >
-      <h3 className="text-3xl font-cormorant font-semibold text-secondary">
+      <h3 className="text-3xl font-cormorant font-semibold text-secondary tracking-wide">
         {t('footer.hours')}
       </h3>
       <div className="space-y-6">
-        <div className="bg-gradient-to-br from-white/50 to-secondary/5 rounded-xl p-6 backdrop-blur-sm border border-secondary/10 shadow-sm">
-          <div className="flex items-center space-x-3 mb-6">
-            <div className="h-10 w-10 rounded-full bg-secondary/10 flex items-center justify-center">
-              <Clock className="w-5 h-5 text-secondary" />
+        <div className="bg-gradient-to-br from-white/80 to-secondary/5 rounded-2xl p-8 backdrop-blur-sm border border-secondary/20 shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="flex items-center space-x-4 mb-8">
+            <div className="h-12 w-12 rounded-full bg-secondary/15 flex items-center justify-center transform transition-transform duration-300 hover:scale-110 hover:bg-secondary/20">
+              <Clock className="w-6 h-6 text-secondary" />
             </div>
-            <span className="text-primary-foreground/80 font-medium">
+            <span className="text-primary-foreground/90 font-medium tracking-wide">
               {t('footer.openWeek')}
             </span>
           </div>
-          <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <span className="text-primary-foreground/60">{t('footer.everyday')}</span>
-              <span className="text-primary-foreground font-medium">
+          <div className="space-y-6">
+            <div className="flex justify-between items-center py-2 border-b border-secondary/10">
+              <span className="text-primary-foreground/70 font-medium">{t('footer.everyday')}</span>
+              <span className="text-primary-foreground font-semibold tracking-wide">
                 10:00 AM - 7:00 PM
               </span>
             </div>
-            <p className="text-sm text-primary-foreground/60 italic mt-4 text-center">
+            <p className="text-sm text-primary-foreground/70 italic mt-4 text-center font-medium">
               {t('footer.includingHolidays')}
             </p>
           </div>
