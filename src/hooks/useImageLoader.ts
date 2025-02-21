@@ -21,7 +21,7 @@ export const useImageLoader = (imageUrl: string | null, itemName: string) => {
       try {
         let url = imageUrl;
 
-        if (imageUrl.startsWith('/lovable-uploads/')) {
+        if (imageUrl.startsWith('/')) {
           console.log("Using local public file for", itemName, ":", imageUrl);
           url = imageUrl;
         } else if (imageUrl.startsWith('http')) {

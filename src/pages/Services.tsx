@@ -51,7 +51,8 @@ const ServicesPage = () => {
           'Facial': '/lovable-uploads/facials.jpg',
           'Waxing': '/lovable-uploads/spa-services-card-waxing.avif',
           'Nails': '/lovable-uploads/Gel manicure.jpg',
-          'Lashes': '/lovable-uploads/EyelashExtensions.jpg'
+          'Lashes': '/lovable-uploads/EyelashExtensions.jpg',
+          'Makeup': '/lovable-uploads/MAKE UP.webp'
         };
 
         if (name.toLowerCase().includes('highlight')) return '/lovable-uploads/Highlights3.jpg';
@@ -60,7 +61,7 @@ const ServicesPage = () => {
         if (name.toLowerCase().includes('cut')) return '/lovable-uploads/Short hair cut and highlights.jpg';
         if (name.toLowerCase().includes('color')) return '/lovable-uploads/Blonde hair color with highlights.jpg';
         
-        return categoryMap[category] || '/lovable-uploads/2721060a-90fa-4a64-97e9-d7747f1a40a8.png';
+        return categoryMap[category] || '/2721060a-90fa-4a64-97e9-d7747f1a40a8.png';
       };
 
       const mappedServices = await Promise.all(data.map(async service => {
