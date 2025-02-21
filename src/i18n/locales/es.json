@@ -78,6 +78,16 @@
       "accessories": "Accesorios"
     }
   },
+  "footer": {
+    "hours": "Horario",
+    "openWeek": "Abierto Todos los Días",
+    "everyday": "Lunes - Domingo",
+    "includingHolidays": "Incluyendo días festivos y ocasiones especiales",
+    "contact": "Contáctanos",
+    "follow": "Síguenos",
+    "social_description": "Mantente actualizado con nuestros últimos estilos y promociones",
+    "rights": "Todos los derechos reservados"
+  },
   "services": {
     "title": "Nuestros",
     "highlight": "Servicios",
@@ -118,27 +128,16 @@
     "subtitle": "Lee las experiencias de nuestros valiosos clientes"
   },
   "footer": {
-    "rights": "Todos los derechos reservados",
-    "contact": "Contáctanos",
-    "hours": "Horario",
-    "social": "Síguenos",
     "follow": "Síguenos",
-    "openWeek": "Abierto los 7 días de la semana",
-    "everyday": "Todos los días",
-    "includingHolidays": "Incluyendo festivos"
+    "rights": "Todos los derechos reservados",
+    "social_description": "Mantente conectado con nosotros en las redes sociales para las últimas actualizaciones, consejos de belleza y ofertas especiales",
+    "contact": "Contáctanos",
+    "waze_tooltip": "Haz clic para obtener direcciones usando Waze",
+    "waze_click": "Haz clic para abrir en Waze",
+    "hours": "Horario de Atención"
   },
   "meta": {
-    "title": "Glamour's Beauty Salon - Servicios de Belleza Profesionales en Newark",
-    "description": "Servicios profesionales de peluquería, cuidado de uñas y depilación en Newark, NJ. ¡Reserva tu cita hoy!"
-  },
-  "team": {
-    "title": "Conoce a Nuestro",
-    "highlight": "Equipo",
-    "subtitle": "Conoce a los profesionales talentosos detrás de nuestros servicios",
-    "memberPlaceholder": "Miembro del Equipo",
-    "comingSoon": "Próximamente",
-    "expertTitle": "Experto en Belleza",
-    "profileDescription": "El perfil de nuestro miembro del equipo estará disponible pronto.",
-    "description": "Estamos constantemente ampliando nuestro equipo de profesionales talentosos. ¡Vuelve pronto para conocer a nuestros nuevos miembros del equipo!"
+    "title": "Glamour's Beauty Salon - Servicios Profesionales de Peluquería, Uñas y Depilación",
+    "description": "Experimenta servicios de belleza profesionales en Glamour's Beauty Salon. Ofrecemos estilismo experto, cuidado de uñas, depilación y tratamientos faciales en Newark, NJ."
   }
 }

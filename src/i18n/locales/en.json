@@ -78,6 +78,18 @@
       "accessories": "Accessories"
     }
   },
+  "footer": {
+    "hours": "Business Hours",
+    "openWeek": "Open Every Day",
+    "everyday": "Monday - Sunday",
+    "includingHolidays": "Including holidays and special occasions",
+    "contact": "Contact Us",
+    "follow": "Follow Us",
+    "social_description": "Stay connected with us on social media for the latest updates, beauty tips, and special offers",
+    "rights": "All rights reserved",
+    "waze_tooltip": "Click to get directions using Waze",
+    "waze_click": "Click to open in Waze"
+  },
   "services": {
     "title": "Our",
     "highlight": "Services",
@@ -117,28 +129,9 @@
     "title": "What Our Clients Say",
     "subtitle": "Read the experiences of our valued clients"
   },
-  "footer": {
-    "rights": "All rights reserved",
-    "contact": "Contact Us",
-    "hours": "Opening Hours",
-    "social": "Follow Us",
-    "follow": "Follow Us",
-    "openWeek": "Open 7 days a week",
-    "everyday": "Every day",
-    "includingHolidays": "Including holidays"
-  },
+
   "meta": {
-    "title": "Glamour's Beauty Salon - Professional Beauty Services in Newark",
-    "description": "Professional hair, nail, and waxing services in Newark, NJ. Book your appointment today!"
-  },
-  "team": {
-    "title": "Meet Our",
-    "highlight": "Team",
-    "subtitle": "Meet the talented professionals behind our services",
-    "memberPlaceholder": "Team Member",
-    "comingSoon": "Coming Soon",
-    "expertTitle": "Beauty Expert",
-    "profileDescription": "Our team member's profile will be available soon.",
-    "description": "We're constantly expanding our team of talented professionals. Check back soon to meet our new team members!"
+    "title": "Glamour's Beauty Salon - Professional Hair, Nail & Waxing Services",
+    "description": "Experience professional beauty services at Glamour's Beauty Salon. We offer expert hair styling, nail care, waxing, and facial treatments in Newark, NJ."
   }
 }

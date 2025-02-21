@@ -13,7 +13,7 @@ const SocialMedia = () => {
       transition={{ duration: 0.5, delay: 0.4 }}
       className="space-y-8"
     >
-      <h3 className="text-3xl font-cormorant font-semibold text-secondary tracking-wide">
+      <h3 className="text-3xl font-cormorant font-semibold text-secondary tracking-wide text-center">
         {t('footer.follow')}
       </h3>
       <div className="space-y-8">
@@ -27,10 +27,10 @@ const SocialMedia = () => {
           >
             <Button
               variant="outline"
-              size="lg"
-              className="w-16 h-16 rounded-full border-2 border-secondary/40 hover:border-secondary bg-white/80 hover:bg-secondary/5 shadow-sm hover:shadow-md transition-all duration-300 backdrop-blur-sm"
+              size="icon"
+              className="w-12 h-12 rounded-full border-2 border-secondary hover:border-secondary/80 bg-white hover:bg-secondary/5 shadow-sm hover:shadow-md transition-all duration-300"
             >
-              <Instagram className="w-7 h-7 text-secondary group-hover:scale-110 transition-transform duration-300" />
+              <Instagram className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
             </Button>
           </a>
           <a
@@ -42,15 +42,15 @@ const SocialMedia = () => {
           >
             <Button
               variant="outline"
-              size="lg"
-              className="w-16 h-16 rounded-full border-2 border-secondary/40 hover:border-secondary bg-white/80 hover:bg-secondary/5 shadow-sm hover:shadow-md transition-all duration-300 backdrop-blur-sm"
+              size="icon"
+              className="w-12 h-12 rounded-full border-2 border-secondary hover:border-secondary/80 bg-white hover:bg-secondary/5 shadow-sm hover:shadow-md transition-all duration-300"
             >
-              <Facebook className="w-7 h-7 text-secondary group-hover:scale-110 transition-transform duration-300" />
+              <Facebook className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
             </Button>
           </a>
         </div>
         <p className="text-primary-foreground/70 text-center font-medium tracking-wide">
-          Follow us on social media for latest updates, promotions, and beauty inspiration
+          {t('footer.social_description')}
         </p>
       </div>
     </motion.div>
