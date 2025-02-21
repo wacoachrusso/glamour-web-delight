@@ -29,32 +29,60 @@
   * {
     @apply border-border m-0 p-0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
   }
-
-  html, body {
+  html {
+    @apply h-full overflow-x-hidden;
+    font-size: clamp(14px, calc(14px + 0.5vw), 16px);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
     @apply h-full overflow-x-hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    touch-action: manipulation;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-
   html::-webkit-scrollbar,
   body::-webkit-scrollbar {
     display: none;
   }
-
   body {
-    @apply bg-background text-foreground font-montserrat overflow-x-hidden w-full h-full;
+    @apply bg-background text-foreground font-montserrat w-full h-full;
     background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
     background-attachment: fixed;
     text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
   }
-
   #root {
     @apply flex flex-col min-h-full w-full;
-    isolation: isolate;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  @supports (-webkit-touch-callout: none) {
+    body,
+    #root {
+      min-height: -webkit-fill-available;
+    }
+  }
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
   }
 }

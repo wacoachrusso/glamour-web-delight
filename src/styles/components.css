@@ -1,14 +1,16 @@
 @layer components {
   button, a {
-    @apply min-h-[44px] min-w-[44px];
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+    touch-action: manipulation;
   }
 
   img {
-    @apply max-w-full h-auto;
+    @apply max-w-full h-auto object-cover;
+    aspect-ratio: attr(width) / attr(height);
   }
 
   .container {
-    @apply px-4 md:px-6 lg:px-8;
+    @apply w-full mx-auto px-4 md:px-6 lg:px-8 max-w-7xl;
   }
 
   :focus-visible {
@@ -18,10 +20,29 @@
   .loading-skeleton {
     @apply animate-pulse bg-gray-200 rounded;
   }
+
+  /* Improved spacing for mobile */
+  .section-spacing {
+    @apply py-8 md:py-12 lg:py-16;
+  }
+
+  .content-spacing {
+    @apply space-y-4 md:space-y-6 lg:space-y-8;
+  }
 }
 
 @media (max-width: 640px) {
   button, a {
-    @apply p-2;
+    @apply p-3;
+  }
+
+  /* Ensure text remains readable on small screens */
+  .text-responsive {
+    @apply text-base md:text-lg lg:text-xl;
+  }
+
+  /* Improve touch targets on mobile */
+  .mobile-touch-target {
+    @apply min-h-[48px] min-w-[48px];
   }
 }
