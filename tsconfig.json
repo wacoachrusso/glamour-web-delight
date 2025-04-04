@@ -5,15 +5,14 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
+    // baseUrl and paths might be useful here if shared between configs,
+    // but are already defined in tsconfig.app.json. Keep if needed for editor/tooling.
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
-    "noImplicitAny": false,
-    "noUnusedParameters": false,
+    // Keep skipLibCheck and allowJs if needed, remove others as they are handled by referenced configs
     "skipLibCheck": true,
-    "allowJs": true,
-    "noUnusedLocals": false,
-    "strictNullChecks": false
+    "allowJs": true
   }
 }
